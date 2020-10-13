@@ -1,10 +1,11 @@
 #include "Game.h"
 
-Game::Game() : window(sf::VideoMode(1280, 720), "Game 1", sf::Style::Close), player() {
+Game::Game() : window(sf::VideoMode(1280, 720), "Game 1", sf::Style::Close), texture(), player() {
   window.setFramerateLimit(60);
-  player.setRadius(40.f);
+  if(!texture.loadFromFile("player.png")) {}
+  player.setTexture(texture);
   player.setPosition(100.f, 100.f);
-  player.setFillColor(sf::Color::Green);
+  player.setScale(3.f, 3.f);
 }
 
 void Game::run() {
