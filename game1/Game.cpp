@@ -5,7 +5,7 @@ Game::Game() : window(sf::VideoMode(1280, 720), "Game 1", sf::Style::Close), tex
   if(!texture.loadFromFile("player.png")) {}
   player.setTexture(texture);
   player.setPosition(100.f, 100.f);
-  player.setScale(2.f, 2.f);
+  player.setScale(3.f, 3.f);
 }
 
 void Game::run() {
