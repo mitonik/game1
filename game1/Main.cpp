@@ -12,11 +12,14 @@ private:
   void render();
   sf::RenderWindow window;
   sf::CircleShape player;
-  bool isMovingUp, isMovingDown, isMovingLeft, isMovingRight;
+  bool isMovingUp = false;
+  bool isMovingDown = false;
+  bool isMovingLeft = false;
+  bool isMovingRight = false;
   float PlayerSpeed = 1000.f;
 };
 
-Game::Game(): window(sf::VideoMode(1280, 720), "Game 1", sf::Style::Close), player() {
+Game::Game() : window(sf::VideoMode(1280, 720), "Game 1", sf::Style::Close), player() {
   window.setFramerateLimit(60);
   player.setRadius(40.f);
   player.setPosition(100.f, 100.f);
@@ -26,7 +29,7 @@ Game::Game(): window(sf::VideoMode(1280, 720), "Game 1", sf::Style::Close), play
 void Game::run() {
   sf::Clock clock;
   sf::Time timeSinceLastUpdate = sf::Time::Zero;
-  sf::Time TimePerFrame = sf::seconds(1.f/60.f);
+  sf::Time TimePerFrame = sf::seconds(1.f / 60.f);
   while (window.isOpen()) {
     timeSinceLastUpdate += clock.restart();
     while (timeSinceLastUpdate > TimePerFrame) {
@@ -58,11 +61,14 @@ void Game::processEvents() {
 void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed) {
   if (key == sf::Keyboard::W) {
     isMovingUp = isPressed;
-  } else if (key == sf::Keyboard::S) {
+  }
+  else if (key == sf::Keyboard::S) {
     isMovingDown = isPressed;
-  } else if (key == sf::Keyboard::A) {
+  }
+  else if (key == sf::Keyboard::A) {
     isMovingLeft = isPressed;
-  } else if (key == sf::Keyboard::D) {
+  }
+  else if (key == sf::Keyboard::D) {
     isMovingRight = isPressed;
   }
 }
