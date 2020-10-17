@@ -53,6 +53,10 @@ void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed) {
   else if (key == sf::Keyboard::D) {
     isMovingRight = isPressed;
   }
+  else if (key == sf::Keyboard::Escape)
+  {
+      window.close();
+  }
 }
 
 void Game::update(sf::Time deltaTime) {
