@@ -15,6 +15,8 @@ private:
   sf::RenderWindow window;
   sf::Texture texture;
   sf::Sprite player;
+  sf::Font arial;
+  sf::Text frametime;
   bool isMovingUp = false;
   bool isMovingDown = false;
   bool isMovingLeft = false;

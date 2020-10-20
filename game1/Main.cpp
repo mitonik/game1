@@ -2,6 +2,8 @@
 #include "Menu.h"
 
 int main() {
-  Menu menu;
-  menu.run();
+  Game game;
+  game.run();
+  /*Menu menu;
+  menu.run();*/
 }

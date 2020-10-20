@@ -1,18 +1,26 @@
 #include "Game.h"
+#include <string>
 
-Game::Game() : window(sf::VideoMode(1280, 720), "Game 1", sf::Style::Close), texture(), player() {
+Game::Game():
+  window(sf::VideoMode(1600, 900), "Game 1", sf::Style::Close),
+  texture(),
+  player()
+  {
   window.setFramerateLimit(60);
   if(!texture.loadFromFile("player.png")) {}
   player.setTexture(texture);
   player.setPosition(100.f, 100.f);
-  player.setScale(2.f, 2.f);
+  player.setScale(3.f, 3.f);
+  if (!arial.loadFromFile("arial.ttf")) {}
+  frametime.setFont(arial);
 }
 
 void Game::run() {
   sf::Clock clock;
   sf::Time timeSinceLastUpdate = sf::Time::Zero;
-  sf::Time TimePerFrame = sf::seconds(1.f / 60.f);
+  sf::Time TimePerFrame = sf::seconds(1.f / 120.f);
   while (window.isOpen()) {
+    frametime.setString("Frametime: " + std::to_string(clock.getElapsedTime().asMicroseconds()));
     timeSinceLastUpdate += clock.restart();
     while (timeSinceLastUpdate > TimePerFrame) {
       timeSinceLastUpdate -= TimePerFrame;
@@ -55,7 +63,7 @@ void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed) {
   }
   else if (key == sf::Keyboard::Escape)
   {
-      window.close();
+    window.close();
   }
 }
 
@@ -75,5 +83,6 @@ void Game::update(sf::Time deltaTime) {
 void Game::render() {
   window.clear();
   window.draw(player);
+  window.draw(frametime);
   window.display();
 }
