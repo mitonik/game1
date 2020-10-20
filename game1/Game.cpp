@@ -7,11 +7,11 @@ Game::Game():
   player()
   {
   window.setFramerateLimit(60);
-  if(!texture.loadFromFile("player.png")) {}
+  if(!texture.loadFromFile("textures/player.png")) {}
   player.setTexture(texture);
   player.setPosition(100.f, 100.f);
   player.setScale(3.f, 3.f);
-  if (!arial.loadFromFile("arial.ttf")) {}
+  if (!arial.loadFromFile("fonts/arial.ttf")) {}
   frametime.setFont(arial);
 }
 

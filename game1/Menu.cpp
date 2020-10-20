@@ -3,7 +3,7 @@
 
 Menu::Menu() : window(sf::VideoMode(1280, 720), "Menu-WTC", sf::Style::Close), texture(), player() {
     window.setFramerateLimit(60);
-    if (!texture.loadFromFile("ENTER.png")) {}
+    if (!texture.loadFromFile("textures/enter.png")) {}
     player.setTexture(texture);
     player.setPosition(100.f, 100.f);
     player.setScale(2.f, 2.f);

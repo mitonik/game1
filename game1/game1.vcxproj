@@ -159,6 +159,13 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Menu.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="fonts\arial.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="textures\enter.png" />
+    <Image Include="textures\player.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
