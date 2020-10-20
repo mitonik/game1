@@ -1,5 +1,7 @@
 #include "Menu.h"
 #include "Game.h"
+#include <iostream>
+#include <vector>
 
 Menu::Menu() : window(sf::VideoMode(1280, 720), "Menu-WTC", sf::Style::Close), texture(), player() {
     window.setFramerateLimit(60);
@@ -60,8 +62,13 @@ void Menu::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
         window.close();
         game.run();
     }
+    else if (key == sf::Keyboard::M)
+    {
+        std::cout << "x -> " << sf::Mouse::getPosition(window).x << "\n y -> " << sf::Mouse::getPosition(window).y << "\n";
+    }
     else if (key == sf::Keyboard::Escape)
     {
         window.close();
     }
 }
+    

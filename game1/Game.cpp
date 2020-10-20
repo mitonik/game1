@@ -63,7 +63,7 @@ void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed) {
   }
   else if (key == sf::Keyboard::Escape)
   {
-    window.close();
+    window.close(); //it will be pause menu
   }
 }
 

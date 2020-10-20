@@ -15,6 +15,7 @@ private:
 	sf::RenderWindow window;
 	sf::Texture texture;
 	sf::Sprite player;
+	sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 	bool isMovingUp = false;
 	bool isMovingDown = false;
 	bool isMovingLeft = false;
