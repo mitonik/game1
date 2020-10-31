@@ -13,8 +13,11 @@ private:
 	void handlePlayerInput(sf::Keyboard::Key, bool);
 private:
 	sf::RenderWindow window;
-	sf::Texture texture;
+	sf::Texture texture_button2;
 	sf::Texture textureback;
+	sf::Texture texture_button;
+	sf::Sprite button;
+	sf::Sprite button2;
 	sf::Sprite player;
 	sf::Sprite back;
 	sf::Vector2i mousePos = sf::Mouse::getPosition(window);
