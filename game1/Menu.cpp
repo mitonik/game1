@@ -3,8 +3,14 @@
 #include <iostream>
 #include <vector>
 
-Menu::Menu() : window(sf::VideoMode(1280, 720), "Menu-WTC", sf::Style::Close), texture(), player() {
+Menu::Menu() : window(sf::VideoMode(1280, 720), "Menu-WTC", sf::Style::Close),textureback(), texture(), player(), back() {
     window.setFramerateLimit(60);
+
+    if (!textureback.loadFromFile("textures/back1.png")) {}
+    back.setTexture(textureback);
+    back.setPosition(0.f, 0.f);
+    back.setScale(1.f, 1.f);
+
     if (!texture.loadFromFile("textures/enter.png")) {}
     player.setTexture(texture);
     player.setPosition(100.f, 100.f);
@@ -50,6 +56,7 @@ void Menu::update(sf::Time)
 
 void Menu::render() {
     window.clear();
+    window.draw(back);
     window.draw(player);
     window.display();
 }
@@ -68,7 +75,7 @@ void Menu::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
     }
     else if (key == sf::Keyboard::Escape)
     {
-        window.close();
+        //window.close();
     }
 }
     

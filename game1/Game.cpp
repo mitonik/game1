@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Menu.h"
 #include <string>
 
 Game::Game():
@@ -63,7 +64,9 @@ void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed) {
   }
   else if (key == sf::Keyboard::Escape)
   {
-    window.close(); //it will be pause menu
+      Menu menu;
+      window.close();
+      menu.run(); //it will be pause menu
   }
 }
 
