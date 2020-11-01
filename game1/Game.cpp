@@ -21,7 +21,7 @@ void Game::run() {
   sf::Time timeSinceLastUpdate = sf::Time::Zero;
   sf::Time TimePerFrame = sf::seconds(1.f / 120.f);
   while (window.isOpen()) {
-    frametime.setString("Frametime: " + std::to_string(clock.getElapsedTime().asMicroseconds()) + " X: " + std::to_string(player.getPosition().x) + " Y: " + std::to_string(player.getPosition().y));
+    frametime.setString("Frametime: " + std::to_string(clock.getElapsedTime().asMicroseconds()) + " X: " + std::to_string(player.getPosition().x) + " Y: " + std::to_string(player.getPosition().y) + " VelocityY: " + std::to_string(playerVelocityY));
     timeSinceLastUpdate += clock.restart();
     while (timeSinceLastUpdate > TimePerFrame) {
       timeSinceLastUpdate -= TimePerFrame;
@@ -50,44 +50,33 @@ void Game::processEvents() {
 }
 
 void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed) {
-  if (key == sf::Keyboard::W) {
-    isMovingUp = isPressed;
+  if (key == sf::Keyboard::W)
     isJumping = isPressed;
-  }
-  else if (key == sf::Keyboard::S) {
-    isMovingDown = isPressed;
-  }
-  else if (key == sf::Keyboard::A) {
+  else if (key == sf::Keyboard::A)
     isMovingLeft = isPressed;
-  }
-  else if (key == sf::Keyboard::D) {
+  else if (key == sf::Keyboard::D)
     isMovingRight = isPressed;
-  }
-  else if (key == sf::Keyboard::Escape)
-  {
-      Menu menu;
-      window.close();
-      menu.run(); //it will be pause menu
-  }
 }
 
 void Game::update(sf::Time deltaTime) {
-  sf::Vector2f movement(0.f, 0.f);
-  if (isJumping)
-    velocity -= PlayerJump;
-  else if (player.getPosition().y + player.getGlobalBounds().height < groundHeight)
-    velocity += GRAVITY;
-  else if (player.getPosition().y + player.getGlobalBounds().height > groundHeight)
-    velocity = 0;
-    player.setPosition(player.getPosition().x, groundHeight - player.getGlobalBounds().height);
-  /*if (isMovingDown)
-    movement.y += PlayerSpeed;*/
+  playerAccelerationX = 0;
   if (isMovingLeft)
-    movement.x -= PlayerSpeed;
+    playerAccelerationX -= playerSpeed;
   if (isMovingRight)
-    movement.x += PlayerSpeed;
-  movement.y += velocity;
-  player.move(movement * deltaTime.asSeconds());
+    playerAccelerationX += playerSpeed;
+  if (isJumping)
+    playerAccelerationY = -playerJump;
+  if (player.getPosition().y + player.getGlobalBounds().height < GROUND_HEIGHT)
+    playerAccelerationY += GRAVITY;
+  if (player.getPosition().y + player.getGlobalBounds().height > GROUND_HEIGHT) {
+    player.setPosition(player.getPosition().x, GROUND_HEIGHT - player.getGlobalBounds().height);
+    playerAccelerationY = 0;
+  }
+
+  playerVelocityX = playerAccelerationX * deltaTime.asSeconds();
+  playerVelocityY = playerAccelerationY * deltaTime.asSeconds();
+
+  player.move(playerVelocityX, playerVelocityY);
 }
 
 void Game::render() {

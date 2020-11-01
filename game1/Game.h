@@ -17,14 +17,17 @@ private:
   sf::Sprite player;
   sf::Font arial;
   sf::Text frametime;
-  bool isMovingUp = false;
-  bool isMovingDown = false;
+
+  float GROUND_HEIGHT = 800.f;
+  float GRAVITY = 100.f;
+
   bool isMovingLeft = false;
   bool isMovingRight = false;
   bool isJumping = false;
-  float PlayerSpeed = 1000.f;
-  float PlayerJump = 1000.f;
-  float groundHeight = 800;
-  float velocity = 0.f;
-  float GRAVITY = 1000.f;
+  float playerSpeed = 1000.f;
+  float playerJump = 1000.f;
+  float playerVelocityX = 0.f;
+  float playerVelocityY = 0.f;
+  float playerAccelerationX = 0.f;
+  float playerAccelerationY = 0.f;
 };
