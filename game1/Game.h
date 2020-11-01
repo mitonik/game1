@@ -16,7 +16,10 @@ private:
   sf::Texture texture;
   sf::Sprite player;
   sf::Font arial;
+  sf::Text fps;
   sf::Text frametime;
+  sf::Text x;
+  sf::Text y;
 
   float GROUND_HEIGHT = 800.f;
   float GRAVITY = 100.f;

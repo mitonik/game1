@@ -13,7 +13,13 @@ Game::Game():
   player.setPosition(100.f, 100.f);
   player.setScale(3.f, 3.f);
   if (!arial.loadFromFile("fonts/arial.ttf")) {}
+  fps.setFont(arial);
   frametime.setFont(arial);
+  frametime.setPosition(0, 25);
+  x.setFont(arial);
+  x.setPosition(0, 50);
+  y.setFont(arial);
+  y.setPosition(0, 75);
 }
 
 void Game::run() {
@@ -21,7 +27,10 @@ void Game::run() {
   sf::Time timeSinceLastUpdate = sf::Time::Zero;
   sf::Time TimePerFrame = sf::seconds(1.f / 120.f);
   while (window.isOpen()) {
-    frametime.setString("Frametime: " + std::to_string(clock.getElapsedTime().asMicroseconds()) + " X: " + std::to_string(player.getPosition().x) + " Y: " + std::to_string(player.getPosition().y) + " VelocityY: " + std::to_string(playerVelocityY));
+    fps.setString("FPS: " + std::to_string(1000000.f / clock.getElapsedTime().asMicroseconds()));
+    frametime.setString("Frametime: " + std::to_string(clock.getElapsedTime().asMicroseconds()));
+    x.setString("X: " + std::to_string(player.getPosition().x));
+    y.setString("Y: " + std::to_string(player.getPosition().y));
     timeSinceLastUpdate += clock.restart();
     while (timeSinceLastUpdate > TimePerFrame) {
       timeSinceLastUpdate -= TimePerFrame;
@@ -82,6 +91,9 @@ void Game::update(sf::Time deltaTime) {
 void Game::render() {
   window.clear();
   window.draw(player);
+  window.draw(fps);
   window.draw(frametime);
+  window.draw(x);
+  window.draw(y);
   window.display();
 }
