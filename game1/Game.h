@@ -21,5 +21,10 @@ private:
   bool isMovingDown = false;
   bool isMovingLeft = false;
   bool isMovingRight = false;
+  bool isJumping = false;
   float PlayerSpeed = 1000.f;
+  float PlayerJump = 1000.f;
+  float groundHeight = 800;
+  float velocity = 0.f;
+  float GRAVITY = 1000.f;
 };

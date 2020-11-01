@@ -21,7 +21,7 @@ void Game::run() {
   sf::Time timeSinceLastUpdate = sf::Time::Zero;
   sf::Time TimePerFrame = sf::seconds(1.f / 120.f);
   while (window.isOpen()) {
-    frametime.setString("Frametime: " + std::to_string(clock.getElapsedTime().asMicroseconds()));
+    frametime.setString("Frametime: " + std::to_string(clock.getElapsedTime().asMicroseconds()) + " X: " + std::to_string(player.getPosition().x) + " Y: " + std::to_string(player.getPosition().y));
     timeSinceLastUpdate += clock.restart();
     while (timeSinceLastUpdate > TimePerFrame) {
       timeSinceLastUpdate -= TimePerFrame;
@@ -52,6 +52,7 @@ void Game::processEvents() {
 void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed) {
   if (key == sf::Keyboard::W) {
     isMovingUp = isPressed;
+    isJumping = isPressed;
   }
   else if (key == sf::Keyboard::S) {
     isMovingDown = isPressed;
@@ -72,14 +73,20 @@ void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed) {
 
 void Game::update(sf::Time deltaTime) {
   sf::Vector2f movement(0.f, 0.f);
-  if (isMovingUp)
-    movement.y -= PlayerSpeed;
-  if (isMovingDown)
-    movement.y += PlayerSpeed;
+  if (isJumping)
+    velocity -= PlayerJump;
+  else if (player.getPosition().y + player.getGlobalBounds().height < groundHeight)
+    velocity += GRAVITY;
+  else if (player.getPosition().y + player.getGlobalBounds().height > groundHeight)
+    velocity = 0;
+    player.setPosition(player.getPosition().x, groundHeight - player.getGlobalBounds().height);
+  /*if (isMovingDown)
+    movement.y += PlayerSpeed;*/
   if (isMovingLeft)
     movement.x -= PlayerSpeed;
   if (isMovingRight)
     movement.x += PlayerSpeed;
+  movement.y += velocity;
   player.move(movement * deltaTime.asSeconds());
 }
 
