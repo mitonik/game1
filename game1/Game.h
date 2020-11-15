@@ -1,25 +1,32 @@
 #pragma once
+#include<iostream>
+#include<ctime>
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+#include <SFML/Network.hpp>
 
 class Game {
 public:
   Game();
+  virtual ~Game();
   void run();
-
-private:
   void processEvents();
   void update(sf::Time);
   void render();
   void handlePlayerInput(sf::Keyboard::Key, bool);
 private:
-  sf::RenderWindow window;
-  sf::Texture texture;
-  sf::Sprite player;
+  sf::RenderWindow* window;
+  sf::Texture *texture;
+  sf::Sprite *player;
   sf::Font arial;
   sf::Text fps;
   sf::Text frametime;
   sf::Text x;
   sf::Text y;
+
+  void initWindow();
 
   float GROUND_HEIGHT = 800.f;
   float GRAVITY = 100.f;
