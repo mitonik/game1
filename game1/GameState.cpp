@@ -13,7 +13,7 @@ GameState::~GameState()
 
 void GameState::endState()
 {
-	std::cout << "Ending";
+	this->window->close();
 }
 
 void GameState::updateKeybinds(const float& dt)

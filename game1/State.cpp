@@ -20,6 +20,7 @@ void State::chechForQuit()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 	{
-		this->quit = true;
+		//this->quit = true;
+		this->window->close();
 	}
 }
