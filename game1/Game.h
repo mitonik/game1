@@ -1,5 +1,5 @@
 #pragma once
-#include "state.h"
+#include "Gamestate.h"
 
 class Game {
 public:
@@ -7,6 +7,7 @@ public:
 	Game();
 	virtual ~Game();
 
+	void endApplication();
 	void updateDt();
 	void run();
 	void updateSFMLEvents();
@@ -15,10 +16,13 @@ public:
 
 private:
 	void initWindow();
+	void initState();
 
 	sf::RenderWindow* window;
 	sf::Event sfEvent;
 
 	sf::Clock dtClock;
 	float dt;
+
+	std::stack<State*> states;
 };

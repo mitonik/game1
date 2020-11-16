@@ -23,14 +23,26 @@ void Game::initWindow()
     this->window->setVerticalSyncEnabled(vertival_sync_enabled);
 }
 
+void Game::initState()
+{
+    this->states.push(new GameState(this->window));
+}
+
 Game::Game()
 {
     this->initWindow();
+    this->initState();
 }
 
 Game::~Game()
 {
     delete this->window;
+
+    while (this->states.empty())
+    {
+        delete this->states.top();
+        this->states.pop();
+    }
 }
 
 void Game::updateSFMLEvents()
@@ -45,13 +57,39 @@ void Game::updateSFMLEvents()
 void Game::update()
 {
     this->updateSFMLEvents();
+
+    if (!this->states.empty())
+    {
+        this->states.top()->update(this->dt);
+        if (this->states.top()->getQuit())
+        {
+            this->states.top()->endState();
+            delete this->states.top();
+            this->states.pop();
+        }
+    }
+    else
+    {
+        this->endApplication();
+        this->window->close();
+    }
 }
 
 void Game::render() 
 {
-  this->window->clear();
+    this->window->clear();
 
-  this->window->display();
+    if (!this->states.empty())
+    {
+        this->states.top()->render();
+    }
+
+    this->window->display();
+}
+
+void Game::endApplication()
+{
+    std::cout << "End\n";
 }
 
 void Game::updateDt()
