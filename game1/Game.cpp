@@ -23,14 +23,25 @@ void Game::initWindow()
     this->window->setVerticalSyncEnabled(vertival_sync_enabled);
 }
 
+void Game::initKeys()
+{
+//    this->supportedKeys["Escape"] = sf::Keyboard::Key::Escape;
+//   this->supportedKeys["A"] = sf::Keyboard::Key::A;
+//    this->supportedKeys["D"] = sf::Keyboard::Key::D;
+//    this->supportedKeys["W"] = sf::Keyboard::Key::W;
+//    this->supportedKeys["S"] = sf::Keyboard::Key::S;
+}
+
 void Game::initState()
 {
-    this->states.push(new GameState(this->window));
+    this->states.push(new GameState(this->window, &this->supportedKeys));
+    //this->states.push(new MainMenuState(this->window, &this->supportedKeys));
 }
 
 Game::Game()
 {
     this->initWindow();
+    this->initKeys();
     this->initState();
 }
 

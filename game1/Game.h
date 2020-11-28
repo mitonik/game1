@@ -1,5 +1,6 @@
 #pragma once
 #include "Gamestate.h"
+#include "MainMenuState.h"
 
 class Game {
 public:
@@ -17,6 +18,7 @@ public:
 private:
 	void initWindow();
 	void initState();
+	void initKeys();
 
 	sf::RenderWindow* window;
 	sf::Event sfEvent;
@@ -25,4 +27,6 @@ private:
 	float dt;
 
 	std::stack<State*> states;
+
+	std::map<std::string, int> supportedKeys;
 };
