@@ -34,8 +34,8 @@ void Game::initKeys()
 
 void Game::initState()
 {
-    this->states.push(new GameState(this->window, &this->supportedKeys));
-    //this->states.push(new MainMenuState(this->window, &this->supportedKeys));
+    //this->states.push(new GameState(this->window, &this->supportedKeys));
+    this->states.push(new MainMenuState(this->window, &this->supportedKeys));
 }
 
 Game::Game()
@@ -118,8 +118,8 @@ void Game::updateDt()
 {
     this->dt = this->dtClock.restart().asSeconds();
 
-    system("cls");
-    std::cout << this->dt << "\n";
+    //system("cls");
+    //std::cout << this->dt << "\n";
 }
 
 void Game::run()

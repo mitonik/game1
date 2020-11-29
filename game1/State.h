@@ -5,12 +5,18 @@
 
 class State
 {
+private:
+
 protected:
 	sf::RenderWindow* window;
 	
 	std::map<std::string, int>* supportedKeys;
 	std::map<std::string, int> keybinds;
 	bool quit;
+
+	sf::Vector2i mausePosScreen;
+	sf::Vector2i mausePosWindow;
+	sf::Vector2f mausePosView;
 
 	//resources
 	std::vector<sf::Texture> textures;
@@ -25,7 +31,7 @@ public:
 	virtual void chechForQuit();
 
 	virtual void endState() = 0;
-
+	virtual void UpdateMousePosition();
 	virtual void updateInput(const float& dt) = 0;
 	virtual void update(const float& dt) = 0;
 	virtual void render(sf::RenderTarget* target = nullptr) = 0;
