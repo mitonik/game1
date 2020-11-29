@@ -35,6 +35,7 @@ void GameState::updateInput(const sf::Time dt)
 
 void GameState::update(const sf::Time dt)
 {
+	this->UpdateMousePosition();
 	this->updateInput(dt);
 	this->player.update(dt);
 }

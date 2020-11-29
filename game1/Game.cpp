@@ -1,6 +1,6 @@
 #include "Game.hpp"
-#include<iostream>
-#include<fstream>
+#include <iostream>
+#include <fstream>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
@@ -39,8 +39,8 @@ void Application::initKeys()
 
 void Application::initState()
 {
-    this->states.push(new GameState(this->window, &this->supportedKeys));
-    //this->states.push(new MainMenuState(this->window, &this->supportedKeys));
+    //this->states.push(new GameState(this->window, &this->supportedKeys));
+    this->states.push(new MainMenuState(this->window, &this->supportedKeys));
 }
 
 Application::Application()
@@ -70,10 +70,13 @@ Application::~Application()
 //    }
 //}
 
-void Application::processEvents() {
-  while (window->pollEvent(event)) {
-    if (event.type == sf::Event::Closed) {
-      window->close();
+void Application::processEvents() 
+{
+  while (this->window->pollEvent(this->event)) 
+  {
+    if (this->event.type == sf::Event::Closed) 
+    {
+      this->window->close();
     }
   }
 }

@@ -12,7 +12,7 @@ public:
 	//void endApplication();
 	//void updateDt();
 	void run();
-	//void updateSFMLEvents();
+	void updateSFMLEvents();
 	void processEvents();
 	void update(sf::Time timePerFrame);
 	void render();
