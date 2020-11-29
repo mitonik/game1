@@ -24,9 +24,9 @@ void GameState::endState()
 	this->window->close();
 }
 
-void GameState::updateInput(const float& dt)
+void GameState::updateInput(const sf::Time dt)
 {
-	this->chechForQuit();
+	this->checkForQuit();
 
 	//player input
 
@@ -48,7 +48,7 @@ void GameState::updateInput(const float& dt)
 	}
 }
 
-void GameState::update(const float& dt)
+void GameState::update(const sf::Time dt)
 {
 	this->updateInput(dt);
 	this->player.update(dt);

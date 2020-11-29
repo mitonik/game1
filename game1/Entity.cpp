@@ -12,12 +12,12 @@ Entity::~Entity()
 {
 }
 
-void Entity::move(const float& dt, const float dir_x, const float dir_y)
+void Entity::move(const sf::Time dt, const float dir_x, const float dir_y)
 {
-	this->shape.move(dir_x * this->movementSpeed * dt, dir_y * this->movementSpeed * dt);
+	this->shape.move(dir_x * this->movementSpeed * dt.asSeconds(), dir_y * this->movementSpeed * dt.asSeconds());
 }
 
-void Entity::update(const float& dt)
+void Entity::update(const sf::Time dt)
 {
 
 }

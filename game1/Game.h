@@ -8,11 +8,12 @@ public:
 	Game();
 	virtual ~Game();
 
-	void endApplication();
-	void updateDt();
+	//void endApplication();
+	//void updateDt();
 	void run();
-	void updateSFMLEvents();
-	void update();
+	//void updateSFMLEvents();
+	void processEvents();
+	void update(sf::Time timePerFrame);
 	void render();
 
 private:
@@ -21,10 +22,13 @@ private:
 	void initKeys();
 
 	sf::RenderWindow* window;
-	sf::Event sfEvent;
+	sf::Event event;
 
-	sf::Clock dtClock;
-	float dt;
+	sf::Clock clock;
+
+	sf::Time deltaTime;
+	const sf::Time timePerFrame = sf::seconds(1.f / 120.f);
+	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 
 	std::stack<State*> states;
 

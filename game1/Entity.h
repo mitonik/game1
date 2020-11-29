@@ -26,9 +26,9 @@ public:
 	Entity();
 	virtual ~Entity();
 
-	virtual void move(const float& dt, const float x, const float y);
+	virtual void move(const sf::Time dt, const float x, const float y);
 
-	virtual void update(const float& dt);
+	virtual void update(const sf::Time dt);
 	virtual void render(sf::RenderTarget* target);
 
 };

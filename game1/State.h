@@ -22,12 +22,12 @@ public:
 
 	const bool& getQuit() const;
 
-	virtual void chechForQuit();
+	virtual void checkForQuit();
 
 	virtual void endState() = 0;
 
-	virtual void updateInput(const float& dt) = 0;
-	virtual void update(const float& dt) = 0;
+	virtual void updateInput(const sf::Time dt) = 0;
+	virtual void update(const sf::Time dt) = 0;
 	virtual void render(sf::RenderTarget* target = nullptr) = 0;
 };
 

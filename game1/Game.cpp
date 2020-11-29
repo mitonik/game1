@@ -56,22 +56,28 @@ Game::~Game()
     }
 }
 
-void Game::updateSFMLEvents()
-{
-    while (this->window->pollEvent(this->sfEvent)) 
-    {
-        if (this->sfEvent.type == sf::Event::Closed)
-            this->window->close();
+//void Game::updateSFMLEvents()
+//{
+//    while (this->window->pollEvent(this->event)) 
+//    {
+//        if (this->event.type == sf::Event::Closed)
+//            this->window->close();
+//    }
+//}
+
+void Game::processEvents() {
+  while (window->pollEvent(event)) {
+    if (event.type == sf::Event::Closed) {
+      window->close();
     }
+  }
 }
 
-void Game::update()
+void Game::update(sf::Time timePerFrame)
 {
-    this->updateSFMLEvents();
-
     if (!this->states.empty())
     {
-        this->states.top()->update(this->dt);
+        this->states.top()->update(this->timePerFrame);
         if (this->states.top()->getQuit())
         {
             this->states.top()->endState();
@@ -81,7 +87,7 @@ void Game::update()
     }
     else
     {
-        this->endApplication();
+        //this->endApplication();
         this->window->close();
     }
 }
@@ -102,32 +108,36 @@ void Game::render()
     }
     else
     {
-        this->endApplication();
+        //this->endApplication();
         this->window->close();
     }
 
     this->window->display();
 }
 
-void Game::endApplication()
-{
-    std::cout << "End\n";
-}
+//void Game::endApplication()
+//{
+//    std::cout << "End\n";
+//}
 
-void Game::updateDt()
-{
-    this->dt = this->dtClock.restart().asSeconds();
+//void Game::updateDt()
+//{
+//    this->dt = this->dtClock.restart().asSeconds();
+//
+//    system("cls");
+//    std::cout << this->dt << "\n";
+//}
 
-    system("cls");
-    std::cout << this->dt << "\n";
-}
-
-void Game::run()
-{
-    while (this->window->isOpen())
-    {
-        this->updateDt();
-        this->update();
-        this->render();
+void Game::run() {
+  while (window->isOpen()) {
+    deltaTime = clock.restart();
+    timeSinceLastUpdate += deltaTime;
+    while (timeSinceLastUpdate > timePerFrame) {
+      timeSinceLastUpdate -= timePerFrame;
+      std::cout << timeSinceLastUpdate.asSeconds() << std::endl;
+      processEvents();
+      update(timePerFrame);
     }
+    render();
+  }
 }
