@@ -22,7 +22,7 @@ public:
 
 	const bool& getQuit() const;
 
-	virtual void checkForQuit();
+	virtual void chechForQuit();
 
 	virtual void endState() = 0;
 

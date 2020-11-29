@@ -26,26 +26,11 @@ void GameState::endState()
 
 void GameState::updateInput(const sf::Time dt)
 {
-	this->checkForQuit();
+	this->chechForQuit();
 
 	//player input
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-	{
-		this->player.move(dt, -1.f, 0.f);
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-	{
-		this->player.move(dt, 1.f, 0.f);
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-	{
-		this->player.move(dt, 0.f, -1.f);
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-	{
-		this->player.move(dt, 0.f, 1.f);
-	}
+	player.update(dt);
 }
 
 void GameState::update(const sf::Time dt)

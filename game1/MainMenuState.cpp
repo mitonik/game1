@@ -30,7 +30,7 @@ void MainMenuState::endState()
 
 void MainMenuState::updateInput(const float& dt)
 {
-	this->checkForQuit();
+	this->chechForQuit();
 
 	//player input
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))

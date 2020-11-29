@@ -20,13 +20,18 @@ class Entity
 protected:
 	sf::Texture texture;
 	sf::Sprite shape;
-	float movementSpeed;
+	float playerSpeed = 1000.f;
+	float playerJump = 1000.f;
+	float playerVelocityX = 0.f;
+	float playerVelocityY = 0.f;
+	float playerAccelerationX = 0.f;
+	float playerAccelerationY = 0.f;
 
 public:
 	Entity();
 	virtual ~Entity();
 
-	virtual void move(const sf::Time dt, const float x, const float y);
+	virtual void move(const float x, const float y);
 
 	virtual void update(const sf::Time dt);
 	virtual void render(sf::RenderTarget* target);
