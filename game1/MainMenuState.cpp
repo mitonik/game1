@@ -41,9 +41,9 @@ void MainMenuState::endState()
 	this->window->close();
 }
 
-void MainMenuState::updateInput(const float& dt)
+void MainMenuState::updateInput(sf::Time deltaTime)
 {
-	this->chechForQuit();
+	this->checkForQuit();
 
 	//player input
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
@@ -60,10 +60,10 @@ void MainMenuState::upadateButtons()
 	}
 }
 
-void MainMenuState::update(const float& dt)
+void MainMenuState::update(sf::Time deltaTime)
 {
 	this->UpdateMousePosition();
-	this->updateInput(dt);
+	this->updateInput(deltaTime);
 
 	this->upadateButtons();
 

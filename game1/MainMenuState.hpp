@@ -21,9 +21,9 @@ public:
     virtual ~MainMenuState();
 
     void endState();
-    void updateInput(const float& dt);
+    void updateInput(sf::Time deltaTime);
     void upadateButtons();
-    void update(const float& dt);
+    void update(sf::Time deltaTime);
     void renderButtons(sf::RenderTarget* target = nullptr);
     void render(sf::RenderTarget* target = nullptr);
 };

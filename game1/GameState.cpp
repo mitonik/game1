@@ -26,7 +26,7 @@ void GameState::endState()
 
 void GameState::updateInput(const sf::Time dt)
 {
-	this->chechForQuit();
+	this->checkForQuit();
 
 	//player input
 
