@@ -1,6 +1,11 @@
-#include "Game.h"
+#include "Game.hpp"
+#include<iostream>
+#include<fstream>
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
 
-void Game::initWindow()
+void Application::initWindow()
 {
     std::ifstream ifs("config/window.ini");
 
@@ -23,7 +28,7 @@ void Game::initWindow()
     this->window->setVerticalSyncEnabled(vertival_sync_enabled);
 }
 
-void Game::initKeys()
+void Application::initKeys()
 {
 //    this->supportedKeys["Escape"] = sf::Keyboard::Key::Escape;
 //   this->supportedKeys["A"] = sf::Keyboard::Key::A;
@@ -32,20 +37,20 @@ void Game::initKeys()
 //    this->supportedKeys["S"] = sf::Keyboard::Key::S;
 }
 
-void Game::initState()
+void Application::initState()
 {
     this->states.push(new GameState(this->window, &this->supportedKeys));
     //this->states.push(new MainMenuState(this->window, &this->supportedKeys));
 }
 
-Game::Game()
+Application::Application()
 {
     this->initWindow();
     this->initKeys();
     this->initState();
 }
 
-Game::~Game()
+Application::~Application()
 {
     delete this->window;
 
@@ -56,22 +61,28 @@ Game::~Game()
     }
 }
 
-void Game::updateSFMLEvents()
-{
-    while (this->window->pollEvent(this->sfEvent)) 
-    {
-        if (this->sfEvent.type == sf::Event::Closed)
-            this->window->close();
+//void Application::updateSFMLEvents()
+//{
+//    while (this->window->pollEvent(this->event)) 
+//    {
+//        if (this->event.type == sf::Event::Closed)
+//            this->window->close();
+//    }
+//}
+
+void Application::processEvents() {
+  while (window->pollEvent(event)) {
+    if (event.type == sf::Event::Closed) {
+      window->close();
     }
+  }
 }
 
-void Game::update()
+void Application::update(sf::Time timePerFrame)
 {
-    this->updateSFMLEvents();
-
     if (!this->states.empty())
     {
-        this->states.top()->update(this->dt);
+        this->states.top()->update(this->timePerFrame);
         if (this->states.top()->getQuit())
         {
             this->states.top()->endState();
@@ -81,12 +92,12 @@ void Game::update()
     }
     else
     {
-        this->endApplication();
+        //this->endApplication();
         this->window->close();
     }
 }
 
-void Game::render() 
+void Application::render() 
 {
     this->window->clear();
 
@@ -102,32 +113,36 @@ void Game::render()
     }
     else
     {
-        this->endApplication();
+        //this->endApplication();
         this->window->close();
     }
 
     this->window->display();
 }
 
-void Game::endApplication()
-{
-    std::cout << "End\n";
-}
+//void Application::endApplication()
+//{
+//    std::cout << "End\n";
+//}
 
-void Game::updateDt()
-{
-    this->dt = this->dtClock.restart().asSeconds();
+//void Application::updateDt()
+//{
+//    this->dt = this->dtClock.restart().asSeconds();
+//
+//    system("cls");
+//    std::cout << this->dt << "\n";
+//}
 
-    system("cls");
-    std::cout << this->dt << "\n";
-}
-
-void Game::run()
-{
-    while (this->window->isOpen())
-    {
-        this->updateDt();
-        this->update();
-        this->render();
+void Application::run() {
+  while (window->isOpen()) {
+    deltaTime = clock.restart();
+    timeSinceLastUpdate += deltaTime;
+    while (timeSinceLastUpdate > timePerFrame) {
+      timeSinceLastUpdate -= timePerFrame;
+      std::cout << timeSinceLastUpdate.asSeconds() << std::endl;
+      processEvents();
+      update(timePerFrame);
     }
+    render();
+  }
 }

@@ -1,9 +1,6 @@
-#include "Game.h"
+#include "Game.hpp"
 
 int main() {
-  Game game;
-  game.run();
-  //Menu menu;
-  //menu.run();
-  return 0;
+  Application app;
+  app.run();
 }

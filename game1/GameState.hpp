@@ -1,10 +1,10 @@
 #pragma once
-#include "State.h"
+#include "State.hpp"
 class GameState :
     public State
 {
 private:
-    Entity player;
+    Player player;
 
     void initKeybinds();
 
@@ -13,7 +13,7 @@ public:
     virtual ~GameState();
 
     void endState();
-    void updateInput(const float& dt);
-    void update(const float& dt);
+    void updateInput(const sf::Time dt);
+    void update(const sf::Time dt);
     void render(sf::RenderTarget* target = nullptr);
 };

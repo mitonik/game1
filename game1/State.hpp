@@ -1,7 +1,9 @@
 #ifndef STATE_H
 #define STATE_H
 
-#include "Entity.h"
+#include "Entity.hpp"
+
+#include <SFML/Graphics.hpp>
 
 class State
 {
@@ -26,8 +28,8 @@ public:
 
 	virtual void endState() = 0;
 
-	virtual void updateInput(const float& dt) = 0;
-	virtual void update(const float& dt) = 0;
+	virtual void updateInput(const sf::Time dt) = 0;
+	virtual void update(const sf::Time dt) = 0;
 	virtual void render(sf::RenderTarget* target = nullptr) = 0;
 };
 
