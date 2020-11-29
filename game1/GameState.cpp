@@ -1,4 +1,4 @@
-#include "GameState.h"
+#include "GameState.hpp"
 
 void GameState::initKeybinds()
 {

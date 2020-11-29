@@ -1,7 +1,9 @@
 #ifndef STATE_H
 #define STATE_H
 
-#include "Entity.h"
+#include "Entity.hpp"
+
+#include <SFML/Graphics.hpp>
 
 class State
 {

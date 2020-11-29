@@ -1,5 +1,5 @@
-#include "MainMenuState.h"
-#include "GameState.h"
+#include "MainMenuState.hpp"
+#include "GameState.hpp"
 
 void MainMenuState::initKeybinds()
 {

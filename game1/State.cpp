@@ -1,4 +1,4 @@
-#include "State.h"
+#include "State.hpp"
 
 State::State(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys)
 {

@@ -1,12 +1,13 @@
 #pragma once
-#include "Gamestate.h"
-#include "MainMenuState.h"
+#include<map>
+#include "Gamestate.hpp"
+#include "MainMenuState.hpp"
 
-class Game {
+class Application {
 public:
 
-	Game();
-	virtual ~Game();
+	Application();
+	virtual ~Application();
 
 	//void endApplication();
 	//void updateDt();

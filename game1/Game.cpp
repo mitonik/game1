@@ -1,6 +1,11 @@
-#include "Game.h"
+#include "Game.hpp"
+#include<iostream>
+#include<fstream>
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
 
-void Game::initWindow()
+void Application::initWindow()
 {
     std::ifstream ifs("config/window.ini");
 
@@ -23,7 +28,7 @@ void Game::initWindow()
     this->window->setVerticalSyncEnabled(vertival_sync_enabled);
 }
 
-void Game::initKeys()
+void Application::initKeys()
 {
 //    this->supportedKeys["Escape"] = sf::Keyboard::Key::Escape;
 //   this->supportedKeys["A"] = sf::Keyboard::Key::A;
@@ -32,20 +37,20 @@ void Game::initKeys()
 //    this->supportedKeys["S"] = sf::Keyboard::Key::S;
 }
 
-void Game::initState()
+void Application::initState()
 {
     this->states.push(new GameState(this->window, &this->supportedKeys));
     //this->states.push(new MainMenuState(this->window, &this->supportedKeys));
 }
 
-Game::Game()
+Application::Application()
 {
     this->initWindow();
     this->initKeys();
     this->initState();
 }
 
-Game::~Game()
+Application::~Application()
 {
     delete this->window;
 
@@ -56,7 +61,7 @@ Game::~Game()
     }
 }
 
-//void Game::updateSFMLEvents()
+//void Application::updateSFMLEvents()
 //{
 //    while (this->window->pollEvent(this->event)) 
 //    {
@@ -65,7 +70,7 @@ Game::~Game()
 //    }
 //}
 
-void Game::processEvents() {
+void Application::processEvents() {
   while (window->pollEvent(event)) {
     if (event.type == sf::Event::Closed) {
       window->close();
@@ -73,7 +78,7 @@ void Game::processEvents() {
   }
 }
 
-void Game::update(sf::Time timePerFrame)
+void Application::update(sf::Time timePerFrame)
 {
     if (!this->states.empty())
     {
@@ -92,7 +97,7 @@ void Game::update(sf::Time timePerFrame)
     }
 }
 
-void Game::render() 
+void Application::render() 
 {
     this->window->clear();
 
@@ -115,12 +120,12 @@ void Game::render()
     this->window->display();
 }
 
-//void Game::endApplication()
+//void Application::endApplication()
 //{
 //    std::cout << "End\n";
 //}
 
-//void Game::updateDt()
+//void Application::updateDt()
 //{
 //    this->dt = this->dtClock.restart().asSeconds();
 //
@@ -128,7 +133,7 @@ void Game::render()
 //    std::cout << this->dt << "\n";
 //}
 
-void Game::run() {
+void Application::run() {
   while (window->isOpen()) {
     deltaTime = clock.restart();
     timeSinceLastUpdate += deltaTime;

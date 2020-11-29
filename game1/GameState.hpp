@@ -1,10 +1,10 @@
 #pragma once
-#include "State.h"
+#include "State.hpp"
 class GameState :
     public State
 {
 private:
-    Entity player;
+    Player player;
 
     void initKeybinds();
 

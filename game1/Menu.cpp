@@ -1,5 +1,5 @@
-#include "Menu.h"
-#include "Game.h"
+#include "Menu.hpp"
+#include "Game.hpp"
 #include <iostream>
 #include <vector>
 
@@ -71,7 +71,7 @@ void Menu::update(sf::Time)
         )
     {
         std::cout << "x -> " << sf::Mouse::getPosition(window).x << "\n y -> " << sf::Mouse::getPosition(window).y << "\n";
-        Game game;
+        Application game;
         window.close();
         game.run();
     }

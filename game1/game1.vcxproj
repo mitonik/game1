@@ -160,12 +160,12 @@
     <ClCompile Include="State.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Entity.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="GameState.h" />
-    <ClInclude Include="MainMenuState.h" />
-    <ClInclude Include="Menu.h" />
-    <ClInclude Include="State.h" />
+    <ClInclude Include="Entity.hpp" />
+    <ClInclude Include="Game.hpp" />
+    <ClInclude Include="GameState.hpp" />
+    <ClInclude Include="MainMenuState.hpp" />
+    <ClInclude Include="Menu.hpp" />
+    <ClInclude Include="State.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="fonts\arial.ttf" />
