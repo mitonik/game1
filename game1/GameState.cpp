@@ -37,7 +37,6 @@ void GameState::update(const sf::Time dt)
 {
 	this->UpdateMousePosition();
 	this->updateInput(dt);
-	this->player.update(dt);
 }
 
 void GameState::render(sf::RenderTarget* target)
@@ -46,5 +45,6 @@ void GameState::render(sf::RenderTarget* target)
 	{
 		target = this->window;
 	}
-	this->player.render(target);
+	//this->player.render(target);
+	target->draw(player.sprite);
 }

@@ -17,21 +17,22 @@
 class Player {
 private:
 	sf::Texture texture;
-	sf::Sprite sprite;
 	float speed = 500.f;
-	float jump = 500.f;
+	float jump = 1000.f;
 	float velocityX = 0.f;
 	float velocityY = 0.f;
 	float accelerationX = 0.f;
 	float accelerationY = 0.f;
+	void move(const float x, const float y);
+	bool isJumping = false;
 
 public:
 	Player();
-	virtual ~Player();
+	//virtual ~Player();
+	sf::Sprite sprite;
 
-	virtual void move(const float x, const float y);
+	void update(const sf::Time dt);
 
-	virtual void update(const sf::Time dt);
-	virtual void render(sf::RenderTarget* target);
+	//virtual void render(sf::RenderTarget* target);
 
 };

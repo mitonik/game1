@@ -54,7 +54,7 @@ void MainMenuState::upadateButtons()
 {
 	for (auto& it : this->buttons)
 	{
-		it.second->update(this->mausePosView);
+		it.second->update(this->mousePosView);
 	}
 }
 
@@ -65,7 +65,7 @@ void MainMenuState::update(const sf::Time dt)
 
 	this->upadateButtons();
 
-	//std::cout << this->mausePosView.x << " " << this->mausePosView.x << "\n";
+	//std::cout << this->mousePosView.x << " " << this->mousePosView.x << "\n";
 	//std::cout << this->buttons["GAME_EXIT"]->isPressed()<<"\n";
 	if (this->buttons["GAME_STATE"]->isPressed())
 	{

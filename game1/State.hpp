@@ -16,9 +16,9 @@ protected:
 	std::map<std::string, int> keybinds;
 	bool quit;
 
-	sf::Vector2i mausePosScreen;
-	sf::Vector2i mausePosWindow;
-	sf::Vector2f mausePosView;
+	sf::Vector2i mousePosScreen;
+	sf::Vector2i mousePosWindow;
+	sf::Vector2f mousePosView;
 	//resources
 	std::vector<sf::Texture> textures;
 

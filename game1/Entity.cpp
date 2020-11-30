@@ -9,9 +9,9 @@ Player::Player()
 	this->speed = 500.f;
 }
 
-Player::~Player()
-{
-}
+//Player::~Player()
+//{
+//}
 
 void Player::move(const float x, const float y) {
 	this->sprite.move(x * this->speed, y * this->speed);
@@ -28,13 +28,16 @@ void Player::update(const sf::Time deltaTime)
 	{
 		this->accelerationX += this->speed;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && isJumping == false)
 	{
 		this->accelerationY = -this->jump;
 	}
-	if (this->sprite.getPosition().y + this->sprite.getGlobalBounds().height < 800.f)
-		accelerationY += 100.f;
+	if (this->sprite.getPosition().y + this->sprite.getGlobalBounds().height < 800.f) {
+		isJumping = true;
+		accelerationY += 50.f;
+	}
 	if (this->sprite.getPosition().y + this->sprite.getGlobalBounds().height > 800.f) {
+		isJumping = false;
 		this->sprite.setPosition(this->sprite.getPosition().x, 800.f - this->sprite.getGlobalBounds().height);
 		this->accelerationY = 0;
 	}
@@ -45,7 +48,7 @@ void Player::update(const sf::Time deltaTime)
 	this->sprite.move(velocityX, velocityY);
 }
 
-void Player::render(sf::RenderTarget* target)
-{
-	target->draw(this->sprite);
-}
+//void Player::render(sf::RenderTarget* target)
+//{
+//	target->draw(this->sprite);
+//}
