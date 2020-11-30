@@ -9,7 +9,9 @@ class State
 {
 protected:
 	sf::RenderWindow* window;
-	
+
+	std::stack<State*>* states;
+
 	std::map<std::string, int>* supportedKeys;
 	std::map<std::string, int> keybinds;
 	bool quit;
@@ -22,7 +24,7 @@ protected:
 
 	virtual void initKeybinds() = 0;
 public:
-	State(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys);
+	State(sf::RenderWindow* window, std::stack<State*>* states);
 	virtual ~State();
 
 	const bool& getQuit() const;

@@ -8,8 +8,8 @@ void GameState::initKeybinds()
 //	this->keybinds["MOVE_DOWN"] = this->supportedKeys->at("S");
 }
 
-GameState::GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys)
-	: State(window, supportedKeys)
+GameState::GameState(sf::RenderWindow* window, std::stack<State*>* states)
+	: State(window, states)
 {
 	this->initKeybinds();
 }

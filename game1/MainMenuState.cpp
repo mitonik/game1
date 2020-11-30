@@ -1,6 +1,4 @@
 #include "MainMenuState.hpp"
-#include "GameState.hpp"
-#include "Button.hpp"
 
 void MainMenuState::initKeybinds()
 {
@@ -17,8 +15,8 @@ void MainMenuState::initButtons()
 	this->buttons["GAME_EXIT"] = new Button(100, 200, 1, 1, sf::Color::Red, sf::Color::White, sf::Color::Blue);
 }
 
-MainMenuState::MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys)
-	: State(window, supportedKeys)
+MainMenuState::MainMenuState(sf::RenderWindow* window, std::stack<State*>* states)
+	: State(window, states)
 {
 	this->initKeybinds();
 	this->initButtons();
@@ -41,7 +39,7 @@ void MainMenuState::endState()
 	this->window->close();
 }
 
-void MainMenuState::updateInput(sf::Time deltaTime)
+void MainMenuState::updateInput(const sf::Time dt)
 {
 	this->checkForQuit();
 
@@ -60,20 +58,25 @@ void MainMenuState::upadateButtons()
 	}
 }
 
-void MainMenuState::update(sf::Time deltaTime)
+void MainMenuState::update(const sf::Time dt)
 {
 	this->UpdateMousePosition();
-	this->updateInput(deltaTime);
+	this->updateInput(dt);
 
 	this->upadateButtons();
 
-	system("cls");
-	std::cout << this->mausePosView.x << " " << this->mausePosView.x << "\n";
+	//std::cout << this->mausePosView.x << " " << this->mausePosView.x << "\n";
+	//std::cout << this->buttons["GAME_EXIT"]->isPressed()<<"\n";
+	if (this->buttons["GAME_STATE"]->isPressed())
+	{
+		this->states->push(new GameState(this->window, this->states));
+	}
 
-	if (this->buttons["GAME_EXIT"]->isPessed())
+	if (this->buttons["GAME_EXIT"]->isPressed())
 	{
 		this->window->close();
 	}
+	
 }
 
 void MainMenuState::renderButtons(sf::RenderTarget* target)

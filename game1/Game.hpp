@@ -1,6 +1,5 @@
 #pragma once
 #include<map>
-#include "Gamestate.hpp"
 #include "MainMenuState.hpp"
 
 class Application {
@@ -12,7 +11,7 @@ public:
 	//void endApplication();
 	//void updateDt();
 	void run();
-	void updateSFMLEvents();
+	//void updateSFMLEvents();
 	void processEvents();
 	void update(sf::Time timePerFrame);
 	void render();

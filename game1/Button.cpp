@@ -9,7 +9,6 @@ Button::Button(float x, float y, float width, float height, sf::Color idleColor,
 	this->textButton = textButton;
 	if (!textButton.loadFromFile("textures/enter.png")) 
 	{
-		system("cls");
 		std::cout << "ERROR::LOANDING BUTTONS TEXTURES\n";
 	}
 	this->shape.setTexture(textButton);
@@ -25,23 +24,27 @@ Button::~Button()
 {
 }
 
-const bool Button::isPessed() const
+bool Button::isPressed()
 {
 	if (this->buttonState == BTN_PRESSED)
+	{
 		return true;
-	return false;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 void Button::update(const sf::Vector2f mousePos) //update buttons for hover and press
 {
 	this->buttonState = BTN_IDLE;
-	
 
 	if (this->shape.getGlobalBounds().contains(mousePos))
 	{
 		this->buttonState = BTN_HOVER;
 		
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Right));
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
 			this->buttonState = BTN_PRESSED;
 		}

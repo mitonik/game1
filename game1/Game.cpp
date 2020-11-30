@@ -40,7 +40,7 @@ void Application::initKeys()
 void Application::initState()
 {
     //this->states.push(new GameState(this->window, &this->supportedKeys));
-    this->states.push(new MainMenuState(this->window, &this->supportedKeys));
+    this->states.push(new MainMenuState(this->window, &this->states));
 }
 
 Application::Application()
@@ -142,7 +142,7 @@ void Application::run() {
     timeSinceLastUpdate += deltaTime;
     while (timeSinceLastUpdate > timePerFrame) {
       timeSinceLastUpdate -= timePerFrame;
-      std::cout << timeSinceLastUpdate.asSeconds() << std::endl;
+      //std::cout << timeSinceLastUpdate.asSeconds() << std::endl;
       processEvents();
       update(timePerFrame);
     }

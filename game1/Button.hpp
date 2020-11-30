@@ -15,7 +15,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
 
-enum button_stetes{BTN_IDLE = 0, BTN_HOVER, BTN_PRESSED};
+enum button_states{BTN_IDLE = 0, BTN_HOVER, BTN_PRESSED};
 
 class Button
 {
@@ -36,7 +36,7 @@ public:
 
 
 	//Accessors
-	const bool isPessed() const;
+	bool isPressed();
 
 	void update(sf::Vector2f mousePos);
 	void render(sf::RenderTarget* target);

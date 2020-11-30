@@ -15,15 +15,15 @@ private:
     void initKeybinds();
     void initButtons();
 
-    std::stack<State*> states;
+    
 public:
-    MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys);
+    MainMenuState(sf::RenderWindow* window, std::stack<State*>* states);
     virtual ~MainMenuState();
 
     void endState();
-    void updateInput(sf::Time deltaTime);
+    void updateInput(const sf::Time dt);
     void upadateButtons();
-    void update(sf::Time deltaTime);
+    void update(const sf::Time dt);
     void renderButtons(sf::RenderTarget* target = nullptr);
     void render(sf::RenderTarget* target = nullptr);
 };
