@@ -29,7 +29,10 @@ void GameState::updateInput(const sf::Time dt)
 	this->checkForQuit();
 
 	//player input
-
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+	{
+		this->states.push(new MainMenuState(this->window, &this->states));
+	}
 	player.update(dt);
 }
 

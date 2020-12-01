@@ -32,6 +32,7 @@ void Player::update(const sf::Time deltaTime)
 	{
 		this->accelerationY = -this->jump;
 	}
+	
 	if (this->sprite.getPosition().y + this->sprite.getGlobalBounds().height < 800.f) {
 		isJumping = true;
 		accelerationY += 50.f;

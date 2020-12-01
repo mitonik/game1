@@ -21,8 +21,16 @@ MainMenuState::MainMenuState(sf::RenderWindow* window, std::stack<State*>* state
 	this->initKeybinds();
 	this->initButtons();
 
-	this->background.setSize(sf::Vector2f(window->getSize().x, window->getSize().y));
+	this->backText = backText;
+
+	this->background.setScale(sf::Vector2f(5, 5));
+	//this->background.setSize(sf::Vector2f(window->getSize().x, window->getSize().y));
 	//this->background.setFillColor(sf::Color::Green);
+	if (!backText.loadFromFile("textures/back.png"))
+	{
+		std::cout << "ERROR::LOANDING BUTTONS TEXTURES\n";
+	}
+	this->background.setTexture(backText);
 }
 
 MainMenuState::~MainMenuState()

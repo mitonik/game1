@@ -1,5 +1,5 @@
 #include "State.hpp"
-
+#include "GameState.hpp"
 State::State(sf::RenderWindow* window, std::stack<State*>* states)
 {
 	this->window = window;
@@ -22,7 +22,7 @@ void State::checkForQuit()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 	{
 		//this->quit = true;
-		this->window->close();
+		this->states.push(new MainMenuState(this->window, &this->states));
 	}
 }
 

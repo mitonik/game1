@@ -8,7 +8,8 @@ class MainMenuState :
 {
 private:
 
-    sf::RectangleShape background;
+    sf::Sprite background;
+    sf::Texture backText;
 
     std::map<std::string, Button*> buttons;
 
