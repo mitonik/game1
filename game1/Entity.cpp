@@ -6,7 +6,7 @@ Player::Player()
 	this->sprite.setScale(sf::Vector2f(3.f, 3.f));
 	if (!texture.loadFromFile("textures/player.png")) {}
 	this->sprite.setTexture(texture);
-	this->speed = 500.f;
+	this->movementSpeed = 500.f;
 }
 
 //Player::~Player()
@@ -14,7 +14,7 @@ Player::Player()
 //}
 
 void Player::move(const float x, const float y) {
-	this->sprite.move(x * this->speed, y * this->speed);
+	this->sprite.move(x * this->movementSpeed, y * this->movementSpeed);
 }
 
 void Player::update(const sf::Time deltaTime)
@@ -22,15 +22,15 @@ void Player::update(const sf::Time deltaTime)
 	this->accelerationX = 0;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
-		this->accelerationX -= this->speed;
+		this->accelerationX -= this->movementSpeed;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
-		this->accelerationX += this->speed;
+		this->accelerationX += this->movementSpeed;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && isJumping == false)
 	{
-		this->accelerationY = -this->jump;
+		this->accelerationY = -this->jumpSpeed;
 	}
 	
 	if (this->sprite.getPosition().y + this->sprite.getGlobalBounds().height < 800.f) {

@@ -17,8 +17,8 @@
 class Player {
 private:
 	sf::Texture texture;
-	float speed = 500.f;
-	float jump = 1000.f;
+	float movementSpeed = 500.f;
+	float jumpSpeed = 1000.f;
 	float velocityX = 0.f;
 	float velocityY = 0.f;
 	float accelerationX = 0.f;
