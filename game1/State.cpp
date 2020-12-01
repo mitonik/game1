@@ -22,7 +22,8 @@ void State::checkForQuit()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 	{
 		//this->quit = true;
-		this->states.push(new MainMenuState(this->window, &this->states));
+		//this->states.push(new MainMenuState(this->window, &this->states));
+		this->window->close();
 	}
 }
 
