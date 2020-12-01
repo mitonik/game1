@@ -26,3 +26,13 @@ Aktualnie znajduje sie tam jedynie postac, ktora mozna sterowac wasd. Nowy kod j
 zaplanowane:
 -nowe menu
 -ustawienia w menu?
+
+Raport 3 (01.12.2020)
+Zrobione:
+-proste menu
+-gra w pelni dziala na przekazywaniu statów żeby uzyskać efekt "jednego okna"
+-podstawa nowego silnika gry też została skończona i została przeniesiona do gałęzi master
+
+Zaplanowane:
+-ustawienia w menu (rodzielczosc, dzwiek, itp)
+-podstaowa rozgrywka dla dwoch graczy
