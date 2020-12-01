@@ -30,6 +30,7 @@ zaplanowane:
 Raport 3 (01.12.2020)
 Zrobione:
 -proste menu
+-prosta grawitacja w grze
 -gra w pelni dziala na przekazywaniu statów żeby uzyskać efekt "jednego okna"
 -podstawa nowego silnika gry też została skończona i została przeniesiona do gałęzi master
 
