@@ -1,25 +1,20 @@
 #pragma once
-#include<map>
+#include <map>
 #include "MainMenuState.hpp"
 
 class Application {
 public:
-
 	Application();
-	virtual ~Application();
-
-	//void endApplication();
-	//void updateDt();
+	~Application();
 	void run();
-	//void updateSFMLEvents();
+
+private:
 	void processEvents();
 	void update(sf::Time timePerFrame);
 	void render();
-
-private:
 	void initWindow();
 	void initState();
-	void initKeys();
+	//void initKeys();
 
 	sf::RenderWindow* window;
 	sf::Event event;

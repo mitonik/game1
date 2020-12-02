@@ -14,11 +14,6 @@ GameState::GameState(sf::RenderWindow* window, std::stack<State*>* states)
 	this->initKeybinds();
 }
 
-GameState::~GameState()
-{
-
-}
-
 void GameState::endState()
 {
 	this->window->close();
@@ -38,7 +33,7 @@ void GameState::updateInput(const sf::Time dt)
 
 void GameState::update(const sf::Time dt)
 {
-	this->UpdateMousePosition();
+	this->updateMousePosition();
 	this->updateInput(dt);
 }
 

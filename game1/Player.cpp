@@ -1,4 +1,4 @@
-#include "Entity.hpp"
+#include "Player.hpp"
 #include <SFML/Graphics.hpp>
 
 Player::Player()

@@ -68,7 +68,7 @@ void MainMenuState::upadateButtons()
 
 void MainMenuState::update(const sf::Time dt)
 {
-	this->UpdateMousePosition();
+	this->updateMousePosition();
 	this->updateInput(dt);
 
 	this->upadateButtons();
