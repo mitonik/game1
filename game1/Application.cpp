@@ -1,9 +1,12 @@
 #include "Application.hpp"
+#include "MainMenuState.hpp"
 #include <iostream>
 #include <fstream>
 #include "SFML/System.hpp"
 #include "SFML/Window.hpp"
 #include "SFML/Graphics.hpp"
+
+const sf::Time Application::TimePerFrame = sf::seconds(1.f / 60.f);
 
 void Application::initWindow() {
   std::ifstream ifs("config/window.ini");
@@ -50,17 +53,18 @@ Application::~Application() {
   }
 }
 
-void Application::processEvents() {
+void Application::processInput() {
+  sf::Event event;
   while (window->pollEvent(event)) {
-    /*if (event.type == sf::Event::Closed) {
+    if (event.type == sf::Event::Closed) {
       window->close();
-    }*/
+    }
   }
 }
 
-void Application::update(sf::Time timePerFrame) {
-  if (!states.empty()) {
-    states.top()->update(timePerFrame);
+void Application::update(sf::Time dt) {
+  /*if (!states.empty()) {
+    states.top()->update(TimePerFrame);
     if (states.top()->getQuit()) {
       states.top()->endState();
       delete states.top();
@@ -69,7 +73,8 @@ void Application::update(sf::Time timePerFrame) {
   }
   else {
     window->close();
-  }
+  }*/
+  states.top()->update(dt);
 }
 
 void Application::render() {
@@ -79,15 +84,17 @@ void Application::render() {
 }
 
 void Application::run() {
+  sf::Clock clock;
+  sf::Time timeSinceLastUpdate = sf::Time::Zero;
   while (window->isOpen()) {
-    deltaTime = clock.restart();
-    timeSinceLastUpdate += deltaTime;
-    while (timeSinceLastUpdate > timePerFrame) {
-      timeSinceLastUpdate -= timePerFrame;
-      processEvents();
-      update(timePerFrame);
+    sf::Time dt = clock.restart();
+    timeSinceLastUpdate += dt;
+    while (timeSinceLastUpdate > TimePerFrame) {
+      timeSinceLastUpdate -= TimePerFrame;
+      processInput();
+      update(TimePerFrame);
     }
-    std::cout << timeSinceLastUpdate.asSeconds() << std::endl;
+    //std::cout << timeSinceLastUpdate.asSeconds() << std::endl;
     render();
   }
 }

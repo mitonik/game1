@@ -16,15 +16,21 @@ private:
     void initKeybinds();
     void initButtons();
 
+    sf::Vector2i mousePosScreen;
+    sf::Vector2i mousePosWindow;
+    sf::Vector2f mousePosView;
+
     
 public:
     MainMenuState(sf::RenderWindow* window, std::stack<State*>* states);
     virtual ~MainMenuState();
 
+    void updateMousePosition();
+    void checkForQuit();
     void endState();
     void updateInput(const sf::Time dt);
-    void upadateButtons();
+    void updateButtons();
     void update(const sf::Time dt);
     void renderButtons(sf::RenderTarget* target = nullptr);
-    void render(sf::RenderTarget* target = nullptr);
+    void render();
 };

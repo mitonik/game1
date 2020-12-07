@@ -1,6 +1,11 @@
 #pragma once
 #include <map>
-#include "MainMenuState.hpp"
+#include <stack>
+
+#include "State.hpp"
+
+#include <SFML/System/Time.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 
 class Application {
 public:
@@ -9,23 +14,17 @@ public:
 	void run();
 
 private:
-	void processEvents();
-	void update(sf::Time timePerFrame);
+	void processInput();
+	void update(sf::Time TimePerFrame);
 	void render();
 	void initWindow();
 	void initState();
 	//void initKeys();
 
 	sf::RenderWindow* window;
-	sf::Event event;
-
-	sf::Clock clock;
-
-	sf::Time deltaTime;
-	const sf::Time timePerFrame = sf::seconds(1.f / 120.f);
-	sf::Time timeSinceLastUpdate = sf::Time::Zero;
+	static const sf::Time TimePerFrame;
 
 	std::stack<State*> states;
 
-	std::map<std::string, int> supportedKeys;
+	//std::map<std::string, int> supportedKeys;
 };

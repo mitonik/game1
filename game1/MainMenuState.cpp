@@ -28,7 +28,7 @@ MainMenuState::MainMenuState(sf::RenderWindow* window, std::stack<State*>* state
 	//this->background.setFillColor(sf::Color::Green);
 	if (!backText.loadFromFile("textures/back.png"))
 	{
-		std::cout << "ERROR::LOANDING BUTTONS TEXTURES\n";
+		std::cout << "ERROR::LOADING BUTTONS TEXTURES\n";
 	}
 	this->background.setTexture(backText);
 }
@@ -58,7 +58,22 @@ void MainMenuState::updateInput(const sf::Time dt)
 	}
 }
 
-void MainMenuState::upadateButtons()
+void MainMenuState::updateMousePosition()
+{
+	this->mousePosScreen = sf::Mouse::getPosition();
+	this->mousePosWindow = sf::Mouse::getPosition(*this->window);
+	this->mousePosView = this->window->mapPixelToCoords(sf::Mouse::getPosition(*this->window));
+}
+
+void MainMenuState::checkForQuit() {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+		//this->quit = true;
+		//this->states.push(new MainMenuState(this->window, &this->states));
+		this->window->close();
+	}
+}
+
+void MainMenuState::updateButtons()
 {
 	for (auto& it : this->buttons)
 	{
@@ -71,7 +86,7 @@ void MainMenuState::update(const sf::Time dt)
 	this->updateMousePosition();
 	this->updateInput(dt);
 
-	this->upadateButtons();
+	this->updateButtons();
 
 	//std::cout << this->mousePosView.x << " " << this->mousePosView.x << "\n";
 	//std::cout << this->buttons["GAME_EXIT"]->isPressed()<<"\n";
@@ -95,13 +110,9 @@ void MainMenuState::renderButtons(sf::RenderTarget* target)
 	}
 }
 
-void MainMenuState::render(sf::RenderTarget* target)
+void MainMenuState::render()
 {
-	if (!target)
-	{
-		target = this->window;
-	}
 
-	target->draw(this->background);
-	this->renderButtons(target);
+	window->draw(this->background);
+	this->renderButtons(window);
 }
