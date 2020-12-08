@@ -26,12 +26,13 @@ public:
     virtual ~Settings();
 
     void updateMousePosition();
-    void checkForQuit();
-    void endState();
-    void updateInput(const sf::Time dt);
+    //void checkForQuit();
+    //void endState();
+    //void updateInput(const sf::Time dt);
     void updateButtons();
     void update(const sf::Time dt);
     void renderButtons(sf::RenderTarget* target = nullptr);
     void render();
+    void handleEvent(const sf::Event& event);
 };
 

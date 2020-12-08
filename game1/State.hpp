@@ -33,7 +33,8 @@ public:
 	//virtual void updateMousePosition();
 	//virtual void updateInput(const sf::Time dt) = 0;
 	virtual void update(const sf::Time dt) = 0;
-	virtual void render();
+	virtual void render() = 0;
+	virtual void handleEvent(const sf::Event& event) = 0;
 };
 
 #endif

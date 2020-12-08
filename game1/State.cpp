@@ -7,10 +7,6 @@ State::State(sf::RenderWindow* window, std::stack<State*>* states)
 	this->states = states;
 }
 
-void State::render()
-{
-}
-
 //bool State::getQuit() {
 //	return this->quit;
 //}

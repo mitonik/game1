@@ -56,6 +56,7 @@ Application::~Application() {
 void Application::processInput() {
   sf::Event event;
   while (window->pollEvent(event)) {
+    states.top()->handleEvent(event);
     if (event.type == sf::Event::Closed) {
       window->close();
     }

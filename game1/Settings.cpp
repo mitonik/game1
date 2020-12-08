@@ -37,24 +37,24 @@ void Settings::updateMousePosition()
 	this->mousePosView = this->window->mapPixelToCoords(sf::Mouse::getPosition(*this->window));
 }
 
-void Settings::checkForQuit()
-{
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-		//this->quit = true;
-		//this->states.push(new MainMenuState(this->window, &this->states));
-		this->window->close();
-	}
-}
+//void Settings::checkForQuit()
+//{
+//	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+//		//this->quit = true;
+//		//this->states.push(new MainMenuState(this->window, &this->states));
+//		this->window->close();
+//	}
+//}
 
-void Settings::endState()
-{
-	this->window->close();
-}
+//void Settings::endState()
+//{
+//	this->window->close();
+//}
 
-void Settings::updateInput(const sf::Time dt)
-{
-	this->checkForQuit();
-}
+//void Settings::updateInput(const sf::Time dt)
+//{
+//	this->checkForQuit();
+//}
 
 void Settings::updateButtons()
 {
@@ -67,7 +67,7 @@ void Settings::updateButtons()
 void Settings::update(const sf::Time dt)
 {
 	this->updateMousePosition();
-	this->updateInput(dt);
+	//this->updateInput(dt);
 
 	this->updateButtons();
 
@@ -94,3 +94,8 @@ void Settings::render()
 	this->renderButtons(window);
 }
 
+void Settings::handleEvent(const sf::Event& event) {
+	if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
+		window->close();
+	}
+}

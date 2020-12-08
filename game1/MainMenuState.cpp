@@ -44,21 +44,21 @@ MainMenuState::~MainMenuState()
 	}
 }
 
-void MainMenuState::endState()
-{
-	this->window->close();
-}
+//void MainMenuState::endState()
+//{
+//	this->window->close();
+//}
 
-void MainMenuState::updateInput(const sf::Time dt)
-{
-	this->checkForQuit();
-
-	//player input
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
-	{
-
-	}
-}
+//void MainMenuState::updateInput(const sf::Time dt)
+//{
+//	this->checkForQuit();
+//
+//	//player input
+//	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+//	{
+//
+//	}
+//}
 
 void MainMenuState::updateMousePosition()
 {
@@ -67,13 +67,13 @@ void MainMenuState::updateMousePosition()
 	this->mousePosView = this->window->mapPixelToCoords(sf::Mouse::getPosition(*this->window));
 }
 
-void MainMenuState::checkForQuit() {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-		//this->quit = true;
-		//this->states.push(new MainMenuState(this->window, &this->states));
-		this->window->close();
-	}
-}
+//void MainMenuState::checkForQuit() {
+//	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+//		//this->quit = true;
+//		//this->states.push(new MainMenuState(this->window, &this->states));
+//		this->window->close();
+//	}
+//}
 
 void MainMenuState::updateButtons()
 {
@@ -86,7 +86,7 @@ void MainMenuState::updateButtons()
 void MainMenuState::update(const sf::Time dt)
 {
 	this->updateMousePosition();
-	this->updateInput(dt);
+	//this->updateInput(dt);
 
 	this->updateButtons();
 
@@ -121,4 +121,10 @@ void MainMenuState::render()
 {
 	window->draw(this->background);
 	this->renderButtons(window);
+}
+
+void MainMenuState::handleEvent(const sf::Event& event) {
+	if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
+		window->close();
+	}
 }

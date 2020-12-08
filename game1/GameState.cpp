@@ -9,3 +9,9 @@ void GameState::update(const sf::Time dt) {
 void GameState::render() {
   window->draw(player.sprite);
 }
+
+void GameState::handleEvent(const sf::Event& event) {
+  if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
+    window->close();
+  }
+}
