@@ -157,6 +157,7 @@
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainMenuState.cpp" />
+    <ClCompile Include="Settings.cpp" />
     <ClCompile Include="State.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +166,7 @@
     <ClInclude Include="Application.hpp" />
     <ClInclude Include="GameState.hpp" />
     <ClInclude Include="MainMenuState.hpp" />
+    <ClInclude Include="Settings.hpp" />
     <ClInclude Include="State.hpp" />
   </ItemGroup>
   <ItemGroup>

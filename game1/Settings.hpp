@@ -1,10 +1,9 @@
 #pragma once
+#include "MainMenuState.hpp"
 #include "State.hpp"
-#include "GameState.hpp"
-#include "Settings.hpp"
 #include "Button.hpp"
 
-class MainMenuState :
+class Settings :
     public State
 {
 private:
@@ -14,17 +13,17 @@ private:
 
     std::map<std::string, Button*> buttons;
 
-    void initKeybinds();
+    //void initKeybinds();
     void initButtons();
 
     sf::Vector2i mousePosScreen;
     sf::Vector2i mousePosWindow;
     sf::Vector2f mousePosView;
 
-    
+
 public:
-    MainMenuState(sf::RenderWindow* window, std::stack<State*>* states);
-    virtual ~MainMenuState();
+    Settings(sf::RenderWindow* window, std::stack<State*>* states);
+    virtual ~Settings();
 
     void updateMousePosition();
     void checkForQuit();
@@ -35,3 +34,4 @@ public:
     void renderButtons(sf::RenderTarget* target = nullptr);
     void render();
 };
+

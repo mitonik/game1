@@ -12,7 +12,9 @@ void MainMenuState::initButtons()
 {
 	this->buttons["GAME_STATE"] = new Button(100, 100, 1, 1, sf::Color::Green, sf::Color::White, sf::Color::Blue);
 
-	this->buttons["GAME_EXIT"] = new Button(100, 200, 1, 1, sf::Color::Red, sf::Color::White, sf::Color::Blue);
+	this->buttons["GAME_SET"] = new Button(100, 200, 1, 1, sf::Color::Blue, sf::Color::White, sf::Color::Blue);
+
+	this->buttons["GAME_EXIT"] = new Button(100, 300, 1, 1, sf::Color::Red, sf::Color::White, sf::Color::Blue);
 }
 
 MainMenuState::MainMenuState(sf::RenderWindow* window, std::stack<State*>* states)
@@ -89,10 +91,15 @@ void MainMenuState::update(const sf::Time dt)
 	this->updateButtons();
 
 	//std::cout << this->mousePosView.x << " " << this->mousePosView.x << "\n";
-	//std::cout << this->buttons["GAME_EXIT"]->isPressed()<<"\n";
+	
 	if (this->buttons["GAME_STATE"]->isPressed())
 	{
 		this->states->push(new GameState(this->window, this->states));
+
+	}
+	if (this->buttons["GAME_SET"]->isPressed())
+	{
+		this->states->push(new Settings(this->window, this->states));
 	}
 
 	if (this->buttons["GAME_EXIT"]->isPressed())
@@ -112,7 +119,6 @@ void MainMenuState::renderButtons(sf::RenderTarget* target)
 
 void MainMenuState::render()
 {
-
 	window->draw(this->background);
 	this->renderButtons(window);
 }
