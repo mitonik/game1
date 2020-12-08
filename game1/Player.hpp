@@ -28,11 +28,8 @@ private:
 
 public:
 	Player();
-	//virtual ~Player();
 	sf::Sprite sprite;
 
 	void update(const sf::Time dt);
-
-	//virtual void render(sf::RenderTarget* target);
 
 };

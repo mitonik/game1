@@ -77,6 +77,6 @@ void Settings::render()
 
 void Settings::handleEvent(const sf::Event& event) {
 	if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
-		window->close();
+		this->states->push(new MainMenuState(this->window, this->states));
 	}
 }

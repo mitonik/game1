@@ -3,53 +3,44 @@
 
 Player::Player()
 {
-	this->sprite.setScale(sf::Vector2f(3.f, 3.f));
+	sprite.setScale(sf::Vector2f(3.f, 3.f));
 	if (!texture.loadFromFile("textures/player.png")) {}
-	this->sprite.setTexture(texture);
-	this->movementSpeed = 500.f;
+	sprite.setTexture(texture);
+	movementSpeed = 500.f;
 }
 
-//Player::~Player()
-//{
-//}
-
 void Player::move(const float x, const float y) {
-	this->sprite.move(x * this->movementSpeed, y * this->movementSpeed);
+	sprite.move(x * movementSpeed, y * movementSpeed);
 }
 
 void Player::update(const sf::Time deltaTime)
 {
-	this->accelerationX = 0;
+	accelerationX = 0;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
-		this->accelerationX -= this->movementSpeed;
+		accelerationX -= movementSpeed;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
-		this->accelerationX += this->movementSpeed;
+		accelerationX += movementSpeed;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && isJumping == false)
 	{
-		this->accelerationY = -this->jumpSpeed;
+		accelerationY = -jumpSpeed;
 	}
 	
-	if (this->sprite.getPosition().y + this->sprite.getGlobalBounds().height < 800.f) {
+	if (sprite.getPosition().y + sprite.getGlobalBounds().height < 800.f) {
 		isJumping = true;
 		accelerationY += 50.f;
 	}
-	if (this->sprite.getPosition().y + this->sprite.getGlobalBounds().height > 800.f) {
+	if (sprite.getPosition().y + sprite.getGlobalBounds().height > 800.f) {
 		isJumping = false;
-		this->sprite.setPosition(this->sprite.getPosition().x, 800.f - this->sprite.getGlobalBounds().height);
-		this->accelerationY = 0;
+		sprite.setPosition(sprite.getPosition().x, 800.f - sprite.getGlobalBounds().height);
+		accelerationY = 0;
 	}
 
-	this->velocityX = this->accelerationX * deltaTime.asSeconds();
-	this->velocityY = this->accelerationY * deltaTime.asSeconds();
+	velocityX = accelerationX * deltaTime.asSeconds();
+	velocityY = accelerationY * deltaTime.asSeconds();
 
-	this->sprite.move(velocityX, velocityY);
+	sprite.move(velocityX, velocityY);
 }
-
-//void Player::render(sf::RenderTarget* target)
-//{
-//	target->draw(this->sprite);
-//}
