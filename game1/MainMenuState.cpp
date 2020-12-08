@@ -119,7 +119,7 @@ void MainMenuState::renderButtons(sf::RenderTarget* target)
 	}
 }
 
-void MainMenuState::render()
+void MainMenuState::draw()
 {
 	window->draw(this->background);
 	this->renderButtons(window);

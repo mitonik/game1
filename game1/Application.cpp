@@ -41,16 +41,7 @@ void Application::initState() {
 
 Application::Application() {
   initWindow();
-  //initKeys();
   initState();
-}
-
-Application::~Application() {
-  delete window;
-  while (states.empty()) {
-    delete states.top();
-    states.pop();
-  }
 }
 
 void Application::processInput() {
@@ -64,23 +55,13 @@ void Application::processInput() {
 }
 
 void Application::update(sf::Time dt) {
-  /*if (!states.empty()) {
-    states.top()->update(TimePerFrame);
-    if (states.top()->getQuit()) {
-      states.top()->endState();
-      delete states.top();
-      states.pop();
-    }
-  }
-  else {
-    window->close();
-  }*/
   states.top()->update(dt);
 }
 
 void Application::render() {
   window->clear();
-  states.top()->render();
+  states.top()->draw();
+  window->setView(window->getDefaultView());
   window->display();
 }
 

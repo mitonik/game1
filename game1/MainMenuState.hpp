@@ -33,6 +33,6 @@ public:
     void updateButtons();
     void update(const sf::Time dt);
     void renderButtons(sf::RenderTarget* target = nullptr);
-    void render();
+    void draw();
     void handleEvent(const sf::Event& event);
 };

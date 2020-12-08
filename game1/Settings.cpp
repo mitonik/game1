@@ -69,7 +69,7 @@ void Settings::renderButtons(sf::RenderTarget* target)
 	}
 }
 
-void Settings::render()
+void Settings::draw()
 {
 	window->draw(this->background);
 	this->renderButtons(window);
