@@ -37,25 +37,6 @@ void Settings::updateMousePosition()
 	this->mousePosView = this->window->mapPixelToCoords(sf::Mouse::getPosition(*this->window));
 }
 
-//void Settings::checkForQuit()
-//{
-//	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-//		//this->quit = true;
-//		//this->states.push(new MainMenuState(this->window, &this->states));
-//		this->window->close();
-//	}
-//}
-
-//void Settings::endState()
-//{
-//	this->window->close();
-//}
-
-//void Settings::updateInput(const sf::Time dt)
-//{
-//	this->checkForQuit();
-//}
-
 void Settings::updateButtons()
 {
 	for (auto& it : this->buttons)
