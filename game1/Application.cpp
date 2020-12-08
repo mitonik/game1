@@ -95,6 +95,7 @@ void Application::run() {
       processInput();
       update(TimePerFrame);
     }
+    //std::cout << states.size() << std::endl;
     //std::cout << timeSinceLastUpdate.asSeconds() << std::endl;
     render();
   }
