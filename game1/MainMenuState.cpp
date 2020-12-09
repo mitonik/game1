@@ -91,19 +91,16 @@ void MainMenuState::update(const sf::Time dt)
 	this->updateButtons();
 
 	//std::cout << this->mousePosView.x << " " << this->mousePosView.x << "\n";
-	
-	if (this->buttons["GAME_STATE"]->isPressed())
-	{
-		states->pop();
-		this->states->push(new GameState(this->window, this->states));
-
-	}
 	if (this->buttons["GAME_SET"]->isPressed())
 	{
 		states->pop();
 		this->states->push(new Settings(this->window, this->states));
 	}
-
+	if (this->buttons["GAME_STATE"]->isPressed())
+	{
+		states->pop();
+		this->states->push(new GameState(this->window, this->states));
+	}
 	if (this->buttons["GAME_EXIT"]->isPressed())
 	{
 		this->window->close();

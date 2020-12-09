@@ -2,7 +2,7 @@
 
 void Settings::initButtons()
 {
-	this->buttons["GAME_MENU"] = new Button(100, 100, 1, 1, sf::Color::Green, sf::Color::White, sf::Color::Blue);
+	this->buttons["GAME_MENU"] = new Button(100, 800, 1, 1, sf::Color::Green, sf::Color::White, sf::Color::Blue);
 }
 
 Settings::Settings(sf::RenderWindow* window, std::stack<State*>* states) : State(window, states)
@@ -56,8 +56,8 @@ void Settings::update(const sf::Time dt)
 
 	if (this->buttons["GAME_MENU"]->isPressed())
 	{
+		states->pop();
 		this->states->push(new MainMenuState(this->window, this->states));
-
 	}
 }
 

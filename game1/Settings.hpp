@@ -32,4 +32,3 @@ public:
     void draw();
     void handleEvent(const sf::Event& event);
 };
-
