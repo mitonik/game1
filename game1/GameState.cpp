@@ -1,4 +1,5 @@
 #include "GameState.hpp"
+#include "MainMenuState.hpp"
 
 GameState::GameState(sf::RenderWindow* window, std::stack<State*>* states) : State(window, states) {}
 

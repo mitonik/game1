@@ -1,9 +1,6 @@
-#ifndef STATE_H
-#define STATE_H
-
-#include "Player.hpp"
-
-#include <SFML/Graphics.hpp>
+#pragma once
+#include <stack>
+#include "SFML/Graphics/RenderWindow.hpp"
 
 class State
 {
@@ -18,5 +15,3 @@ public:
 	virtual void draw() = 0;
 	virtual void handleEvent(const sf::Event& event) = 0;
 };
-
-#endif

@@ -1,55 +1,47 @@
 #include "Application.hpp"
-#include "MainMenuState.hpp"
-#include <iostream>
 #include <fstream>
-#include "SFML/System.hpp"
-#include "SFML/Window.hpp"
-#include "SFML/Graphics.hpp"
+#include "MainMenuState.hpp"
 
-const sf::Time Application::TimePerFrame = sf::seconds(1.f / 60.f);
+const sf::Time Application::TimePerFrame = sf::seconds(1.f / 120.f);
 
-void Application::initWindow() {
-  std::ifstream ifs("config/window.ini");
-  std::string title = "game1";
-  sf::VideoMode window_bounds(1600, 900);
-  unsigned int framerate_limit = 60;
-  bool vertival_sync_enabled = false;
-  if (ifs.is_open()) {
-    std::getline(ifs, title);
-    ifs >> window_bounds.width >> window_bounds.height;
-    ifs >> framerate_limit;
-    ifs >> vertival_sync_enabled;
-  }
-  ifs.close();
-  window = new sf::RenderWindow(window_bounds, title, sf::Style::Close);
-  window->setFramerateLimit(framerate_limit);
-  window->setVerticalSyncEnabled(vertival_sync_enabled);
-}
-
-//void Application::initKeys() {
-//  this->supportedKeys["Escape"] = sf::Keyboard::Key::Escape;
-//  this->supportedKeys["A"] = sf::Keyboard::Key::A;
-//  this->supportedKeys["D"] = sf::Keyboard::Key::D;
-//  this->supportedKeys["W"] = sf::Keyboard::Key::W;
-//  this->supportedKeys["S"] = sf::Keyboard::Key::S;
+//void Application::initWindow() {
+//  std::ifstream ifs("config/window.ini");
+//  std::string title = "game1";
+//  sf::VideoMode window_bounds(1600, 900);
+//  unsigned int framerate_limit = 60;
+//  bool vertival_sync_enabled = false;
+//  if (ifs.is_open()) {
+//    std::getline(ifs, title);
+//    ifs >> window_bounds.width >> window_bounds.height;
+//    ifs >> framerate_limit;
+//    ifs >> vertival_sync_enabled;
+//  }
+//  ifs.close();
+//  window = new sf::RenderWindow(window_bounds, title, sf::Style::Close);
+//  window->setFramerateLimit(framerate_limit);
+//  window->setVerticalSyncEnabled(vertival_sync_enabled);
 //}
 
-void Application::initState() {
-  //this->states.push(new GameState(this->window, &this->supportedKeys));
-  states.push(new MainMenuState(this->window, &this->states));
-}
+//void Application::initState() {
+//  states.push(new MainMenuState(&window, &states));
+//}
 
-Application::Application() {
-  initWindow();
-  initState();
+Application::Application()
+  : window(sf::VideoMode::getDesktopMode(), "Game1", sf::Style::None)
+{
+  //initWindow();
+  //initState();
+  window.setKeyRepeatEnabled(false);
+  window.setVerticalSyncEnabled(true);
+  states.push(new MainMenuState(&window, &states));
 }
 
 void Application::processInput() {
   sf::Event event;
-  while (window->pollEvent(event)) {
+  while (window.pollEvent(event)) {
     states.top()->handleEvent(event);
     if (event.type == sf::Event::Closed) {
-      window->close();
+      window.close();
     }
   }
 }
@@ -59,16 +51,16 @@ void Application::update(sf::Time dt) {
 }
 
 void Application::render() {
-  window->clear();
+  window.clear();
   states.top()->draw();
-  window->setView(window->getDefaultView());
-  window->display();
+  window.setView(window.getDefaultView());
+  window.display();
 }
 
 void Application::run() {
   sf::Clock clock;
   sf::Time timeSinceLastUpdate = sf::Time::Zero;
-  while (window->isOpen()) {
+  while (window.isOpen()) {
     sf::Time dt = clock.restart();
     timeSinceLastUpdate += dt;
     while (timeSinceLastUpdate > TimePerFrame) {
@@ -76,8 +68,6 @@ void Application::run() {
       processInput();
       update(TimePerFrame);
     }
-    //std::cout << states.size() << std::endl;
-    //std::cout << timeSinceLastUpdate.asSeconds() << std::endl;
     render();
   }
 }
