@@ -24,14 +24,16 @@ private:
 	bool pressed;
 	bool hover;
 
-	sf::Sprite shape;
-	sf::Texture textButton;
+	sf::RectangleShape shape;
+	sf::Font* font;
+	sf::Text text;
+
 	sf::Color idleColor;
 	sf::Color hoverColor;
 	sf::Color activeColor;
 
 public:
-	Button(float x, float y, float width, float height, sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor);
+	Button(float x, float y, float width, float height, sf::Font* font, sf::String text, sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor);
 	virtual ~Button();
 
 

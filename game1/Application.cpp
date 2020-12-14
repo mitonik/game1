@@ -8,7 +8,7 @@ void Application::initWindow() {
   std::ifstream ifs("config/window.ini");
   std::string title = "game1";
   sf::VideoMode window_bounds(1600, 900);
-  unsigned int framerate_limit = 60;
+  unsigned int framerate_limit = 120;
   bool vertival_sync_enabled = false;
   if (ifs.is_open()) {
     std::getline(ifs, title);

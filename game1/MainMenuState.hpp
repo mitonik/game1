@@ -11,6 +11,7 @@ private:
 
     sf::Sprite background;
     sf::Texture backText;
+    sf::Font font;
 
     std::map<std::string, Button*> buttons;
 

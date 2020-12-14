@@ -10,11 +10,19 @@ void MainMenuState::initKeybinds()
 
 void MainMenuState::initButtons()
 {
-	this->buttons["GAME_STATE"] = new Button(100, 100, 1, 1, sf::Color::Green, sf::Color::White, sf::Color::Blue);
+	if (!this->font.loadFromFile("fonts/Lucid_Streams.otf"))
+	{}
+	this->buttons["GAME_STATE"] = new Button(100, 100, 150, 50,
+		&this->font,"New Game", 
+		sf::Color::White, sf::Color::Red, sf::Color::Blue);
 
-	this->buttons["GAME_SET"] = new Button(100, 200, 1, 1, sf::Color::Blue, sf::Color::White, sf::Color::Blue);
+	this->buttons["GAME_SET"] = new Button(100, 200, 150, 50, 
+		&this->font, "Settings", 
+		sf::Color::White, sf::Color::Red, sf::Color::Blue);
 
-	this->buttons["GAME_EXIT"] = new Button(100, 300, 1, 1, sf::Color::Red, sf::Color::White, sf::Color::Blue);
+	this->buttons["GAME_EXIT"] = new Button(100, 300, 150, 50, 
+		&this->font, "Quit", 
+		sf::Color::White, sf::Color::Red, sf::Color::Blue);
 }
 
 MainMenuState::MainMenuState(sf::RenderWindow* window, std::stack<State*>* states)
@@ -25,7 +33,7 @@ MainMenuState::MainMenuState(sf::RenderWindow* window, std::stack<State*>* state
 
 	this->backText = backText;
 
-	this->background.setScale(sf::Vector2f(5, 5));
+	this->background.setScale(sf::Vector2f(1, 1));
 	//this->background.setSize(sf::Vector2f(window->getSize().x, window->getSize().y));
 	//this->background.setFillColor(sf::Color::Green);
 	if (!backText.loadFromFile("textures/back.png"))

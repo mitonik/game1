@@ -1,23 +1,26 @@
 #include "Button.hpp"
 
-Button::Button(float x, float y, float width, float height, sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor)
+Button::Button(float x, float y, float width, float height, sf::Font* font, sf::String text, sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor)
 {
 	this->buttonState = BTN_IDLE;
 
 	this->shape.setPosition(sf::Vector2f(x, y));
-	this->shape.setScale(sf::Vector2f(width, height));
-	this->textButton = textButton;
-	if (!textButton.loadFromFile("textures/enter.png")) 
-	{
-		std::cout << "ERROR::LOANDING BUTTONS TEXTURES\n";
-	}
-	this->shape.setTexture(textButton);
+	this->shape.setSize(sf::Vector2f(width, height));
+
+	this->font = font;
+	this->text.setFont(*this->font);
+	this->text.setString(text);
+	this->text.setFillColor(sf::Color::White);
+	this->text.setCharacterSize(25);
+	this->text.setPosition(
+		this->shape.getPosition().x + this->shape.getGlobalBounds().width / 2.f - this->text.getGlobalBounds().width/2.f,
+		this->shape.getPosition().y + this->shape.getGlobalBounds().height / 2.f - this->text.getGlobalBounds().height / 2.f);
 
 	this->idleColor = idleColor;
 	this->hoverColor = hoverColor;
 	this->activeColor = activeColor;
 
-	this->shape.setColor(this->idleColor);
+	this->shape.setFillColor(this->idleColor);
 }
 
 Button::~Button()
@@ -53,13 +56,14 @@ void Button::update(const sf::Vector2f mousePos) //update buttons for hover and 
 	switch (this->buttonState)
 	{
 	case BTN_IDLE:
-		this->shape.setColor(this->idleColor);
+		this->text.setFillColor(this->idleColor);
+		this->shape.setFillColor(sf::Color::Black);
 		break;
 	case BTN_HOVER:
-		this->shape.setColor(this->hoverColor);
+		this->text.setFillColor(this->hoverColor);
 		break;
 	case BTN_PRESSED:
-		this->shape.setColor(this->activeColor);
+		this->text.setFillColor(this->activeColor);
 		break;
 	default:
 		break;
@@ -69,4 +73,5 @@ void Button::update(const sf::Vector2f mousePos) //update buttons for hover and 
 void Button::render(sf::RenderTarget* target)
 {
 	target->draw(this->shape);
+	target->draw(this->text);
 }

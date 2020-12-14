@@ -2,7 +2,10 @@
 
 void Settings::initButtons()
 {
-	this->buttons["GAME_MENU"] = new Button(100, 800, 1, 1, sf::Color::Green, sf::Color::White, sf::Color::Blue);
+	if (!this->font.loadFromFile("fonts/Lucid_Streams.otf"))
+	{
+	}
+	this->buttons["GAME_MENU"] = new Button(100, 800, 100, 50, &this->font, "Back to menu", sf::Color::Green, sf::Color::White, sf::Color::Blue);
 }
 
 Settings::Settings(sf::RenderWindow* window, std::stack<State*>* states) : State(window, states)
@@ -11,7 +14,7 @@ Settings::Settings(sf::RenderWindow* window, std::stack<State*>* states) : State
 
 	this->backText = backText;
 
-	this->background.setScale(sf::Vector2f(5, 5));
+	this->background.setScale(sf::Vector2f(1, 1));
 	//this->background.setSize(sf::Vector2f(window->getSize().x, window->getSize().y));
 	//this->background.setFillColor(sf::Color::Green);
 	if (!backText.loadFromFile("textures/back.png"))
