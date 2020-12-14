@@ -2,6 +2,7 @@
 #include <stack>
 #include "State.hpp"
 #include "Player.hpp"
+#include "World.hpp"
 
 class GameState : public State {
 public:
@@ -11,6 +12,7 @@ public:
   void handleEvent(const sf::Event& event);
 
 private:
+  //World world;
   Player player;
 
 };

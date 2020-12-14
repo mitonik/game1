@@ -3,11 +3,11 @@
 #include "Bullet.hpp"
 #include <iostream>
 
-Player::Player(float x, float y) {
+Player::Player(sf::Vector2f position) {
   sprite.setScale(sf::Vector2f(3.f, 3.f));
   texture.loadFromFile("textures/player.png");
   sprite.setTexture(texture);
-  sprite.setPosition(x, y);
+  sprite.setPosition(position.x, position.y);
 }
 
 void Player::move(sf::Vector2f velocity) {

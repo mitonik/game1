@@ -4,10 +4,12 @@
 
 GameState::GameState(sf::RenderWindow* window, std::stack<State*>* states)
   : State(window, states)
-  , player(200, 0)
+  , player({0, 0})
+  //, World(window)
 {}
 
 void GameState::update(const sf::Time dt) {
+  //world.update(dt);
   player.update(dt);
 }
 
