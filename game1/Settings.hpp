@@ -1,7 +1,8 @@
 #pragma once
 #include "MainMenuState.hpp"
-#include "State.hpp"
+#include "Application.hpp"
 #include "Button.hpp"
+
 
 class Settings :
     public State

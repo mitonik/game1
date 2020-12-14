@@ -2,6 +2,7 @@
 #include <stack>
 #include "SFML/System/Time.hpp"
 #include "SFML/Graphics/RenderWindow.hpp"
+#include "MainMenuState.hpp"
 #include "State.hpp"
 
 class Application {
@@ -18,6 +19,8 @@ private:
 
 	sf::RenderWindow* window;
 	static const sf::Time TimePerFrame;
+	std::vector<sf::VideoMode> videoModes;
+	bool fullscreen;
 
 	std::stack<State*> states;
 };

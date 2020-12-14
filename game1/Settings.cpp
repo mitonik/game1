@@ -1,11 +1,13 @@
 #include "Settings.hpp"
-
+#include "Application.hpp"
 void Settings::initButtons()
 {
 	if (!this->font.loadFromFile("fonts/Lucid_Streams.otf"))
 	{
 	}
-	this->buttons["GAME_MENU"] = new Button(100, 800, 100, 50, &this->font, "Back to menu", sf::Color::Green, sf::Color::White, sf::Color::Blue);
+	this->buttons["FULL_SCREEN"] = new Button(100, 500, 200, 30, &this->font, "Full Screen", sf::Color::White, sf::Color::Red, sf::Color::Blue);
+
+	this->buttons["GAME_MENU"] = new Button(100, 800, 200, 30, &this->font, "Back to menu", sf::Color::White, sf::Color::Red, sf::Color::Blue);
 }
 
 Settings::Settings(sf::RenderWindow* window, std::stack<State*>* states) : State(window, states)
@@ -14,7 +16,7 @@ Settings::Settings(sf::RenderWindow* window, std::stack<State*>* states) : State
 
 	this->backText = backText;
 
-	this->background.setScale(sf::Vector2f(1, 1));
+	this->background.setScale(sf::Vector2f(window->getSize().x / 1056.f, window->getSize().y / 672.f));
 	//this->background.setSize(sf::Vector2f(window->getSize().x, window->getSize().y));
 	//this->background.setFillColor(sf::Color::Green);
 	if (!backText.loadFromFile("textures/back.png"))
@@ -55,8 +57,29 @@ void Settings::update(const sf::Time dt)
 
 	this->updateButtons();
 
-	//std::cout << this->mousePosView.x << " " << this->mousePosView.x << "\n";
-
+	if (this->buttons["FULL_SCREEN"]->isPressed())	//work in progress
+	{
+			std::ofstream ifs("config/window.ini");
+			std::string title = "game1";
+			sf::VideoMode window_bounds(1920, 1080);
+			bool fullscreen = false;
+			unsigned int framerate_limit = 120;
+			bool vertival_sync_enabled = false;
+			unsigned antialiasing_level = 0;
+			if (ifs.is_open()) {
+				//std::getline(ifs, title);
+				ifs << "game1\n";
+				ifs << window_bounds.width << " " << window_bounds.height << "\n";
+				ifs << "0\n";                                      //0 - to jest tryb okienkowy, 1 - fullscreen
+				ifs << framerate_limit << "\n";
+				ifs << vertival_sync_enabled << "\n";
+				ifs << antialiasing_level << "\n";
+			}
+			ifs.close();
+			window->close();
+			Application app;
+			app.run();
+	}
 	if (this->buttons["GAME_MENU"]->isPressed())
 	{
 		states->pop();
