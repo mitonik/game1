@@ -2,10 +2,10 @@
 #include "MainMenuState.hpp"
 #include "Bullet.hpp"
 
-GameState::GameState(sf::RenderWindow* window, std::stack<State*>* states)
+GameState::GameState(sf::RenderWindow& window, std::stack<State*>& states)
   : State(window, states)
   , player({0, 0})
-  //, World(window)
+  , world(window)
 {}
 
 void GameState::update(const sf::Time dt) {
@@ -14,12 +14,12 @@ void GameState::update(const sf::Time dt) {
 }
 
 void GameState::draw() {
-  window->draw(player.sprite);
+  window.draw(player.sprite);
 }
 
 void GameState::handleEvent(const sf::Event& event) {
   if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
-    states->pop();
-    this->states->push(new MainMenuState(this->window, this->states));
+    states.pop();
+    states.push(new MainMenuState(window, states));
   }
 }

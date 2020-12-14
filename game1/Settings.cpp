@@ -12,13 +12,13 @@ void Settings::initButtons()
 	this->buttons["GAME_MENU"] = new Button(100, 800, 200, 30, &this->font, "Back to menu", sf::Color::White, sf::Color::Red, sf::Color::Blue);
 }
 
-Settings::Settings(sf::RenderWindow* window, std::stack<State*>* states) : State(window, states)
+Settings::Settings(sf::RenderWindow& window, std::stack<State*>& states) : State(window, states)
 {
 	this->initButtons();
 
 	this->backText = backText;
 
-	this->background.setScale(sf::Vector2f(window->getSize().x / 1056.f, window->getSize().y / 672.f));
+	this->background.setScale(sf::Vector2f(window.getSize().x / 1056.f, window.getSize().y / 672.f));
 	//this->background.setSize(sf::Vector2f(window->getSize().x, window->getSize().y));
 	//this->background.setFillColor(sf::Color::Green);
 	if (!backText.loadFromFile("textures/back.png"))
@@ -40,8 +40,8 @@ Settings::~Settings()
 void Settings::updateMousePosition()
 {
 	this->mousePosScreen = sf::Mouse::getPosition();
-	this->mousePosWindow = sf::Mouse::getPosition(*this->window);
-	this->mousePosView = this->window->mapPixelToCoords(sf::Mouse::getPosition(*this->window));
+	this->mousePosWindow = sf::Mouse::getPosition(window);
+	this->mousePosView = window.mapPixelToCoords(sf::Mouse::getPosition(window));
 }
 
 void Settings::updateButtons()
@@ -78,7 +78,7 @@ void Settings::update(const sf::Time dt)
 				ifs << antialiasing_level << "\n";
 			}
 			ifs.close();
-			window->close();
+			window.close();
 			Application app;
 			app.run();
 	}
@@ -101,18 +101,18 @@ void Settings::update(const sf::Time dt)
 			ifs << antialiasing_level << "\n";
 		}
 		ifs.close();
-		window->close();
+		window.close();
 		Application app;
 		app.run();
 	}
 	if (this->buttons["GAME_MENU"]->isPressed())
 	{
-		states->pop();
-		this->states->push(new MainMenuState(this->window, this->states));
+		states.pop();
+		this->states.push(new MainMenuState(this->window, this->states));
 	}
 }
 
-void Settings::renderButtons(sf::RenderTarget* target)
+void Settings::renderButtons(sf::RenderTarget& target)
 {
 	for (auto& it : this->buttons)
 	{
@@ -122,13 +122,13 @@ void Settings::renderButtons(sf::RenderTarget* target)
 
 void Settings::draw()
 {
-	window->draw(this->background);
+	window.draw(this->background);
 	this->renderButtons(window);
 }
 
 void Settings::handleEvent(const sf::Event& event) {
 	if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
-		states->pop();
-		this->states->push(new MainMenuState(this->window, this->states));
+		states.pop();
+		this->states.push(new MainMenuState(this->window, this->states));
 	}
 }

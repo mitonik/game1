@@ -24,7 +24,7 @@ private:
 
     
 public:
-    MainMenuState(sf::RenderWindow* window, std::stack<State*>* states);
+    MainMenuState(sf::RenderWindow& window, std::stack<State*>& states);
     virtual ~MainMenuState();
 
     void updateMousePosition();
@@ -33,7 +33,7 @@ public:
     //void updateInput(const sf::Time dt);
     void updateButtons();
     void update(const sf::Time dt);
-    void renderButtons(sf::RenderTarget* target = nullptr);
+    void renderButtons(sf::RenderTarget& target);
     void draw();
     void handleEvent(const sf::Event& event);
 };

@@ -24,13 +24,13 @@ private:
 
 
 public:
-    Settings(sf::RenderWindow* window, std::stack<State*>* states);
+    Settings(sf::RenderWindow& window, std::stack<State*>& states);
     virtual ~Settings();
 
     void updateMousePosition();
     void updateButtons();
     void update(const sf::Time dt);
-    void renderButtons(sf::RenderTarget* target = nullptr);
+    void renderButtons(sf::RenderTarget& target);
     void draw();
     void handleEvent(const sf::Event& event);
 };

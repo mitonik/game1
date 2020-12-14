@@ -14,13 +14,13 @@ private:
 	void processInput();
 	void update(sf::Time TimePerFrame);
 	void render();
-	void initWindow();
-	void initState();
+	//void initWindow();
+	//void initState();
 
-	sf::RenderWindow* window;
+	sf::RenderWindow window;
 	static const sf::Time TimePerFrame;
-	std::vector<sf::VideoMode> videoModes;
-	bool fullscreen;
+	//std::vector<sf::VideoMode> videoModes;
+	//bool fullscreen;
 
 	std::stack<State*> states;
 };
