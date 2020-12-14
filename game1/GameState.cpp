@@ -1,7 +1,11 @@
 #include "GameState.hpp"
 #include "MainMenuState.hpp"
+#include "Bullet.hpp"
 
-GameState::GameState(sf::RenderWindow* window, std::stack<State*>* states) : State(window, states) {}
+GameState::GameState(sf::RenderWindow* window, std::stack<State*>* states)
+  : State(window, states)
+  , player(200, 0)
+{}
 
 void GameState::update(const sf::Time dt) {
   player.update(dt);

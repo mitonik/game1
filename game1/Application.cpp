@@ -27,7 +27,8 @@ const sf::Time Application::TimePerFrame = sf::seconds(1.f / 120.f);
 //}
 
 Application::Application()
-  : window(sf::VideoMode::getDesktopMode(), "Game1", sf::Style::None)
+  //: window(sf::VideoMode::getDesktopMode(), "Game1", sf::Style::None)
+  : window(sf::VideoMode(1280, 720), "Game1", sf::Style::None)
 {
   //initWindow();
   //initState();
