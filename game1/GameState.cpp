@@ -4,12 +4,12 @@
 
 GameState::GameState(sf::RenderWindow& window, std::stack<State*>& states)
   : State(window, states)
-  , player({0, 0})
-  , world(window)
+  , spawnPosition(worldView.getSize().x / 2.f, worldView.getSize().y / 2.f)
+  , worldBounds(0.f, 0.f, worldView.getSize().x, worldView.getSize().y)
+  , player(spawnPosition)
 {}
 
 void GameState::update(const sf::Time dt) {
-  //world.update(dt);
   player.update(dt);
 }
 

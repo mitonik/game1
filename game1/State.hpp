@@ -2,8 +2,7 @@
 #include <stack>
 #include "SFML/Graphics/RenderWindow.hpp"
 
-class State
-{
+class State {
 protected:
 	std::stack<State*>& states;
 	sf::RenderWindow& window;

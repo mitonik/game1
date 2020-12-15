@@ -2,7 +2,6 @@
 #include <stack>
 #include "State.hpp"
 #include "Player.hpp"
-#include "World.hpp"
 
 class GameState : public State {
 public:
@@ -11,8 +10,11 @@ public:
   void draw();
   void handleEvent(const sf::Event& event);
 
+  sf::Vector2f spawnPosition;
+  sf::FloatRect worldBounds;
+
 private:
-  World world;
+  sf::View worldView;
   Player player;
 
 };
