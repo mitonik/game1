@@ -1,13 +1,11 @@
 #include "Player.hpp"
 #include "SFML/Graphics.hpp"
-#include "Bullet.hpp"
 #include <iostream>
 
-Player::Player(sf::Vector2f position) {
+Player::Player() {
   sprite.setScale(sf::Vector2f(3.f, 3.f));
   texture.loadFromFile("textures/player.png");
   sprite.setTexture(texture);
-  sprite.setPosition(position.x, position.y);
 }
 
 void Player::move(sf::Vector2f velocity) {
@@ -24,13 +22,6 @@ void Player::update(const sf::Time dt) {
   }
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && isJumping == false) {
     acceleration.y = -jumpSpeed;
-  }
-  if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
-    std::cout << "Left" << std::endl;
-    Bullet bullet(sprite.getPosition(), acceleration.x, acceleration.y);
-  }
-  if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Right)) {
-    std::cout << "Right" << std::endl;
   }
   if (sprite.getPosition().y + sprite.getGlobalBounds().height < 800.f) {
     isJumping = true;

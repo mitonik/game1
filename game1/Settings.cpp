@@ -69,7 +69,7 @@ void Settings::update(const sf::Time dt)
 			bool vertival_sync_enabled = false;
 			unsigned antialiasing_level = 0;
 			if (ifs.is_open()) {
-				//std::getline(ifs, title);
+				//std::getline(ofs, title);
 				ifs << "game1\n";
 				ifs << window_bounds.width << " " << window_bounds.height << "\n";
 				ifs << "1\n";                                      //0 - to jest tryb okienkowy, 1 - fullscreen
@@ -84,26 +84,27 @@ void Settings::update(const sf::Time dt)
 	}
 	if (this->buttons["NOT_FULL_SCREEN"]->isPressed())	//work in progress
 	{
-		std::ofstream ifs("config/window.ini");
+		std::ofstream ofs("config/window.ini");
 		std::string title = "game1";
 		sf::VideoMode window_bounds(1920, 1080);
 		bool fullscreen = false;
 		unsigned int framerate_limit = 120;
 		bool vertival_sync_enabled = false;
 		unsigned antialiasing_level = 0;
-		if (ifs.is_open()) {
-			//std::getline(ifs, title);
-			ifs << "game1\n";
-			ifs << window_bounds.width << " " << window_bounds.height << "\n";
-			ifs << "0\n";                                      //0 - to jest tryb okienkowy, 1 - fullscreen
-			ifs << framerate_limit << "\n";
-			ifs << vertival_sync_enabled << "\n";
-			ifs << antialiasing_level << "\n";
+		if (ofs.is_open()) {
+			//std::getline(ofs, title);
+			ofs << "game1\n";
+			ofs << window_bounds.width << " " << window_bounds.height << "\n";
+			ofs << "0\n";                                      //0 - to jest tryb okienkowy, 1 - fullscreen
+			ofs << framerate_limit << "\n";
+			ofs << vertival_sync_enabled << "\n";
+			ofs << antialiasing_level << "\n";
 		}
-		ifs.close();
+		ofs.close();
 		window.close();
 		Application app;
 		app.run();
+		//window.create(sf::VideoMode(1600, 900), "Game1", sf::Style::Close);
 	}
 	if (this->buttons["GAME_MENU"]->isPressed())
 	{

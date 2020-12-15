@@ -2,21 +2,20 @@
 #include <stack>
 #include "SFML/System/Time.hpp"
 #include "SFML/Graphics/RenderWindow.hpp"
-#include "MainMenuState.hpp"
 #include "State.hpp"
 
 class Application {
-public:
-	Application();
-	void run();
+ public:
+  Application();
 
-private:
-	void processInput();
-	void update(sf::Time TimePerFrame);
-	void render();
+  void run();
 
-	sf::RenderWindow window;
-	static const sf::Time TimePerFrame;
+ private:
+  void processInput();
+  void update(sf::Time dt);
+  void render();
 
-	std::stack<State*> states;
+  static const sf::Time TimePerFrame;
+  sf::RenderWindow window;
+  std::stack<State*> states;
 };

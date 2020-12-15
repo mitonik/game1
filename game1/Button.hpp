@@ -8,38 +8,34 @@
 #include<stack>
 #include<map>
 #include<vector>
-
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
 
-enum button_states{BTN_IDLE = 0, BTN_HOVER, BTN_PRESSED};
+class Button {
+ public:
+  Button(float x, float y, float width, float height, sf::Font* font, sf::String text, sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor);
 
-class Button
-{
-private:
-	short unsigned buttonState;
-	bool pressed;
-	bool hover;
+  bool isPressed();
+  void update(sf::Vector2f mousePos);
+  void render(sf::RenderTarget& window);
 
-	sf::RectangleShape shape;
-	sf::Font* font;
-	sf::Text text;
+  enum button_states{
+    BTN_IDLE,
+    BTN_HOVER,
+    BTN_PRESSED
+  };
 
-	sf::Color idleColor;
-	sf::Color hoverColor;
-	sf::Color activeColor;
-
-public:
-	Button(float x, float y, float width, float height, sf::Font* font, sf::String text, sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor);
-	virtual ~Button();
-
-
-	//Accessors
-	bool isPressed();
-
-	void update(sf::Vector2f mousePos);
-	void render(sf::RenderTarget& target);
+ private:
+  short unsigned buttonState = BTN_IDLE;
+  bool pressed = false;
+  bool hover = false;
+  sf::RectangleShape shape;
+  sf::Font* font;
+  sf::Text text;
+  sf::Color idleColor;
+  sf::Color hoverColor;
+  sf::Color activeColor;
 };

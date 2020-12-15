@@ -13,7 +13,7 @@ private:
 	void move(sf::Vector2f velocity);
 
 public:
-	Player(sf::Vector2f position);
+	Player();
 	sf::Sprite sprite;
 
 	void update(const sf::Time dt);

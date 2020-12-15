@@ -15,7 +15,6 @@ private:
 
     std::map<std::string, Button*> buttons;
 
-    void initKeybinds();
     void initButtons();
 
     sf::Vector2i mousePosScreen;
@@ -28,9 +27,6 @@ public:
     virtual ~MainMenuState();
 
     void updateMousePosition();
-    //void checkForQuit();
-    //void endState();
-    //void updateInput(const sf::Time dt);
     void updateButtons();
     void update(const sf::Time dt);
     void renderButtons(sf::RenderTarget& target);

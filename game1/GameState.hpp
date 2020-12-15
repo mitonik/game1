@@ -4,17 +4,12 @@
 #include "Player.hpp"
 
 class GameState : public State {
-public:
+ public:
   GameState(sf::RenderWindow& window, std::stack<State*>& states);
+
   void update(const sf::Time dt);
   void draw();
   void handleEvent(const sf::Event& event);
-
-  sf::Vector2f spawnPosition;
-  sf::FloatRect worldBounds;
-
-private:
-  sf::View worldView;
+ private:
   Player player;
-
 };

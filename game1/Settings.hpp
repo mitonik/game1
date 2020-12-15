@@ -4,8 +4,7 @@
 #include "Button.hpp"
 
 
-class Settings :
-    public State
+class Settings : public State
 {
 private:
 
