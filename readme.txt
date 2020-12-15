@@ -37,3 +37,13 @@ Zrobione:
 Zaplanowane:
 -ustawienia w menu (rodzielczosc, dzwiek, itp)
 -podstaowa rozgrywka dla dwoch graczy
+
+Raport 4 (15.12.2020)
+Zrobione:
+-optymalizacja kodu mająca na celu ułatwienie wprowadzenia nowych funkcji(potrzebne do stworzenia rozgrywki)
+-nowy wygląd głównego menu
+-dodanie menu ustawień i możliwość przełączania się między trybem okienkowym i pełno ekranowym
+
+Zaplanowane:
+-rozbudowa menu ustawień 
+-rozwinięcie akcji gracza
