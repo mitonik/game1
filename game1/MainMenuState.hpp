@@ -4,32 +4,28 @@
 #include "Settings.hpp"
 #include "Button.hpp"
 
-class MainMenuState :
-    public State
-{
-private:
+class MainMenuState : public State {
+ public:
+  MainMenuState(sf::RenderWindow& window, std::stack<State*>& states);
+  ~MainMenuState();
 
-    sf::Sprite background;
-    sf::Texture backText;
-    sf::Font font;
+  void updateMousePosition();
+  void updateButtons();
+  void update(const sf::Time dt);
+  void renderButtons(sf::RenderTarget& target);
+  void draw();
+  void handleEvent(const sf::Event& event);
 
-    std::map<std::string, Button*> buttons;
+ private:
+  sf::Sprite background;
+  sf::Texture backText;
+  sf::Font font;
 
-    void initButtons();
+  std::map<std::string, Button*> buttons;
 
-    sf::Vector2i mousePosScreen;
-    sf::Vector2i mousePosWindow;
-    sf::Vector2f mousePosView;
+  void initButtons();
 
-    
-public:
-    MainMenuState(sf::RenderWindow& window, std::stack<State*>& states);
-    virtual ~MainMenuState();
-
-    void updateMousePosition();
-    void updateButtons();
-    void update(const sf::Time dt);
-    void renderButtons(sf::RenderTarget& target);
-    void draw();
-    void handleEvent(const sf::Event& event);
+  sf::Vector2i mousePosScreen;
+  sf::Vector2i mousePosWindow;
+  sf::Vector2f mousePosView;
 };

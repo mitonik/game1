@@ -10,6 +10,7 @@ class GameState : public State {
   void update(const sf::Time dt);
   void draw();
   void handleEvent(const sf::Event& event);
+
  private:
   Player player;
 };
