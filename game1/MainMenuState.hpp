@@ -1,7 +1,7 @@
 #pragma once
 #include "State.hpp"
 #include "GameState.hpp"
-#include "Settings.hpp"
+#include "SettingsState.hpp"
 #include "Button.hpp"
 
 class MainMenuState : public State {

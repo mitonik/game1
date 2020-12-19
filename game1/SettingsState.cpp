@@ -1,4 +1,4 @@
-#include "Settings.hpp"
+#include "SettingsState.hpp"
 #include "Application.hpp"
 
 void Settings::initButtons() {
@@ -55,13 +55,13 @@ void Settings::update(const sf::Time dt) {
     bool vertival_sync_enabled = false;
     unsigned antialiasing_level = 0;
     if (ifs.is_open()) {
-    //std::getline(ofs, title);
-    ifs << "game1\n";
-    ifs << window_bounds.width << " " << window_bounds.height << "\n";
-    ifs << "1\n";                                      //0 - to jest tryb okienkowy, 1 - fullscreen
-    ifs << framerate_limit << "\n";
-    ifs << vertival_sync_enabled << "\n";
-    ifs << antialiasing_level << "\n";
+      //std::getline(ofs, title);
+      ifs << "game1\n";
+      ifs << window_bounds.width << " " << window_bounds.height << "\n";
+      ifs << "1\n";                                      //0 - to jest tryb okienkowy, 1 - fullscreen
+      ifs << framerate_limit << "\n";
+      ifs << vertival_sync_enabled << "\n";
+      ifs << antialiasing_level << "\n";
     }
     ifs.close();
     window.close();
@@ -77,13 +77,13 @@ void Settings::update(const sf::Time dt) {
     bool vertival_sync_enabled = false;
     unsigned antialiasing_level = 0;
     if (ofs.is_open()) {
-    //std::getline(ofs, title);
-    ofs << "game1\n";
-    ofs << window_bounds.width << " " << window_bounds.height << "\n";
-    ofs << "0\n";                                      //0 - to jest tryb okienkowy, 1 - fullscreen
-    ofs << framerate_limit << "\n";
-    ofs << vertival_sync_enabled << "\n";
-    ofs << antialiasing_level << "\n";
+      //std::getline(ofs, title);
+      ofs << "game1\n";
+      ofs << window_bounds.width << " " << window_bounds.height << "\n";
+      ofs << "0\n";                                      //0 - to jest tryb okienkowy, 1 - fullscreen
+      ofs << framerate_limit << "\n";
+      ofs << vertival_sync_enabled << "\n";
+      ofs << antialiasing_level << "\n";
     }
     ofs.close();
     window.close();

@@ -159,29 +159,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Button.cpp" />
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Application.cpp" />
-    <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="MainMenuState.cpp" />
-    <ClCompile Include="Settings.cpp" />
+    <ClCompile Include="SettingsState.cpp" />
     <ClCompile Include="State.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Button.hpp" />
-    <ClInclude Include="Player.hpp" />
     <ClInclude Include="Application.hpp" />
+    <ClInclude Include="Button.hpp" />
     <ClInclude Include="GameState.hpp" />
     <ClInclude Include="MainMenuState.hpp" />
-    <ClInclude Include="Settings.hpp" />
+    <ClInclude Include="Player.hpp" />
+    <ClInclude Include="SettingsState.hpp" />
     <ClInclude Include="State.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="fonts\arial.ttf" />
+    <Font Include="fonts\Lucid Streams Laminar.otf" />
+    <Font Include="fonts\Lucid_Streams.otf" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="textures\enter.png" />
+    <Image Include="textures\back.png" />
+    <Image Include="textures\bullet.png" />
     <Image Include="textures\player.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
