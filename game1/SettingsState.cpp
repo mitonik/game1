@@ -18,8 +18,8 @@ Settings::Settings(sf::RenderWindow& window, std::stack<State*>& states) : State
   background.setScale(sf::Vector2f(window.getSize().x / 1056.f, window.getSize().y / 672.f));
   //this->background.setSize(sf::Vector2f(window->getSize().x, window->getSize().y));
   //this->background.setFillColor(sf::Color::Green);
-  if (!backText.loadFromFile("textures/back.png")) {
-    std::cout << "ERROR::LOADING BUTTONS TEXTURES\n";
+  if (!backText.loadFromFile("textures/back1.png")) {
+    std::cout << "ERROR::LOADING BACKGROUND TEXTURES\n";
   }
   background.setTexture(backText);
 }

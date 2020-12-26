@@ -18,13 +18,10 @@ void MainMenuState::initButtons() {
 MainMenuState::MainMenuState(sf::RenderWindow& window, std::stack<State*>& states)
     : State(window, states) {
   initButtons();
-
-  background.setScale(sf::Vector2f(window.getSize().x / 1056.f, window.getSize().y / 672.f));
-  //this->background.setSize(sf::Vector2f(window->getSize().x, window->getSize().y));
-  //this->background.setFillColor(sf::Color::Green);
-  if (!backText.loadFromFile("textures/back.png")) {
-    std::cout << "ERROR::LOADING BUTTONS TEXTURES\n";
+  if (!backText.loadFromFile("textures/back2.png")) {
+      std::cout << "ERROR::LOADING BACKGROUND TEXTURES\n";
   }
+  background.setScale(sf::Vector2f(window.getSize().x/ 928.f, window.getSize().y / 793.f));
   background.setTexture(backText);
 }
 
