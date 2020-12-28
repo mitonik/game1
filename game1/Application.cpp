@@ -10,7 +10,7 @@ Application::Application()
   : window(sf::VideoMode(1280, 720), "Game1", sf::Style::Close) {
   std::ifstream ifs("config/window.ini");
   std::vector<sf::VideoMode> videoModes = sf::VideoMode::getFullscreenModes();
-  std::string title = "game1";
+  std::string title = "Game1";
   sf::VideoMode window_bounds = sf::VideoMode::getDesktopMode();
   bool fullscreen = false;
   unsigned int framerate_limit = 120;
@@ -25,7 +25,6 @@ Application::Application()
     ifs >> antialiasing_level;
   }
   ifs.close();
-
   sf::ContextSettings window_settings;
   window_settings.antialiasingLevel = antialiasing_level;
 
@@ -36,12 +35,9 @@ Application::Application()
     window.close();
     window.create(window_bounds, title, sf::Style::Titlebar | sf::Style::Close, window_settings);
   }
-
   window.setFramerateLimit(framerate_limit);
   window.setVerticalSyncEnabled(vertival_sync_enabled);
-
   window.setKeyRepeatEnabled(false);
-
   states.push(new MainMenuState(window, states));
 }
 

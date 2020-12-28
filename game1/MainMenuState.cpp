@@ -21,7 +21,7 @@ MainMenuState::MainMenuState(sf::RenderWindow& window, std::stack<State*>& state
 
   int a = rand() % 3;
   std::string x = std::to_string(a);
-  if (!backText.loadFromFile("textures/back"+x+".png")) {
+  if (!backText.loadFromFile("textures/back" + x + ".png")) {
       std::cout << "ERROR::LOADING BACKGROUND TEXTURES\n";
   }
   sf::Vector2f back = (sf::Vector2f)backText.getSize();
