@@ -30,7 +30,7 @@ Application::Application()
 
   if (fullscreen) {
     window.close();
-    window.create(sf::VideoMode::getDesktopMode(), title, sf::Style::Fullscreen, window_settings);
+    window.create(window_bounds, title, sf::Style::Fullscreen, window_settings);
   } else {
     window.close();
     window.create(window_bounds, title, sf::Style::Titlebar | sf::Style::Close, window_settings);

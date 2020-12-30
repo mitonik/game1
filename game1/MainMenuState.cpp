@@ -2,15 +2,15 @@
 
 void MainMenuState::initButtons() {
   font.loadFromFile("fonts/Lucid_Streams.otf");
-  buttons["GAME_STATE"] = new Button(100, 100, 150, 30,
+  buttons["GAME_STATE"] = new Button(100, window.getSize().y - 100, 150, 30,
     &font,"New Game", 
     sf::Color::White, sf::Color::Red, sf::Color::Blue);
 
-  buttons["GAME_SET"] = new Button(100, 200, 150, 30, 
+  buttons["GAME_SET"] = new Button(325, window.getSize().y - 102, 150, 30,
     &font, "Settings", 
     sf::Color::White, sf::Color::Red, sf::Color::Blue);
 
-  buttons["GAME_EXIT"] = new Button(100, 300, 150, 30, 
+  buttons["GAME_EXIT"] = new Button(500, window.getSize().y - 100, 150, 30,
     &font, "Quit", 
     sf::Color::White, sf::Color::Red, sf::Color::Blue);
 }
