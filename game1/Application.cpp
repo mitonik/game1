@@ -33,7 +33,7 @@ Application::Application()
     window.create(window_bounds, title, sf::Style::Fullscreen, window_settings);
   } else {
     window.close();
-    window.create(window_bounds, title, /*sf::Style::Titlebar | sf::Style::Close*/ sf::Style::Default, window_settings);
+    window.create(window_bounds, title, sf::Style::Titlebar | sf::Style::Close, window_settings);
   }
   window.setFramerateLimit(framerate_limit);
   window.setVerticalSyncEnabled(vertival_sync_enabled);
