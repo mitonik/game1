@@ -5,7 +5,7 @@
 
 class Settings : public State {
  public:
-  Settings(sf::RenderWindow& window, std::stack<State*>& states);
+  Settings(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>& states);
   ~Settings();
 
   void updateMousePosition();

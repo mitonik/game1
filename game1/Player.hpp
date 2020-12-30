@@ -1,21 +1,22 @@
+#pragma once
 #include <SFML/Graphics.hpp>
 
 class Player {
-private:
-	sf::Texture texture;
+ public:
+  Player(sf::Vector2f bounds);
+  sf::Sprite sprite;
 
-	float movementSpeed = 1000.f;
-	float jumpSpeed = 2000.f;
-	sf::Vector2f position;
-	sf::Vector2f velocity;
-	sf::Vector2f acceleration;
-	bool isJumping = false;
-	void move(sf::Vector2f velocity);
+  void update(const sf::Time dt);
+  sf::Vector2f bounds;
 
-public:
-	Player();
-	sf::Sprite sprite;
+ private:
+  sf::Texture texture;
 
-	void update(const sf::Time dt);
-
+  float movementSpeed = 1000.f;
+  float jumpSpeed = 2000.f;
+  sf::Vector2f position;
+  sf::Vector2f velocity;
+  sf::Vector2f acceleration;
+  bool isJumping = false;
+  void move(sf::Vector2f velocity);
 };

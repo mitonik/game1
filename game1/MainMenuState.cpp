@@ -15,7 +15,7 @@ void MainMenuState::initButtons() {
     sf::Color::White, sf::Color::Red, sf::Color::Blue);
 }
 
-MainMenuState::MainMenuState(sf::RenderWindow& window, std::stack<State*>& states)
+MainMenuState::MainMenuState(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>& states)
     : State(window, states) {
   initButtons();
 
@@ -29,12 +29,12 @@ MainMenuState::MainMenuState(sf::RenderWindow& window, std::stack<State*>& state
   background.setTexture(backText);
 }
 
-MainMenuState::~MainMenuState() {
-  auto it = buttons.begin();
-  for (it = buttons.begin(); it != buttons.end(); ++it) {
-    delete it->second;
-  }
-}
+//MainMenuState::~MainMenuState() {
+//  auto it = buttons.begin();
+//  for (it = buttons.begin(); it != buttons.end(); ++it) {
+//    delete it->second;
+//  }
+//}
 
 void MainMenuState::updateMousePosition() {
   mousePosScreen = sf::Mouse::getPosition();
@@ -55,12 +55,14 @@ void MainMenuState::update(const sf::Time dt) {
 
   //std::cout << this->mousePosView.x << " " << this->mousePosView.x << "\n";
   if (buttons["GAME_SET"]->isPressed()) {
-    states.pop();
-    states.push(new Settings(window, states));
+    /*states.pop();
+    states.push(new Settings(window, states));*/
+    states.push(std::shared_ptr<State>(new Settings(window, states)));
   }
   if (buttons["GAME_STATE"]->isPressed()) {
-    states.pop();
-    states.push(new GameState(window, states));
+    /*states.pop();
+    states.push(new GameState(window, states));*/
+    states.push(std::shared_ptr<State>(new GameState(window, states)));
   }
   if (buttons["GAME_EXIT"]->isPressed()) {
     window.close();

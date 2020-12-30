@@ -1,7 +1,7 @@
 #include "SettingsState.hpp"
 #include "Application.hpp"
 
-Settings::Settings(sf::RenderWindow& window, std::stack<State*>& states) : State(window, states) {
+Settings::Settings(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>& states) : State(window, states) {
   initButtons();
 
   int a = rand() % 3;
@@ -187,7 +187,6 @@ void Settings::update(const sf::Time dt) {
 
   if (buttons["GAME_MENU"]->isPressed()) {
 	states.pop();
-	states.push(new MainMenuState(window, states));
   }
 }
 
@@ -205,6 +204,5 @@ void Settings::draw() {
 void Settings::handleEvent(const sf::Event& event) {
   if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
 	states.pop();
-	states.push(new MainMenuState(window, states));
   }
 }

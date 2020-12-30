@@ -17,5 +17,5 @@ class Application {
 
   static const sf::Time TimePerFrame;
   sf::RenderWindow window;
-  std::stack<State*> states;
+  std::stack<std::shared_ptr<State>> stateStack;
 };

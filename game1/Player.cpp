@@ -1,8 +1,6 @@
 #include "Player.hpp"
-#include "SFML/Graphics.hpp"
-#include <iostream>
 
-Player::Player() {
+Player::Player(sf::Vector2f bounds) : bounds(bounds) {
   sprite.setScale(sf::Vector2f(3.f, 3.f));
   texture.loadFromFile("textures/player.png");
   sprite.setTexture(texture);
@@ -23,16 +21,24 @@ void Player::update(const sf::Time dt) {
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && isJumping == false) {
     acceleration.y = -jumpSpeed;
   }
-  if (sprite.getPosition().y + sprite.getGlobalBounds().height < 800.f) {
+  if (sprite.getPosition().y + sprite.getGlobalBounds().height < bounds.y) {
     isJumping = true;
     acceleration.y += 50.f;
-  }
-  if (sprite.getPosition().y + sprite.getGlobalBounds().height > 800.f) {
-    isJumping = false;
-    acceleration.y = 0;
-    sprite.setPosition(sprite.getPosition().x, 800.f - sprite.getGlobalBounds().height);
   }
   velocity.x = acceleration.x * dt.asSeconds();
   velocity.y = acceleration.y * dt.asSeconds();
   sprite.move(velocity);
+  if (sprite.getPosition().y + sprite.getGlobalBounds().height > bounds.y) {
+    isJumping = false;
+    acceleration.y = 0;
+    sprite.setPosition(sprite.getPosition().x, bounds.y - sprite.getGlobalBounds().height);
+  }
+  if (sprite.getPosition().x + sprite.getGlobalBounds().width > bounds.x) {
+    acceleration.x = 0;
+    sprite.setPosition(bounds.x - sprite.getGlobalBounds().width, sprite.getPosition().y);
+  }
+  if (sprite.getPosition().x < 0) {
+    acceleration.x = 0;
+    sprite.setPosition(0, sprite.getPosition().y);
+  }
 }
