@@ -10,6 +10,9 @@ void GameState::update(const sf::Time dt) {
 
 void GameState::draw() {
   window.draw(player.sprite);
+  for (int i = 0; i < player.bullets.size(); i++) {
+    window.draw(player.bullets[i].sprite);
+  }
 }
 
 void GameState::handleEvent(const sf::Event& event) {

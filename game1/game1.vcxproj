@@ -160,8 +160,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Button.cpp" />
-    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -173,8 +173,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.hpp" />
+    <ClInclude Include="Bullet.hpp" />
     <ClInclude Include="Button.hpp" />
-    <ClInclude Include="Entity.hpp" />
     <ClInclude Include="GameState.hpp" />
     <ClInclude Include="MainMenuState.hpp" />
     <ClInclude Include="PauseState.hpp" />

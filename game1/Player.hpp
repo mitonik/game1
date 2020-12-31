@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "Bullet.hpp"
 
 class Player {
  public:
@@ -8,6 +9,7 @@ class Player {
 
   void update(const sf::Time dt);
   sf::Vector2f bounds;
+  std::vector<Bullet> bullets;
 
  private:
   sf::Texture texture;
@@ -19,4 +21,5 @@ class Player {
   sf::Vector2f acceleration;
   bool isJumping = false;
   void move(sf::Vector2f velocity);
+
 };

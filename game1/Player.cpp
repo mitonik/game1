@@ -41,4 +41,14 @@ void Player::update(const sf::Time dt) {
     acceleration.x = 0;
     sprite.setPosition(0, sprite.getPosition().y);
   }
+
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+    Bullet bullet;
+    bullet.sprite.setPosition(sprite.getPosition());
+    bullets.push_back(bullet);
+  }
+
+  for (int i = 0; i < bullets.size(); i++) {
+    bullets[i].sprite.setPosition(bullets[i].sprite.getPosition() +  sf::Vector2f(10.f * dt.asSeconds(), 10.f * dt.asSeconds()));
+  }
 }
