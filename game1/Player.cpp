@@ -3,6 +3,7 @@
 Player::Player(sf::Vector2f bounds) : bounds(bounds) {
   sprite.setScale(sf::Vector2f(3.f, 3.f));
   texture.loadFromFile("textures/player.png");
+  bulletTexture.loadFromFile("textures/player.png");
   sprite.setTexture(texture);
 }
 
@@ -42,13 +43,16 @@ void Player::update(const sf::Time dt) {
     sprite.setPosition(0, sprite.getPosition().y);
   }
 
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-    Bullet bullet;
-    bullet.sprite.setPosition(sprite.getPosition());
+  if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+    Bullet bullet(bulletTexture, sprite.getPosition(), sf::Vector2f(sf::Mouse::getPosition()) - sprite.getPosition());
     bullets.push_back(bullet);
   }
 
   for (int i = 0; i < bullets.size(); i++) {
-    bullets[i].sprite.setPosition(bullets[i].sprite.getPosition() +  sf::Vector2f(10.f * dt.asSeconds(), 10.f * dt.asSeconds()));
+    bullets[i].position += bullets[i].acceleration * dt.asSeconds();
+    bullets[i].sprite.setPosition(bullets[i].position);
+    /*if (bullets[i].sprite.getPosition().x > bounds.x || bullets[i].sprite.getPosition().y > bounds.y) {
+      bullets.pop_back();
+    }*/
   }
 }

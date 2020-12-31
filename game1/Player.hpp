@@ -22,4 +22,6 @@ class Player {
   bool isJumping = false;
   void move(sf::Vector2f velocity);
 
+  sf::Texture bulletTexture;
+
 };
