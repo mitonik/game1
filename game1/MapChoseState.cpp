@@ -37,7 +37,8 @@ void MapChose::update(const sf::Time dt)
 
 	if (buttons["NEXT"]->isPressed()) 
 	{
-		states.push(std::shared_ptr<State>(new GameState(window, states)));
+		const int x = 1;
+		states.push(std::shared_ptr<State>(new GameState(window, states, x)));
 	}
 	if (buttons["BACK"]->isPressed()) 
 	{
