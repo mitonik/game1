@@ -1,6 +1,6 @@
 #pragma once
 #include "State.hpp"
-#include "GameState.hpp"
+#include "MapChoseState.hpp"
 #include "SettingsState.hpp"
 #include "Button.hpp"
 

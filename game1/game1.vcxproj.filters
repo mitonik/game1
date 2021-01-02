@@ -54,6 +54,9 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>Entities</Filter>
     </ClCompile>
+    <ClCompile Include="MapChoseState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.hpp">
@@ -85,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="Bullet.hpp">
       <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="MapChoseState.hpp">
+      <Filter>States</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

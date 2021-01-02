@@ -1,5 +1,4 @@
 #include "SettingsState.hpp"
-#include "Application.hpp"
 
 Settings::Settings(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>& states) : State(window, states) {
   initButtons();
@@ -51,7 +50,7 @@ void Settings::initButtons() {
 
   buttons["720"] = new Button(500, 400, 200, 30, &font, "1280x720", sf::Color::White, sf::Color::Red, sf::Color::Blue);
 
-  buttons["GAME_MENU"] = new Button(window.getSize().x - 300, window.getSize().y - 100, 200, 30, &font, "Back to menu", sf::Color::White, sf::Color::Red, sf::Color::Blue);
+  buttons["GAME_MENU"] = new Button(100, window.getSize().y - 50, 200, 30, &font, "Back", sf::Color::White, sf::Color::Red, sf::Color::Blue);
 }
 void Settings::updateMousePosition() {
   mousePosScreen = sf::Mouse::getPosition();
