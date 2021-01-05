@@ -2,6 +2,7 @@
 #include <stack>
 #include "State.hpp"
 #include "Player.hpp"
+#include <iostream>
 
 class GameState : public State {
  public:
@@ -15,4 +16,5 @@ class GameState : public State {
    sf::Sprite background;
    sf::Texture backText;
    Player player;
+   Player player2;
 };

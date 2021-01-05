@@ -1,8 +1,9 @@
 #include "GameState.hpp"
-#include "PauseState.hpp"
 
 GameState::GameState(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>& states, const int x)
-    : State(window, states), player(window.getView().getSize()) {
+    : State(window, states)
+  , player(sf::Keyboard::A, sf::Keyboard::D, sf::Keyboard::W, sf::Keyboard::F, window.getView().getSize())
+  , player2(sf::Keyboard::Left, sf::Keyboard::Right, sf::Keyboard::Up, sf::Keyboard::End, window.getView().getSize()) {
 	
 	std::string a = std::to_string(x);
 	if (!backText.loadFromFile("textures/back" + a + ".png")) {}
@@ -13,14 +14,19 @@ GameState::GameState(sf::RenderWindow& window, std::stack<std::shared_ptr<State>
 
 void GameState::update(const sf::Time dt) {
   player.update(dt);
+  player2.update(dt);
+  if (player.bullet.getGlobalBounds().intersects(player2.sprite.getGlobalBounds())){
+    std::cout << "player2 got hit" << std::endl;
+  }
+  if (player2.bullet.getGlobalBounds().intersects(player.sprite.getGlobalBounds())) {
+    std::cout << "player1 got hit" << std::endl;
+  }
 }
 
 void GameState::draw() {
   window.draw(background);
-  window.draw(player.sprite);
-  for (int i = 0; i < player.bullets.size(); i++) {
-    window.draw(player.bullets[i].sprite);
-  }
+  player.draw(window);
+  player2.draw(window);
 }
 
 void GameState::handleEvent(const sf::Event& event) {

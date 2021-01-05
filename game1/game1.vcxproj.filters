@@ -45,9 +45,6 @@
     <ClCompile Include="SettingsState.cpp">
       <Filter>States</Filter>
     </ClCompile>
-    <ClCompile Include="PauseState.cpp">
-      <Filter>States</Filter>
-    </ClCompile>
     <ClCompile Include="World.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -80,9 +77,6 @@
     <ClInclude Include="SettingsState.hpp">
       <Filter>States</Filter>
     </ClInclude>
-    <ClInclude Include="PauseState.hpp">
-      <Filter>States</Filter>
-    </ClInclude>
     <ClInclude Include="World.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -105,13 +99,19 @@
     </Font>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="textures\player.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="textures\back.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="textures\bullet.png">
+    <Image Include="textures\player_attack_l.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="textures\player_attack_r.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="textures\player_move_l.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="textures\player_move_r.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

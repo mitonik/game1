@@ -1,27 +1,45 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Bullet.hpp"
+#include <iostream>
 
 class Player {
  public:
-  Player(sf::Vector2f bounds);
-  sf::Sprite sprite;
+  Player(sf::Keyboard::Key left, sf::Keyboard::Key right, sf::Keyboard::Key up, sf::Keyboard::Key attack, sf::Vector2f bounds);
 
   void update(const sf::Time dt);
-  sf::Vector2f bounds;
-  std::vector<Bullet> bullets;
+  void draw(sf::RenderWindow& window);
 
+  sf::Vector2f bounds;
+  sf::CircleShape bullet;
+  sf::Sprite sprite;
  private:
-  sf::Texture texture;
+
+  enum lastDirection {
+    leftDir,
+    rightDir
+  };
+
+  sf::Keyboard::Key left;
+  sf::Keyboard::Key right;
+  sf::Keyboard::Key up;
+  sf::Keyboard::Key attack;
+
+  sf::Texture texture1;
+  sf::Texture texture2;
+  sf::Texture texture3;
+  sf::Texture texture4;
+
+  sf::Clock clock;
+
 
   float movementSpeed = 1000.f;
   float jumpSpeed = 2000.f;
-  sf::Vector2f position;
+  bool isJumping = false;
+
   sf::Vector2f velocity;
   sf::Vector2f acceleration;
-  bool isJumping = false;
-  void move(sf::Vector2f velocity);
 
-  sf::Texture bulletTexture;
+  int lastDirection;
 
 };

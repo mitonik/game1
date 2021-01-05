@@ -1,25 +1,30 @@
 #include "Player.hpp"
 
-Player::Player(sf::Vector2f bounds) : bounds(bounds) {
-  sprite.setScale(sf::Vector2f(3.f, 3.f));
-  texture.loadFromFile("textures/player.png");
-  bulletTexture.loadFromFile("textures/player.png");
-  sprite.setTexture(texture);
-}
-
-void Player::move(sf::Vector2f velocity) {
-  sprite.move(velocity.x * movementSpeed, velocity.y * movementSpeed);
+Player::Player(sf::Keyboard::Key left, sf::Keyboard::Key right, sf::Keyboard::Key up, sf::Keyboard::Key attack, sf::Vector2f bounds) : bounds(bounds), lastDirection(left)
+, left(left), right(right), up(up), attack(attack) {
+  texture1.loadFromFile("textures/player_move_l.png");
+  texture2.loadFromFile("textures/player_move_r.png");
+  texture3.loadFromFile("textures/player_attack_l.png");
+  texture4.loadFromFile("textures/player_attack_r.png");
+  sprite.setTexture(texture1);
+  sprite.setScale(sf::Vector2f(5.f, 5.f));
+  bullet.setFillColor(sf::Color::Black);
+  bullet.setRadius(50.f);
 }
 
 void Player::update(const sf::Time dt) {
   acceleration.x = 0;
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+  if (sf::Keyboard::isKeyPressed(left)) {
     acceleration.x -= movementSpeed;
+    lastDirection = leftDir;
+    sprite.setTexture(texture1);
   }
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+  if (sf::Keyboard::isKeyPressed(right)) {
     acceleration.x += movementSpeed;
+    lastDirection = rightDir;
+    sprite.setTexture(texture2);
   }
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && isJumping == false) {
+  if (sf::Keyboard::isKeyPressed(up) && isJumping == false) {
     acceleration.y = -jumpSpeed;
   }
   if (sprite.getPosition().y + sprite.getGlobalBounds().height < bounds.y) {
@@ -28,7 +33,7 @@ void Player::update(const sf::Time dt) {
   }
   velocity.x = acceleration.x * dt.asSeconds();
   velocity.y = acceleration.y * dt.asSeconds();
-  sprite.move(velocity);
+  sprite.move(velocity.x, velocity.y);
   if (sprite.getPosition().y + sprite.getGlobalBounds().height > bounds.y) {
     isJumping = false;
     acceleration.y = 0;
@@ -42,17 +47,23 @@ void Player::update(const sf::Time dt) {
     acceleration.x = 0;
     sprite.setPosition(0, sprite.getPosition().y);
   }
-
-  if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-    Bullet bullet(bulletTexture, sprite.getPosition(), sf::Vector2f(sf::Mouse::getPosition()) - sprite.getPosition());
-    bullets.push_back(bullet);
+  if (sf::Keyboard::isKeyPressed(attack) && clock.getElapsedTime().asSeconds() > 2.f) {
+    if (lastDirection == leftDir)
+    {
+      sprite.setTexture(texture3);
+    }
+    else if (lastDirection == rightDir)
+    {
+      sprite.setTexture(texture4);
+    }
+    std::cout << "fire" << std::endl;
+    bullet.setPosition(sprite.getPosition() + sf::Vector2f(0.f, -200.f));
+    clock.restart();
   }
+  //std::cout << clock.getElapsedTime().asSeconds() << std::endl;
+}
 
-  for (int i = 0; i < bullets.size(); i++) {
-    bullets[i].position += bullets[i].acceleration * dt.asSeconds();
-    bullets[i].sprite.setPosition(bullets[i].position);
-    /*if (bullets[i].sprite.getPosition().x > bounds.x || bullets[i].sprite.getPosition().y > bounds.y) {
-      bullets.pop_back();
-    }*/
-  }
+void Player::draw(sf::RenderWindow& window) {
+  window.draw(sprite);
+  window.draw(bullet);
 }
