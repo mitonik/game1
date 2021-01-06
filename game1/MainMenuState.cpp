@@ -19,7 +19,7 @@ MainMenuState::MainMenuState(sf::RenderWindow& window, std::stack<std::shared_pt
     : State(window, states) {
   initButtons();
 
-  int a = rand() % 3;
+  int a = rand() % 4;
   std::string x = std::to_string(a);
   if (!backText.loadFromFile("textures/back" + x + ".png")) {
       std::cout << "ERROR::LOADING BACKGROUND TEXTURES\n";
