@@ -1,15 +1,14 @@
 #pragma once
 #include "SFML/Graphics.hpp"
+#include "SFML/System/Time.hpp"
 
-class Bullet
-{
-public:
-	Bullet(sf::Texture& texture, sf::Vector2f position, sf::Vector2f acceleration);
+class Bullet {
+ public:
+  Bullet(sf::Texture& texture, sf::Vector2f startPos, sf::Vector2f direction);
 
-	sf::Sprite sprite;
-	sf::Vector2f position;
-	sf::Vector2f acceleration;
+  void update(const sf::Time dt);
 
-private:
-	sf::Texture& texture;
+  sf::Sprite sprite;
+ private:
+  sf::Vector2f direction;
 };

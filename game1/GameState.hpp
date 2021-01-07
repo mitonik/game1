@@ -1,20 +1,20 @@
 #pragma once
-#include <stack>
 #include "State.hpp"
 #include "Player.hpp"
-#include <iostream>
+#include "SFML/Window/Event.hpp"
 
 class GameState : public State {
  public:
-  GameState(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>& states,const int x);
+  GameState(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>& states, const int x);
 
+  void handleEvent(const sf::Event& event);
   void update(const sf::Time dt);
   void draw();
-  void handleEvent(const sf::Event& event);
 
  private:
-   sf::Sprite background;
-   sf::Texture backText;
-   Player player;
-   Player player2;
+  sf::Sprite background;
+  sf::Texture backgroundTexture;
+
+  Player player;
+  Player player2;
 };

@@ -45,14 +45,11 @@
     <ClCompile Include="SettingsState.cpp">
       <Filter>States</Filter>
     </ClCompile>
-    <ClCompile Include="World.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="MapChoseState.cpp">
+      <Filter>States</Filter>
     </ClCompile>
     <ClCompile Include="Bullet.cpp">
       <Filter>Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="MapChoseState.cpp">
-      <Filter>States</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -77,14 +74,11 @@
     <ClInclude Include="SettingsState.hpp">
       <Filter>States</Filter>
     </ClInclude>
-    <ClInclude Include="World.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="MapChoseState.hpp">
+      <Filter>States</Filter>
     </ClInclude>
     <ClInclude Include="Bullet.hpp">
       <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="MapChoseState.hpp">
-      <Filter>States</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
