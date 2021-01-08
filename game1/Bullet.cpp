@@ -7,5 +7,5 @@ Bullet::Bullet(sf::Texture& texture, sf::Vector2f startPos, sf::Vector2f directi
 }
 
 void Bullet::update(const sf::Time dt) {
-  sprite.setPosition(sprite.getPosition() + sf::Vector2f(100.f, 0.f) * dt.asSeconds());
+  sprite.setPosition(sprite.getPosition() + direction * dt.asSeconds());
 }

@@ -20,6 +20,13 @@ void GameState::handleEvent(const sf::Event& event) {
 void GameState::update(const sf::Time dt) {
   player.update(dt);
   player2.update(dt);
+  if (player.health <= 0)
+  {
+    states.pop();
+  }
+  else if (player2.health <= 0) {
+    states.pop();
+  }
 }
 
 void GameState::draw() {

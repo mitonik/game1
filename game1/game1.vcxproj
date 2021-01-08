@@ -172,6 +172,7 @@
     <ClCompile Include="MainMenuState.cpp" />
     <ClCompile Include="SettingsState.cpp" />
     <ClCompile Include="State.cpp" />
+    <ClCompile Include="VictoryState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.hpp" />
@@ -183,6 +184,7 @@
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="SettingsState.hpp" />
     <ClInclude Include="State.hpp" />
+    <ClInclude Include="VictoryState.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="fonts\arial.ttf" />

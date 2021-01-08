@@ -21,6 +21,9 @@ class Player {
   sf::Text text;
   sf::Font font;
 
+  sf::Clock clock;
+  sf::Time timeSinceLastUpdate;
+
   sf::Texture bulletTexture;
 
   std::list<Bullet> bullets;

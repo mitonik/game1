@@ -62,8 +62,10 @@ void Player::update(const sf::Time dt) {
       it++;
     }
   }
-  if (sf::Keyboard::isKeyPressed(attack)) {
-    Bullet bullet(bulletTexture, sprite.getPosition(), sf::Vector2f(100.f, 0.f));
+  timeSinceLastUpdate += dt;
+  if (sf::Keyboard::isKeyPressed(attack) && timeSinceLastUpdate.asSeconds() > 1.f) {
+    timeSinceLastUpdate = sf::Time::Zero;
+    Bullet bullet(bulletTexture, sprite.getPosition(), sf::Vector2f(750.f, 0.f));
     bullets.push_back(bullet);
   }
 }
