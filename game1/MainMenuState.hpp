@@ -7,7 +7,6 @@
 class MainMenuState : public State {
  public:
   MainMenuState(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>& states);
-  //~MainMenuState();
 
   void updateMousePosition();
   void updateButtons();

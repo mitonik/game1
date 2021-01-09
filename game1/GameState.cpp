@@ -1,11 +1,10 @@
 #include "GameState.hpp"
 
-GameState::GameState(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>& states, const int x)
+GameState::GameState(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>& states, std::string x)
     : State(window, states)
     , player(sf::Keyboard::A, sf::Keyboard::D, sf::Keyboard::W, sf::Keyboard::F, player2)
     , player2(sf::Keyboard::Left, sf::Keyboard::Right, sf::Keyboard::Up, sf::Keyboard::End, player) {
-  std::string a = std::to_string(x);
-  backgroundTexture.loadFromFile("textures/back" + a + ".png");
+  backgroundTexture.loadFromFile("textures/back" + x + ".png");
   sf::Vector2f back = (sf::Vector2f)backgroundTexture.getSize();
   background.setScale(sf::Vector2f(window.getSize().x / back.x, window.getSize().y / back.y));
   background.setTexture(backgroundTexture);

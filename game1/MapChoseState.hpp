@@ -27,4 +27,14 @@ private:
 	sf::Vector2i mousePosScreen;
 	sf::Vector2i mousePosWindow;
 	sf::Vector2f mousePosView;
+
+	sf::Sprite woods;
+	sf::Sprite space;
+	sf::Sprite cyberpunk;
+	sf::Sprite machine;
+
+	sf::Texture woodsText;
+	sf::Texture spaceText;
+	sf::Texture cyberpunkText;
+	sf::Texture machineText;
 };
