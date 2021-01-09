@@ -2,6 +2,7 @@
 
 void MainMenuState::initButtons() {
   font.loadFromFile("fonts/Lucid_Streams.otf");
+  nickfont.loadFromFile("fonts/arial.ttf");
   buttons["GAME_STATE"] = new Button(100, 50, 150, 30,
     &font,"New Game", 
     sf::Color::White, sf::Color::Red, sf::Color::Blue);
@@ -27,6 +28,28 @@ MainMenuState::MainMenuState(sf::RenderWindow& window, std::stack<std::shared_pt
   sf::Vector2f back = (sf::Vector2f)backText.getSize();
   background.setScale(sf::Vector2f(window.getSize().x / back.x, window.getSize().y / back.y));
   background.setTexture(backText);
+
+  if (!mitonikText.loadFromFile("textures/mitonik.png")) {}
+  if (!wozText.loadFromFile("textures/woz.png")) {}
+
+  mitonik.setPosition(window.getSize().x - 240, window.getSize().y - 150);
+  mitonik.setRadius(50);
+  mitonik.setTexture(&mitonikText);
+
+  woz.setPosition(window.getSize().x - 150, window.getSize().y - 150);
+  woz.setRadius(50);
+  woz.setTexture(&wozText);
+
+  logo.setFont(font);
+  logo.setString("Game 1");
+  logo.setCharacterSize(100);
+  logo.setPosition(window.getSize().x - 450, 20);
+
+  
+  text.setFont(nickfont);
+  text.setString("@mitonik   @ofalwoz");
+  text.setCharacterSize(20);
+  text.setPosition(window.getSize().x - 250, window.getSize().y - 50);
 }
 
 void MainMenuState::updateMousePosition() {
@@ -65,6 +88,10 @@ void MainMenuState::renderButtons(sf::RenderTarget& target) {
 
 void MainMenuState::draw() {
   window.draw(background);
+  window.draw(mitonik);
+  window.draw(woz);
+  window.draw(text);
+  window.draw(logo);
   renderButtons(window);
 }
 

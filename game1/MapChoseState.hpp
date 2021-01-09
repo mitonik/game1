@@ -7,7 +7,6 @@
 class MapChose : public State {
 public:
 	MapChose(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>& states);
-	~MapChose();
 
 	void updateMousePosition();
 	void updateButtons();
@@ -28,10 +27,10 @@ private:
 	sf::Vector2i mousePosWindow;
 	sf::Vector2f mousePosView;
 
-	sf::Sprite woods;
-	sf::Sprite space;
-	sf::Sprite cyberpunk;
-	sf::Sprite machine;
+	sf::RectangleShape woods;
+	sf::RectangleShape space;
+	sf::RectangleShape cyberpunk;
+	sf::RectangleShape machine;
 
 	sf::Texture woodsText;
 	sf::Texture spaceText;

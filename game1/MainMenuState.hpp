@@ -19,6 +19,9 @@ class MainMenuState : public State {
   sf::Sprite background;
   sf::Texture backText;
   sf::Font font;
+  sf::Font nickfont;
+  sf::Text logo;
+  sf::Text text;
 
   std::map<std::string, Button*> buttons;
 
@@ -27,4 +30,10 @@ class MainMenuState : public State {
   sf::Vector2i mousePosScreen;
   sf::Vector2i mousePosWindow;
   sf::Vector2f mousePosView;
+
+  sf::CircleShape mitonik;
+  sf::CircleShape woz;
+
+  sf::Texture mitonikText;
+  sf::Texture wozText;
 };

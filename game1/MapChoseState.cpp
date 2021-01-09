@@ -12,28 +12,24 @@ MapChose::MapChose(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>&
 	background.setTexture(backText);
 	if (!machineText.loadFromFile("textures/back0.png")) {}
 	if (!spaceText.loadFromFile("textures/back3.png")) {}
-	if (!cyberpunkText.loadFromFile("textures/back2.png", sf::IntRect(0, 0, 608, 608))) {}
+	if (!cyberpunkText.loadFromFile("textures/back2.png")) {}
 	if (!woodsText.loadFromFile("textures/back1.png")) {}
 
-	woods.setPosition(50,80);
-	woods.setScale(0.2,0.2);
-	woods.setTexture(woodsText);
+	woods.setPosition(50,100);
+	woods.setSize(sf::Vector2f(200, 200));
+	woods.setTexture(&woodsText);
 
 	cyberpunk.setPosition(500, 100);
-	cyberpunk.setScale(0.8, 0.8);
-	cyberpunk.setTexture(cyberpunkText);
+	cyberpunk.setSize(sf::Vector2f(200, 200));
+	cyberpunk.setTexture(&cyberpunkText);
 
 	space.setPosition(50, 400);
-	space.setScale(1.2, 1.2);
-	space.setTexture(spaceText);
+	space.setSize(sf::Vector2f(200, 200));
+	space.setTexture(&spaceText);
 
 	machine.setPosition(500, 400);
-	machine.setScale(0.3, 0.3);
-	machine.setTexture(machineText);
-}
-
-MapChose::~MapChose()
-{
+	machine.setSize(sf::Vector2f(200, 200));
+	machine.setTexture(&machineText);
 }
 
 void MapChose::updateMousePosition()
@@ -108,19 +104,19 @@ void MapChose::handleEvent(const sf::Event& event)
 void MapChose::initButtons()
 {
 	font.loadFromFile("fonts/Lucid_Streams.otf");
-	buttons["WOODS"] = new Button(50, 100, 200, 200,
+	buttons["WOODS"] = new Button(50, 150, 200, 50,
 		&font, "WOODS",
 		sf::Color::White, sf::Color::Red, sf::Color::Blue);
 
-	buttons["CYBERPUNK"] = new Button(500, 100, 150, 200,
+	buttons["CYBERPUNK"] = new Button(500, 150, 200, 50,
 		&font, "CYBERPUNK",
 		sf::Color::White, sf::Color::Red, sf::Color::Blue);
 
-	buttons["SPACE"] = new Button(50, 400, 150, 200,
+	buttons["SPACE"] = new Button(50, 450, 200, 50,
 		&font, "SPACE",
 		sf::Color::White, sf::Color::Red, sf::Color::Blue);
 
-	buttons["MACHINE"] = new Button(500, 400, 150, 200,
+	buttons["MACHINE"] = new Button(500, 450, 200, 50,
 		&font, "MACHINE",
 		sf::Color::White, sf::Color::Red, sf::Color::Blue);
 
