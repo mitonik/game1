@@ -18,9 +18,11 @@ void Player::update(const sf::Time dt) {
   acceleration.x = 0;
   if (sf::Keyboard::isKeyPressed(left)) {
     acceleration.x -= movementSpeed;
+    lastDir = left;
   }
   if (sf::Keyboard::isKeyPressed(right)) {
     acceleration.x += movementSpeed;
+    lastDir = right;
   }
   if (sf::Keyboard::isKeyPressed(up) && isJumping == false) {
     acceleration.y = -jumpSpeed;
@@ -65,8 +67,13 @@ void Player::update(const sf::Time dt) {
   timeSinceLastUpdate += dt;
   if (sf::Keyboard::isKeyPressed(attack) && timeSinceLastUpdate.asSeconds() > 1.f) {
     timeSinceLastUpdate = sf::Time::Zero;
-    Bullet bullet(bulletTexture, sprite.getPosition(), sf::Vector2f(750.f, 0.f));
-    bullets.push_back(bullet);
+    if (lastDir == leftDir) {
+      Bullet bullet(bulletTexture, sprite.getPosition(), sf::Vector2f(-750.f, 0.f));
+      bullets.push_back(bullet);
+    } else {
+      Bullet bullet(bulletTexture, sprite.getPosition(), sf::Vector2f(750.f, 0.f));
+      bullets.push_back(bullet);
+    }
   }
 }
 

@@ -16,6 +16,14 @@ class Player {
   int health = 100;
 
  private:
+  enum lastDirection
+  {
+    leftDir,
+    rightDir
+  };
+
+  int lastDir = left;
+
   Player& player2;
 
   sf::Text text;
