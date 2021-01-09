@@ -22,7 +22,7 @@ class Player {
     rightDir
   };
 
-  int lastDir = left;
+  int lastDir;
 
   Player& player2;
 

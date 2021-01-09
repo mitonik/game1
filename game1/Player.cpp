@@ -2,7 +2,7 @@
 #include <iostream>
 
 Player::Player(sf::Keyboard::Key left, sf::Keyboard::Key right, sf::Keyboard::Key up, sf::Keyboard::Key attack, Player& player2)
-    : left(left), right(right), up(up), attack(attack), player2(player2) {
+    : left(left), right(right), up(up), attack(attack), player2(player2), lastDir(leftDir) {
   texture.loadFromFile("textures/player_move_r.png");
   sprite.setTexture(texture);
   sprite.setScale(sf::Vector2f(5.f, 5.f));
@@ -18,11 +18,11 @@ void Player::update(const sf::Time dt) {
   acceleration.x = 0;
   if (sf::Keyboard::isKeyPressed(left)) {
     acceleration.x -= movementSpeed;
-    lastDir = left;
+    lastDir = leftDir;
   }
   if (sf::Keyboard::isKeyPressed(right)) {
     acceleration.x += movementSpeed;
-    lastDir = right;
+    lastDir = rightDir;
   }
   if (sf::Keyboard::isKeyPressed(up) && isJumping == false) {
     acceleration.y = -jumpSpeed;
@@ -70,7 +70,7 @@ void Player::update(const sf::Time dt) {
     if (lastDir == leftDir) {
       Bullet bullet(bulletTexture, sprite.getPosition(), sf::Vector2f(-750.f, 0.f));
       bullets.push_back(bullet);
-    } else {
+    } else if (lastDir == rightDir) {
       Bullet bullet(bulletTexture, sprite.getPosition(), sf::Vector2f(750.f, 0.f));
       bullets.push_back(bullet);
     }
