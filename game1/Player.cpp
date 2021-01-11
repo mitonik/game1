@@ -1,8 +1,8 @@
 #include "Player.hpp"
 #include <iostream>
 
-Player::Player(sf::Vector2f startPos, sf::Keyboard::Key left, sf::Keyboard::Key right, sf::Keyboard::Key up, sf::Keyboard::Key attack, Player& player2)
-    : left(left), right(right), up(up), attack(attack), player2(player2), lastDir(leftDir) {
+Player::Player(sf::Vector2f startPos, sf::Keyboard::Key left, sf::Keyboard::Key right, sf::Keyboard::Key up, sf::Keyboard::Key attack, sf::Keyboard::Key attack2, Player& player2)
+    : left(left), right(right), up(up), attack(attack), attack2(attack2), player2(player2), lastDir(leftDir) {
   texture.loadFromFile("textures/player_move_r.png");
   sprite.setTexture(texture);
   sprite.setScale(sf::Vector2f(5.f, 5.f));
@@ -13,6 +13,7 @@ Player::Player(sf::Vector2f startPos, sf::Keyboard::Key left, sf::Keyboard::Key 
   text.setString(std::to_string(health));
   bulletTexture.loadFromFile("textures/player_move_r.png");
   sprite.setPosition(startPos);
+  passive.setTexture(texture);
 }
 
 void Player::update(const sf::Time dt) {
@@ -51,8 +52,7 @@ void Player::update(const sf::Time dt) {
   text.setPosition(sprite.getPosition() + sf::Vector2f(0.f, -100.f));
   text.setString(std::to_string(health));
   std::list<Bullet>::iterator it = bullets.begin();
-  while (it != bullets.end())
-  {
+  while (it != bullets.end()) {
     it->update(dt);
     if (it->sprite.getGlobalBounds().intersects(player2.sprite.getGlobalBounds())) {
       player2.health -= 20;
@@ -76,6 +76,14 @@ void Player::update(const sf::Time dt) {
       bullets.push_back(bullet);
     }
   }
+  timeSinceLastUpdateSpecial += dt;
+  if (timeSinceLastUpdateSpecial > sf::seconds(1.f)) {
+    if (passive.getGlobalBounds().intersects(player2.sprite.getGlobalBounds())) {
+      player2.health -= 10;
+      timeSinceLastUpdateSpecial = sf::seconds(0.f);
+    }
+  }
+  passive.setPosition(200.f * cos(clock.getElapsedTime().asSeconds()) + sprite.getPosition().x, 200.f * sin(clock.getElapsedTime().asSeconds()) + sprite.getPosition().y);
 }
 
 void Player::draw(sf::RenderWindow& window) {
@@ -84,5 +92,6 @@ void Player::draw(sf::RenderWindow& window) {
   }
   //std::cout << bullets.size() << std::endl;
   window.draw(sprite);
+  window.draw(passive);
   window.draw(text);
 }
