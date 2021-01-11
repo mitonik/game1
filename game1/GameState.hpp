@@ -12,6 +12,10 @@ class GameState : public State {
   void draw();
 
  private:
+   int win = 0;
+   sf::Font font;
+   sf::Text playerWin;
+
   sf::Sprite background;
   sf::Texture backgroundTexture;
 

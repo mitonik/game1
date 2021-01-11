@@ -1,7 +1,7 @@
 #include "Player.hpp"
 #include <iostream>
 
-Player::Player(sf::Keyboard::Key left, sf::Keyboard::Key right, sf::Keyboard::Key up, sf::Keyboard::Key attack, Player& player2)
+Player::Player(sf::Vector2f startPos, sf::Keyboard::Key left, sf::Keyboard::Key right, sf::Keyboard::Key up, sf::Keyboard::Key attack, Player& player2)
     : left(left), right(right), up(up), attack(attack), player2(player2), lastDir(leftDir) {
   texture.loadFromFile("textures/player_move_r.png");
   sprite.setTexture(texture);
@@ -12,6 +12,7 @@ Player::Player(sf::Keyboard::Key left, sf::Keyboard::Key right, sf::Keyboard::Ke
   text.setFillColor(sf::Color::White);
   text.setString(std::to_string(health));
   bulletTexture.loadFromFile("textures/player_move_r.png");
+  sprite.setPosition(startPos);
 }
 
 void Player::update(const sf::Time dt) {

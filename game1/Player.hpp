@@ -6,7 +6,7 @@
 
 class Player {
  public:
-  Player(sf::Keyboard::Key left, sf::Keyboard::Key right, sf::Keyboard::Key up, sf::Keyboard::Key attack, Player& player2);
+  Player(sf::Vector2f startPos, sf::Keyboard::Key left, sf::Keyboard::Key right, sf::Keyboard::Key up, sf::Keyboard::Key attack, Player& player2);
 
   void update(const sf::Time dt);
   void draw(sf::RenderWindow& window);
