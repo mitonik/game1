@@ -2,7 +2,6 @@
 
 void MainMenuState::initButtons() {
   font.loadFromFile("fonts/Lucid_Streams.otf");
-  nickfont.loadFromFile("fonts/arial.ttf");
   buttons["GAME_STATE"] = new Button(100, 50, 150, 30,
     &font,"New Game", 
     sf::Color::White, sf::Color::Red, sf::Color::Blue);
@@ -19,7 +18,7 @@ void MainMenuState::initButtons() {
 MainMenuState::MainMenuState(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>& states)
     : State(window, states) {
   initButtons();
-
+  nickfont.loadFromFile("fonts/arial.ttf");
   int a = rand() % 4;
   std::string x = std::to_string(a);
   if (!backText.loadFromFile("textures/back" + x + ".png")) {

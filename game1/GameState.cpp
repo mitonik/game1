@@ -40,10 +40,12 @@ void GameState::draw() {
   }
   if (win == 1) {
     playerWin.setString("Player1 Won! Press ESC to exit.");
+    window.draw(background);
     window.draw(playerWin);
   }
   if (win == 2) {
     playerWin.setString("Player2 Won! Press ESC to exit.");
+    window.draw(background);
     window.draw(playerWin);
   }
 }
