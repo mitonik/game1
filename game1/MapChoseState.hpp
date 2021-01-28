@@ -31,9 +31,13 @@ private:
 	sf::RectangleShape space;
 	sf::RectangleShape cyberpunk;
 	sf::RectangleShape machine;
+	sf::RectangleShape safara;
+	sf::RectangleShape hight;
 
 	sf::Texture woodsText;
 	sf::Texture spaceText;
 	sf::Texture cyberpunkText;
 	sf::Texture machineText;
+	sf::Texture safaraText;
+	sf::Texture hightText;
 };
