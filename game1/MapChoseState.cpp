@@ -43,6 +43,11 @@ MapChose::MapChose(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>&
 	safara.setPosition(sf::Vector2f(window.getSize().x - 370, 400));
 	safara.setSize(sizeText);
 	safara.setTexture(&safaraText);
+
+	logo.setFont(font);
+	logo.setString("Chose Map");
+	logo.setCharacterSize(50);
+	logo.setPosition((window.getSize().x/2) - 150, 20);
 }
 
 void MapChose::updateMousePosition()
@@ -67,7 +72,7 @@ void MapChose::update(const sf::Time dt)
 	if (buttons["WOODS"]->isPressed()) 
 	{
 		std::string x = "1";
-		states.push(std::shared_ptr<State>(new GameState(window, states, x)));
+		states.push(std::shared_ptr<State>(new PlayerOneChoseState(window, states, x)));
 	}
 	if (buttons["CYBERPUNK"]->isPressed())
 	{
@@ -116,6 +121,7 @@ void MapChose::draw()
 	window.draw(machine);
 	window.draw(safara);
 	window.draw(hight);
+	window.draw(logo);
 	renderButtons(window);
 }
 

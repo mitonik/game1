@@ -3,11 +3,11 @@
 #include "GameState.hpp"
 #include "Application.hpp"
 #include "Button.hpp"
-#include "PlayerOneChoseState.hpp"
+#include "MapChoseState.hpp"
 
-class MapChose : public State {
+class PlayerOneChoseState : public State {
 public:
-	MapChose(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>& states);
+	PlayerOneChoseState(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>& states, std::string x);
 
 	void updateMousePosition();
 	void updateButtons();
@@ -28,18 +28,5 @@ private:
 	sf::Vector2i mousePosScreen;
 	sf::Vector2i mousePosWindow;
 	sf::Vector2f mousePosView;
-
-	sf::RectangleShape woods;
-	sf::RectangleShape space;
-	sf::RectangleShape cyberpunk;
-	sf::RectangleShape machine;
-	sf::RectangleShape safara;
-	sf::RectangleShape hight;
-
-	sf::Texture woodsText;
-	sf::Texture spaceText;
-	sf::Texture cyberpunkText;
-	sf::Texture machineText;
-	sf::Texture safaraText;
-	sf::Texture hightText;
 };
+

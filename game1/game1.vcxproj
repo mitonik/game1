@@ -170,6 +170,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="MainMenuState.cpp" />
+    <ClCompile Include="PlayerOneChoseState.cpp" />
     <ClCompile Include="SettingsState.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="VictoryState.cpp" />
@@ -182,6 +183,7 @@
     <ClInclude Include="MainMenuState.hpp" />
     <ClInclude Include="MapChoseState.hpp" />
     <ClInclude Include="Player.hpp" />
+    <ClInclude Include="PlayerOneChoseState.hpp" />
     <ClInclude Include="SettingsState.hpp" />
     <ClInclude Include="State.hpp" />
     <ClInclude Include="VictoryState.hpp" />
