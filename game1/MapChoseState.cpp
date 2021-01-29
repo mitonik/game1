@@ -68,41 +68,7 @@ void MapChose::update(const sf::Time dt)
 {
 	updateMousePosition();
 	updateButtons();
-
-	if (buttons["WOODS"]->isPressed()) 
-	{
-		std::string x = "1";
-		states.push(std::shared_ptr<State>(new PlayerOneChoseState(window, states, x)));
-	}
-	if (buttons["CYBERPUNK"]->isPressed())
-	{
-		std::string x = "2";
-		states.push(std::shared_ptr<State>(new GameState(window, states, x)));
-	}
-	if (buttons["SPACE"]->isPressed())
-	{
-		std::string x = "3";
-		states.push(std::shared_ptr<State>(new GameState(window, states, x)));
-	}
-	if (buttons["MACHINE"]->isPressed())
-	{
-		std::string x = "0";
-		states.push(std::shared_ptr<State>(new GameState(window, states, x)));
-	}
-	if (buttons["SAFARA"]->isPressed())
-	{
-		std::string x = "4";
-		states.push(std::shared_ptr<State>(new GameState(window, states, x)));
-	}
-	if (buttons["HIGHT"]->isPressed())
-	{
-		std::string x = "5";
-		states.push(std::shared_ptr<State>(new GameState(window, states, x)));
-	}
-	if (buttons["BACK"]->isPressed()) 
-	{
-		states.pop();
-	}
+	
 }
 
 void MapChose::renderButtons(sf::RenderTarget& target)
@@ -127,6 +93,40 @@ void MapChose::draw()
 
 void MapChose::handleEvent(const sf::Event& event)
 {
+	if (buttons["WOODS"]->isPressed())
+	{
+		std::string x = "1";
+		states.push(std::shared_ptr<State>(new PlayerOneChoseState(window, states, x)));
+	}
+	if (buttons["CYBERPUNK"]->isPressed())
+	{
+		std::string x = "2";
+		states.push(std::shared_ptr<State>(new PlayerOneChoseState(window, states, x)));
+	}
+	if (buttons["SPACE"]->isPressed())
+	{
+		std::string x = "3";
+		states.push(std::shared_ptr<State>(new PlayerOneChoseState(window, states, x)));
+	}
+	if (buttons["MACHINE"]->isPressed())
+	{
+		std::string x = "0";
+		states.push(std::shared_ptr<State>(new PlayerOneChoseState(window, states, x)));
+	}
+	if (buttons["SAFARA"]->isPressed())
+	{
+		std::string x = "4";
+		states.push(std::shared_ptr<State>(new PlayerOneChoseState(window, states, x)));
+	}
+	if (buttons["HIGHT"]->isPressed())
+	{
+		std::string x = "5";
+		states.push(std::shared_ptr<State>(new PlayerOneChoseState(window, states, x)));
+	}
+	if (buttons["BACK"]->isPressed())
+	{
+		states.pop();
+	}
 	if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
 		states.pop();
 	}

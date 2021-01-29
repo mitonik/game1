@@ -7,7 +7,7 @@
 
 class PlayerOneChoseState : public State {
 public:
-	PlayerOneChoseState(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>& states, std::string x);
+	PlayerOneChoseState(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>& states, std::string b);
 
 	void updateMousePosition();
 	void updateButtons();
@@ -15,6 +15,7 @@ public:
 	void renderButtons(sf::RenderTarget& target);
 	void draw();
 	void handleEvent(const sf::Event& event);
+	std::string i;
 
 private:
 	sf::Sprite background;
@@ -29,4 +30,3 @@ private:
 	sf::Vector2i mousePosWindow;
 	sf::Vector2f mousePosView;
 };
-

@@ -1,12 +1,12 @@
 #include "PlayerOneChoseState.hpp"
 
-PlayerOneChoseState::PlayerOneChoseState(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>& states, std::string x)
+PlayerOneChoseState::PlayerOneChoseState(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>& states, std::string b)
 	: State(window, states) {
 	font.loadFromFile("fonts/Lucid_Streams.otf");
 	initButtons();
 	int a = rand() % 2;
-	std::string b = std::to_string(a);
-	if (!backText.loadFromFile("textures/back" + b + ".png")) {
+	std::string x = std::to_string(a);
+	if (!backText.loadFromFile("textures/back" + x + ".png")) {
 		std::cout << "ERROR::LOADING BACKGROUND TEXTURES\n";
 	}
 	sf::Vector2f back = (sf::Vector2f)backText.getSize();
@@ -17,6 +17,9 @@ PlayerOneChoseState::PlayerOneChoseState(sf::RenderWindow& window, std::stack<st
 	logo.setString("Chose Player One");
 	logo.setCharacterSize(50);
 	logo.setPosition((window.getSize().x / 2) - 300, 20);
+
+	i = b;
+	std::cout << i;
 }
 
 void PlayerOneChoseState::updateMousePosition()
@@ -37,17 +40,11 @@ void PlayerOneChoseState::update(const sf::Time dt)
 {
 	updateMousePosition();
 	updateButtons();
-
 	if (buttons["PLAYER_RED"]->isPressed())
 	{
-		/*std::string back = x;
+		std::cout << i;
 		std::string p_one = "1";
-		states.push(std::shared_ptr<State>(new GameState(window, states, back, p_one)));*/
-	}
-
-	if (buttons["BACK"]->isPressed())
-	{
-		states.pop();
+		states.push(std::shared_ptr<State>(new GameState(window, states, i, p_one)));
 	}
 }
 
@@ -67,7 +64,12 @@ void PlayerOneChoseState::draw()
 
 void PlayerOneChoseState::handleEvent(const sf::Event& event)
 {
-	if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
+	if (buttons["BACK"]->isPressed())
+	{
+		states.pop();
+	}
+	if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) 
+	{
 		states.pop();
 	}
 }
