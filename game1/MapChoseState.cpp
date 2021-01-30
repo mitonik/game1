@@ -2,9 +2,7 @@
 
 MapChose::MapChose(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>& states) : State(window, states) {
 	initButtons();
-	int a = rand() % 2;
-	std::string x = std::to_string(a);
-	if (!backText.loadFromFile("textures/back" + x + ".png")) {
+	if (!backText.loadFromFile("textures/back2.png")) {
 		std::cout << "ERROR::LOADING BACKGROUND TEXTURES\n";
 	}
 	sf::Vector2f back = (sf::Vector2f)backText.getSize();
@@ -68,7 +66,6 @@ void MapChose::update(const sf::Time dt)
 {
 	updateMousePosition();
 	updateButtons();
-	
 }
 
 void MapChose::renderButtons(sf::RenderTarget& target)
@@ -123,11 +120,8 @@ void MapChose::handleEvent(const sf::Event& event)
 		std::string x = "5";
 		states.push(std::shared_ptr<State>(new PlayerOneChoseState(window, states, x)));
 	}
-	if (buttons["BACK"]->isPressed())
+	if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape || buttons["BACK"]->isPressed())
 	{
-		states.pop();
-	}
-	if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
 		states.pop();
 	}
 }

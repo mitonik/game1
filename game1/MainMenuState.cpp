@@ -19,9 +19,7 @@ MainMenuState::MainMenuState(sf::RenderWindow& window, std::stack<std::shared_pt
 	: State(window, states) {
   initButtons();
   nickfont.loadFromFile("fonts/arial.ttf");
-  int a = rand() % 2;
-  std::string x = std::to_string(a);
-  if (!backText.loadFromFile("textures/back" + x + ".png")) {
+  if (!backText.loadFromFile("textures/back2.png")) {
 	  std::cout << "ERROR::LOADING BACKGROUND TEXTURES\n";
   }
   sf::Vector2f back = (sf::Vector2f)backText.getSize();
@@ -74,9 +72,6 @@ void MainMenuState::update(const sf::Time dt) {
   if (buttons["GAME_STATE"]->isPressed()) {
 	states.push(std::shared_ptr<State>(new MapChose(window, states)));
   }
-  if (buttons["GAME_EXIT"]->isPressed()) {
-	window.close();
-  }
 }
 
 void MainMenuState::renderButtons(sf::RenderTarget& target) {
@@ -95,7 +90,7 @@ void MainMenuState::draw() {
 }
 
 void MainMenuState::handleEvent(const sf::Event& event) {
-  if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
+  if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape || buttons["GAME_EXIT"]->isPressed()) {
 	window.close();
   }
 }

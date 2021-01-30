@@ -19,6 +19,7 @@ class Settings : public State {
   sf::Sprite background;
   sf::Texture backText;
   sf::Font font;
+  sf::Text logo;
   std::map<std::string, Button*> buttons;
   //void initKeybinds();
   void initButtons();

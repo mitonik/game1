@@ -2,15 +2,17 @@
 
 Settings::Settings(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>& states) : State(window, states) {
   initButtons();
-
-  int a = rand() % 2;
-  std::string x = std::to_string(a);
-  if (!backText.loadFromFile("textures/back" + x + ".png")) {
+  if (!backText.loadFromFile("textures/back2.png")) {
 	  std::cout << "ERROR::LOADING BACKGROUND TEXTURES\n";
   }
   sf::Vector2f back = (sf::Vector2f)backText.getSize();
   background.setScale(sf::Vector2f(window.getSize().x / back.x, window.getSize().y / back.y));
   background.setTexture(backText);
+
+  logo.setFont(font);
+  logo.setString("Settings");
+  logo.setCharacterSize(50);
+  logo.setPosition((window.getSize().x / 2) - 150, 20);
 }
 
 Settings::~Settings() {
@@ -52,6 +54,7 @@ void Settings::initButtons() {
 
   buttons["GAME_MENU"] = new Button(100, window.getSize().y - 50, 200, 30, &font, "Back", sf::Color::White, sf::Color::Red, sf::Color::Blue);
 }
+
 void Settings::updateMousePosition() {
   mousePosScreen = sf::Mouse::getPosition();
   mousePosWindow = sf::Mouse::getPosition(window);
@@ -197,6 +200,7 @@ void Settings::renderButtons(sf::RenderTarget& target) {
 
 void Settings::draw() {
   window.draw(background);
+  window.draw(logo);
   renderButtons(window);
 }
 

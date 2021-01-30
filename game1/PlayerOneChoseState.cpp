@@ -4,9 +4,7 @@ PlayerOneChoseState::PlayerOneChoseState(sf::RenderWindow& window, std::stack<st
 	: State(window, states) {
 	font.loadFromFile("fonts/Lucid_Streams.otf");
 	initButtons();
-	int a = rand() % 2;
-	std::string x = std::to_string(a);
-	if (!backText.loadFromFile("textures/back" + x + ".png")) {
+	if (!backText.loadFromFile("textures/back" + b + ".png")) {
 		std::cout << "ERROR::LOADING BACKGROUND TEXTURES\n";
 	}
 	sf::Vector2f back = (sf::Vector2f)backText.getSize();
@@ -19,7 +17,6 @@ PlayerOneChoseState::PlayerOneChoseState(sf::RenderWindow& window, std::stack<st
 	logo.setPosition((window.getSize().x / 2) - 300, 20);
 
 	i = b;
-	std::cout << i;
 }
 
 void PlayerOneChoseState::updateMousePosition()
@@ -42,9 +39,13 @@ void PlayerOneChoseState::update(const sf::Time dt)
 	updateButtons();
 	if (buttons["PLAYER_RED"]->isPressed())
 	{
-		std::cout << i;
 		std::string p_one = "1";
 		states.push(std::shared_ptr<State>(new PlayerTwoChoseState(window, states, i, p_one)));
+	}
+	if (buttons["PLAYER_BLUE"]->isPressed())
+	{
+		std::string p_two = "2";
+		states.push(std::shared_ptr<State>(new PlayerTwoChoseState(window, states, i, p_two)));
 	}
 }
 
@@ -64,11 +65,7 @@ void PlayerOneChoseState::draw()
 
 void PlayerOneChoseState::handleEvent(const sf::Event& event)
 {
-	if (buttons["BACK"]->isPressed())
-	{
-		states.pop();
-	}
-	if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) 
+	if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape || buttons["BACK"]->isPressed())
 	{
 		states.pop();
 	}
@@ -78,6 +75,10 @@ void PlayerOneChoseState::initButtons()
 {
 	buttons["PLAYER_RED"] = new Button(50, 200, 200, 50,
 		&font, "RED",
+		sf::Color::White, sf::Color::Red, sf::Color::Blue);
+
+	buttons["PLAYER_BLUE"] = new Button(window.getSize().x - 250, 200, 200, 50,
+		&font, "BLUE",
 		sf::Color::White, sf::Color::Red, sf::Color::Blue);
 
 	buttons["BACK"] = new Button(100, window.getSize().y - 50, 150, 30,
