@@ -1,7 +1,7 @@
-#include "PlayerOneChoseState.hpp"
+#include "PlayerTwoChoseState.hpp"
 
-PlayerOneChoseState::PlayerOneChoseState(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>& states, std::string b)
-	: State(window, states) {
+PlayerTwoChoseState::PlayerTwoChoseState(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>& states, std::string b, std::string p_one)
+: State(window, states) {
 	font.loadFromFile("fonts/Lucid_Streams.otf");
 	initButtons();
 	int a = rand() % 2;
@@ -14,69 +14,70 @@ PlayerOneChoseState::PlayerOneChoseState(sf::RenderWindow& window, std::stack<st
 	background.setTexture(backText);
 
 	logo.setFont(font);
-	logo.setString("Chose Player One");
+	logo.setString("Chose Player Two");
 	logo.setCharacterSize(50);
 	logo.setPosition((window.getSize().x / 2) - 300, 20);
 
 	i = b;
-	std::cout << i;
+	j = p_one;
+	std::cout << i << "\n" << j;
 }
 
-void PlayerOneChoseState::updateMousePosition()
+void PlayerTwoChoseState::updateMousePosition()
 {
 	mousePosScreen = sf::Mouse::getPosition();
 	mousePosWindow = sf::Mouse::getPosition(window);
 	mousePosView = window.mapPixelToCoords(sf::Mouse::getPosition(window));
 }
 
-void PlayerOneChoseState::updateButtons()
+void PlayerTwoChoseState::updateButtons()
 {
 	for (auto& it : buttons) {
 		it.second->update(mousePosView);
 	}
 }
 
-void PlayerOneChoseState::update(const sf::Time dt)
+void PlayerTwoChoseState::update(const sf::Time dt)
 {
 	updateMousePosition();
 	updateButtons();
 	if (buttons["PLAYER_RED"]->isPressed())
 	{
-		std::cout << i;
-		std::string p_one = "1";
-		states.push(std::shared_ptr<State>(new PlayerTwoChoseState(window, states, i, p_one)));
+		std::cout << i << "\n" << j;
+		std::string p_two = "1";
+		states.push(std::shared_ptr<State>(new GameState(window, states, i, j, p_two)));
 	}
 }
 
-void PlayerOneChoseState::renderButtons(sf::RenderTarget& target)
+void PlayerTwoChoseState::renderButtons(sf::RenderTarget& target)
 {
 	for (auto& it : buttons) {
 		it.second->render(target);
 	}
 }
 
-void PlayerOneChoseState::draw()
+void PlayerTwoChoseState::draw()
 {
 	window.draw(background);
 	window.draw(logo);
 	renderButtons(window);
 }
 
-void PlayerOneChoseState::handleEvent(const sf::Event& event)
+void PlayerTwoChoseState::handleEvent(const sf::Event& event)
 {
 	if (buttons["BACK"]->isPressed())
 	{
 		states.pop();
 	}
-	if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) 
+	if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
 	{
 		states.pop();
 	}
 }
 
-void PlayerOneChoseState::initButtons()
+void PlayerTwoChoseState::initButtons()
 {
-	buttons["PLAYER_RED"] = new Button(50, 200, 200, 50,
+	buttons["PLAYER_RED"] = new Button(50, 300, 200, 50,
 		&font, "RED",
 		sf::Color::White, sf::Color::Red, sf::Color::Blue);
 

@@ -1,6 +1,6 @@
 #include "GameState.hpp"
 
-GameState::GameState(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>& states, std::string b, std::string p_one)
+GameState::GameState(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>& states, std::string b, std::string p_one, std::string p_two)
     : State(window, states)
   , player(sf::Vector2f(0.f, window.getSize().y), sf::Keyboard::A, sf::Keyboard::D, sf::Keyboard::W, sf::Keyboard::F, sf::Keyboard::G, player2)
   , player2(sf::Vector2f(window.getSize()), sf::Keyboard::Left, sf::Keyboard::Right, sf::Keyboard::Up, sf::Keyboard::End, sf::Keyboard::Down, player) {

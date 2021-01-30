@@ -1,14 +1,12 @@
 #pragma once
-#include "MainMenuState.hpp"
 #include "GameState.hpp"
 #include "Application.hpp"
 #include "Button.hpp"
 #include "MapChoseState.hpp"
-#include "PlayerTwoChoseState.hpp"
-
-class PlayerOneChoseState : public State {
+#include "PlayerOneChoseState.hpp"
+class PlayerTwoChoseState : public State {
 public:
-	PlayerOneChoseState(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>& states, std::string b);
+	PlayerTwoChoseState(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>& states, std::string b, std::string p_one);
 
 	void updateMousePosition();
 	void updateButtons();
@@ -17,6 +15,7 @@ public:
 	void draw();
 	void handleEvent(const sf::Event& event);
 	std::string i;
+	std::string j;
 
 private:
 	sf::Sprite background;

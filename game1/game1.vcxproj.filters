@@ -57,6 +57,9 @@
     <ClCompile Include="PlayerOneChoseState.cpp">
       <Filter>States</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerTwoChoseState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.hpp">
@@ -90,6 +93,9 @@
       <Filter>States</Filter>
     </ClInclude>
     <ClInclude Include="PlayerOneChoseState.hpp">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTwoChoseState.hpp">
       <Filter>States</Filter>
     </ClInclude>
   </ItemGroup>
