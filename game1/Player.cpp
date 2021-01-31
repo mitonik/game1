@@ -1,8 +1,8 @@
 #include "Player.hpp"
 #include <iostream>
 
-Player::Player(sf::Vector2f startPos, sf::Keyboard::Key left, sf::Keyboard::Key right, sf::Keyboard::Key up, sf::Keyboard::Key attack, sf::Keyboard::Key attack2, Player& player2)
-    : left(left), right(right), up(up), attack(attack), attack2(attack2), player2(player2), lastDir(leftDir) {
+Player::Player(sf::Vector2f startPos, sf::Keyboard::Key left, sf::Keyboard::Key right, sf::Keyboard::Key up, sf::Keyboard::Key attack, sf::Keyboard::Key attack2, Player& player2, sf::Vector2u bounds)
+    : bounds(bounds), left(left), right(right), up(up), attack(attack), attack2(attack2), player2(player2), lastDir(leftDir) {
   texture.loadFromFile("textures/player_move_r.png");
   sprite.setTexture(texture);
   sprite.setScale(sf::Vector2f(5.f, 5.f));
@@ -29,21 +29,21 @@ void Player::update(const sf::Time dt) {
   if (sf::Keyboard::isKeyPressed(up) && isJumping == false) {
     acceleration.y = -jumpSpeed;
   }
-  if (sprite.getPosition().y + sprite.getGlobalBounds().height < 830) {
+  if (sprite.getPosition().y + sprite.getGlobalBounds().height < bounds.y - 70) {
     isJumping = true;
     acceleration.y += 50.f;
   }
   velocity.x = acceleration.x * dt.asSeconds();
   velocity.y = acceleration.y * dt.asSeconds();
   sprite.move(velocity.x, velocity.y);
-  if (sprite.getPosition().y + sprite.getGlobalBounds().height > 830) {
+  if (sprite.getPosition().y + sprite.getGlobalBounds().height > bounds.y - 70) {
     isJumping = false;
     acceleration.y = 0;
-    sprite.setPosition(sprite.getPosition().x, 830 - sprite.getGlobalBounds().height);
+    sprite.setPosition(sprite.getPosition().x, bounds.y - 70 - sprite.getGlobalBounds().height);
   }
-  if (sprite.getPosition().x + sprite.getGlobalBounds().width > 1600) {
+  if (sprite.getPosition().x + sprite.getGlobalBounds().width > bounds.x) {
     acceleration.x = 0;
-    sprite.setPosition(1600 - sprite.getGlobalBounds().width, sprite.getPosition().y);
+    sprite.setPosition(bounds.x - sprite.getGlobalBounds().width, sprite.getPosition().y);
   }
   if (sprite.getPosition().x < 0) {
     acceleration.x = 0;
@@ -58,7 +58,7 @@ void Player::update(const sf::Time dt) {
       player2.health -= 20;
       it = bullets.erase(it);
     }
-    else if (it->sprite.getPosition().x > 1600) {
+    else if (it->sprite.getPosition().x > bounds.x) {
       it = bullets.erase(it);
     }
     else {

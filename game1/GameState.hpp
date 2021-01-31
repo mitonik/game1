@@ -11,6 +11,7 @@ class GameState : public State {
   void update(const sf::Time dt);
   void draw();
 
+
  private:
    int win = 0;
    sf::Font font;
@@ -18,6 +19,8 @@ class GameState : public State {
 
   sf::Sprite background;
   sf::Texture backgroundTexture;
+
+  sf::Vector2u bounds = window.getSize();
 
   Player player;
   Player player2;

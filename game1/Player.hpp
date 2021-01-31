@@ -6,7 +6,7 @@
 
 class Player {
  public:
-  Player(sf::Vector2f startPos, sf::Keyboard::Key left, sf::Keyboard::Key right, sf::Keyboard::Key up, sf::Keyboard::Key attack, sf::Keyboard::Key attack2, Player& player2);
+  Player(sf::Vector2f startPos, sf::Keyboard::Key left, sf::Keyboard::Key right, sf::Keyboard::Key up, sf::Keyboard::Key attack, sf::Keyboard::Key attack2, Player& player2, sf::Vector2u bounds);
 
   void update(const sf::Time dt);
   void draw(sf::RenderWindow& window);
@@ -16,6 +16,8 @@ class Player {
   int health = 100;
 
  private:
+   sf::Vector2u bounds;
+
   enum lastDirection
   {
     leftDir,
