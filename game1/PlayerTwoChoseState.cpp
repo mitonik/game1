@@ -1,6 +1,6 @@
 #include "PlayerTwoChoseState.hpp"
 
-PlayerTwoChoseState::PlayerTwoChoseState(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>& states, std::string b, std::string p_one)
+PlayerTwoChoseState::PlayerTwoChoseState(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>& states, std::string b, int p_one)
 : State(window, states) {
 	font.loadFromFile("fonts/Lucid_Streams.otf");
 	initButtons();
@@ -38,14 +38,14 @@ void PlayerTwoChoseState::update(const sf::Time dt)
 {
 	updateMousePosition();
 	updateButtons();
-	if (buttons["PLAYER_RED"]->isPressed())
+	if (buttons["COWBOY"]->isPressed())
 	{
-		std::string p_two = "1";
+		int p_two = 0;
 		states.push(std::shared_ptr<State>(new GameState(window, states, i, j, p_two)));
 	}
-	if (buttons["PLAYER_BLUE"]->isPressed())
+	if (buttons["KNIGHT"]->isPressed())
 	{
-		std::string p_two = "2";
+		int p_two = 1;
 		states.push(std::shared_ptr<State>(new GameState(window, states, i, j, p_two)));
 	}
 }
@@ -74,12 +74,12 @@ void PlayerTwoChoseState::handleEvent(const sf::Event& event)
 
 void PlayerTwoChoseState::initButtons()
 {
-	buttons["PLAYER_RED"] = new Button(50, 300, 200, 50,
-		&font, "RED",
+	buttons["COWBOY"] = new Button(50, 300, 200, 50,
+		&font, "COWBOY",
 		sf::Color::White, sf::Color::Red, sf::Color::Blue);
 
-	buttons["PLAYER_BLUE"] = new Button(window.getSize().x - 250, 300, 200, 50,
-		&font, "BLUE",
+	buttons["KNIGHT"] = new Button(window.getSize().x - 250, 300, 200, 50,
+		&font, "KNIGHT",
 		sf::Color::White, sf::Color::Red, sf::Color::Blue);
 
 	buttons["BACK"] = new Button(100, window.getSize().y - 50, 150, 30,

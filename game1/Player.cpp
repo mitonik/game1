@@ -1,9 +1,17 @@
 #include "Player.hpp"
 #include <iostream>
 
-Player::Player(sf::Vector2f startPos, sf::Keyboard::Key left, sf::Keyboard::Key right, sf::Keyboard::Key up, sf::Keyboard::Key attack, sf::Keyboard::Key attack2, Player& player2, sf::Vector2u bounds)
-    : bounds(bounds), left(left), right(right), up(up), attack(attack), attack2(attack2), player2(player2), lastDir(leftDir) {
-  texture.loadFromFile("textures/player_move_r.png");
+Player::Player(int type, sf::Vector2f startPos, sf::Keyboard::Key left, sf::Keyboard::Key right, sf::Keyboard::Key up, sf::Keyboard::Key attack, sf::Keyboard::Key attack2, Player& player2, sf::Vector2u bounds)
+    : type(type), bounds(bounds), left(left), right(right), up(up), attack(attack), attack2(attack2), player2(player2), lastDir(leftDir) {
+  switch (type)
+  {
+  case Cowboy:
+    texture.loadFromFile("textures/player_move_r.png");
+    break;
+  case Knight:
+    texture.loadFromFile("textures/player_attack_r.png");
+    break;
+  }
   sprite.setTexture(texture);
   sprite.setScale(sf::Vector2f(5.f, 5.f));
   font.loadFromFile("fonts/arial.ttf");
@@ -52,46 +60,76 @@ void Player::update(const sf::Time dt) {
   text.setPosition(sprite.getPosition() + sf::Vector2f(0.f, -100.f));
   text.setString(std::to_string(health));
   std::list<Bullet>::iterator it = bullets.begin();
-  while (it != bullets.end()) {
-    it->update(dt);
-    if (it->sprite.getGlobalBounds().intersects(player2.sprite.getGlobalBounds())) {
-      player2.health -= 20;
-      it = bullets.erase(it);
-    }
-    else if (it->sprite.getPosition().x > bounds.x) {
-      it = bullets.erase(it);
-    }
-    else {
-      it++;
-    }
+  switch (type) {
+    case Cowboy:
+      while (it != bullets.end()) {
+        it->update(dt);
+        if (it->sprite.getGlobalBounds().intersects(player2.sprite.getGlobalBounds())) {
+          player2.health -= 20;
+          it = bullets.erase(it);
+        }
+        else if (it->sprite.getPosition().x > bounds.x) {
+          it = bullets.erase(it);
+        }
+        else {
+          it++;
+        }
+      }
+      timeSinceLastUpdate += dt;
+      if (sf::Keyboard::isKeyPressed(attack) && timeSinceLastUpdate.asSeconds() > 1.f) {
+        timeSinceLastUpdate = sf::Time::Zero;
+        if (lastDir == leftDir) {
+          Bullet bullet(bulletTexture, sprite.getPosition(), sf::Vector2f(-1500.f, 0.f));
+          bullets.push_back(bullet);
+        } else if (lastDir == rightDir) {
+          Bullet bullet(bulletTexture, sprite.getPosition(), sf::Vector2f(1500.f, 0.f));
+          bullets.push_back(bullet);
+        }
+      }
+      timeSinceLastUpdateSpecial += dt;
+      if (timeSinceLastUpdateSpecial > sf::seconds(1.f)) {
+        if (passive.getGlobalBounds().intersects(player2.sprite.getGlobalBounds())) {
+          player2.health -= 10;
+          timeSinceLastUpdateSpecial = sf::seconds(0.f);
+        }
+      }
+      passive.setPosition(200.f * cos(clock.getElapsedTime().asSeconds()) + sprite.getPosition().x, 200.f * sin(clock.getElapsedTime().asSeconds()) + sprite.getPosition().y);
+
+    break;
+    case Knight:
+      timeSinceLastUpdate += dt;
+      if (sf::Keyboard::isKeyPressed(attack) && timeSinceLastUpdate.asSeconds() > 1.f) {
+        timeSinceLastUpdate = sf::Time::Zero;
+        if (lastDir == leftDir) {
+        }
+        else if (lastDir == rightDir) {
+        }
+      }
+      timeSinceLastUpdateSpecial += dt;
+      if (sf::Keyboard::isKeyPressed(attack2) && timeSinceLastUpdateSpecial > sf::seconds(1.f)) {
+        if (clock.getElapsedTime() > sf::seconds(1.f))
+        {
+          timeSinceLastUpdateSpecial = sf::Time::Zero;
+        }
+      }
+    break;
   }
-  timeSinceLastUpdate += dt;
-  if (sf::Keyboard::isKeyPressed(attack) && timeSinceLastUpdate.asSeconds() > 1.f) {
-    timeSinceLastUpdate = sf::Time::Zero;
-    if (lastDir == leftDir) {
-      Bullet bullet(bulletTexture, sprite.getPosition(), sf::Vector2f(-750.f, 0.f));
-      bullets.push_back(bullet);
-    } else if (lastDir == rightDir) {
-      Bullet bullet(bulletTexture, sprite.getPosition(), sf::Vector2f(750.f, 0.f));
-      bullets.push_back(bullet);
-    }
-  }
-  timeSinceLastUpdateSpecial += dt;
-  if (timeSinceLastUpdateSpecial > sf::seconds(1.f)) {
-    if (passive.getGlobalBounds().intersects(player2.sprite.getGlobalBounds())) {
-      player2.health -= 10;
-      timeSinceLastUpdateSpecial = sf::seconds(0.f);
-    }
-  }
-  passive.setPosition(200.f * cos(clock.getElapsedTime().asSeconds()) + sprite.getPosition().x, 200.f * sin(clock.getElapsedTime().asSeconds()) + sprite.getPosition().y);
 }
 
 void Player::draw(sf::RenderWindow& window) {
-  for (std::list<Bullet>::iterator it = bullets.begin(); it != bullets.end(); it++) {
-    window.draw(it->sprite);
+  switch (type) {
+  case Cowboy:
+    for (std::list<Bullet>::iterator it = bullets.begin(); it != bullets.end(); it++) {
+      window.draw(it->sprite);
+    }
+    //std::cout << bullets.size() << std::endl;
+    window.draw(sprite);
+    window.draw(passive);
+    window.draw(text);
+    break;
+  case Knight:
+    window.draw(sprite);
+    window.draw(text);
+    break;
   }
-  //std::cout << bullets.size() << std::endl;
-  window.draw(sprite);
-  window.draw(passive);
-  window.draw(text);
 }

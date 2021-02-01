@@ -6,7 +6,7 @@
 #include "PlayerOneChoseState.hpp"
 class PlayerTwoChoseState : public State {
 public:
-	PlayerTwoChoseState(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>& states, std::string b, std::string p_one);
+	PlayerTwoChoseState(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>& states, std::string b, int p_one);
 
 	void updateMousePosition();
 	void updateButtons();
@@ -15,7 +15,7 @@ public:
 	void draw();
 	void handleEvent(const sf::Event& event);
 	std::string i;
-	std::string j;
+	int j;
 
 private:
 	sf::Sprite background;

@@ -37,15 +37,15 @@ void PlayerOneChoseState::update(const sf::Time dt)
 {
 	updateMousePosition();
 	updateButtons();
-	if (buttons["PLAYER_RED"]->isPressed())
+	if (buttons["COWBOY"]->isPressed())
 	{
-		std::string p_one = "1";
+		int p_one = 0;
 		states.push(std::shared_ptr<State>(new PlayerTwoChoseState(window, states, i, p_one)));
 	}
-	if (buttons["PLAYER_BLUE"]->isPressed())
+	if (buttons["KNIGHT"]->isPressed())
 	{
-		std::string p_two = "2";
-		states.push(std::shared_ptr<State>(new PlayerTwoChoseState(window, states, i, p_two)));
+		int p_one = 1;
+		states.push(std::shared_ptr<State>(new PlayerTwoChoseState(window, states, i, p_one)));
 	}
 }
 
@@ -73,12 +73,12 @@ void PlayerOneChoseState::handleEvent(const sf::Event& event)
 
 void PlayerOneChoseState::initButtons()
 {
-	buttons["PLAYER_RED"] = new Button(50, 200, 200, 50,
-		&font, "RED",
+	buttons["COWBOY"] = new Button(50, 200, 200, 50,
+		&font, "COWBOY",
 		sf::Color::White, sf::Color::Red, sf::Color::Blue);
 
-	buttons["PLAYER_BLUE"] = new Button(window.getSize().x - 250, 200, 200, 50,
-		&font, "BLUE",
+	buttons["KNIGHT"] = new Button(window.getSize().x - 250, 200, 200, 50,
+		&font, "KNIGHT",
 		sf::Color::White, sf::Color::Red, sf::Color::Blue);
 
 	buttons["BACK"] = new Button(100, window.getSize().y - 50, 150, 30,

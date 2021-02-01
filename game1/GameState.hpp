@@ -5,7 +5,7 @@
 
 class GameState : public State {
  public:
-  GameState(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>& states, std::string b, std::string p_one, std::string p_two);
+  GameState(sf::RenderWindow& window, std::stack<std::shared_ptr<State>>& states, std::string b, int p_one, int p_two);
 
   void handleEvent(const sf::Event& event);
   void update(const sf::Time dt);
